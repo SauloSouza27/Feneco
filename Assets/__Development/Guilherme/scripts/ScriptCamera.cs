@@ -8,7 +8,12 @@ public class ScriptCamera : MonoBehaviour
     public Vector2 angle; 
     public float distance = 5; 
     private float rotationSpeed = 500.0f;
+    private float angleMinX;
 
+    private void Start()
+    {
+        angleMinX = angle.x;
+    }
 
     private void Update()
     {
@@ -17,9 +22,9 @@ public class ScriptCamera : MonoBehaviour
             if (Input.GetAxis("Mouse Y") != 0 || Input.GetAxis("Mouse X") != 0)
             {
                 angle.x += 1 * -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
-                if (angle.x < 35)
+                if (angle.x < angleMinX)
                 {
-                    angle.x = 35;
+                    angle.x = angleMinX;
                 }
                 if (angle.x > 75)
                 {
