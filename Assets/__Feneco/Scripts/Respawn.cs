@@ -6,6 +6,7 @@ public class Respawn : MonoBehaviour
 {
     private MeshCollider deathZone;
     private Transform respawnPoint;
+    [SerializeField] private float timeToRespawn = 0.6f;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class Respawn : MonoBehaviour
 
     private IEnumerator RespawnCheckPoint(Collider other)
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(timeToRespawn);
         other.gameObject.transform.position = respawnPoint.position;
     }
 }
