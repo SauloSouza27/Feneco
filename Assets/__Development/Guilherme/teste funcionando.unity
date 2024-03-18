@@ -880,6 +880,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466844242}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &563445620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 563445621}
+  m_Layer: 6
+  m_Name: RespawnLake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &563445621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563445620}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.3, y: 2, z: -42.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6038594713566648192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &592564927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,7 +2670,7 @@ Transform:
   m_GameObject: {fileID: 1618053750}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.12858114, z: -0, w: 0.99169904}
-  m_LocalPosition: {x: -11.4, y: 1.01, z: 7.3}
+  m_LocalPosition: {x: -144.5, y: 1.01, z: 307.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4401,10 +4432,11 @@ Transform:
   m_GameObject: {fileID: 6982696850808573808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -130.14662, y: -0.77913016, z: 365.73062}
+  m_LocalPosition: {x: -130.14662, y: -1.8, z: 365.73062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 563445621}
   m_Father: {fileID: 4007517330114674167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6303996159035868640
@@ -4533,6 +4565,8 @@ GameObject:
   - component: {fileID: 6038594713566648192}
   - component: {fileID: 8920021174888066625}
   - component: {fileID: 3287789399970798809}
+  - component: {fileID: 8920021174888066626}
+  - component: {fileID: 8920021174888066627}
   m_Layer: 6
   m_Name: Lake
   m_TagString: Untagged
@@ -4959,6 +4993,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6982696850808573808}
   m_Mesh: {fileID: 8298179354486815073, guid: 065d476fa6e9fd441bd7fb14a3171f1e, type: 3}
+--- !u!64 &8920021174888066626
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6982696850808573808}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8298179354486815073, guid: 065d476fa6e9fd441bd7fb14a3171f1e, type: 3}
+--- !u!114 &8920021174888066627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6982696850808573808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3472216c63add084189b7525e6c9fe61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9080634707970684447
 GameObject:
   m_ObjectHideFlags: 0
