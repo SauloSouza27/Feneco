@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public Transform cam;
 
-    // Start is called before the first frame update
+
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
@@ -31,16 +31,8 @@ public class PlayerController : MonoBehaviour
         floorMask = LayerMask.GetMask("Floor");
         rb = GetComponent<Rigidbody>();
     }
-    void Start()
-    {
-        
-    }
+   
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     void FixedUpdate()
     {
         PlayerOlhandoProMouse();
