@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 171610601}
   - component: {fileID: 171610600}
   m_Layer: 0
-  m_Name: Objetivo2
+  m_Name: Objective1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3030,7 +3030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 560205553}
   m_Layer: 0
-  m_Name: __ObjetivosQuests
+  m_Name: __QuestsObjectives
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5185,7 +5185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1060544416}
   m_Layer: 0
-  m_Name: "__Colet\xE1veis"
+  m_Name: __Colectables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5610,7 +5610,7 @@ GameObject:
   - component: {fileID: 1175718444}
   - component: {fileID: 1175718443}
   m_Layer: 0
-  m_Name: Objetivo1
+  m_Name: Objective1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8990,7 +8990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1977684386}
   m_Layer: 0
-  m_Name: __Inimigos
+  m_Name: __Enemys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10198,7 +10198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4007517330114674167}
   m_Layer: 0
-  m_Name: __BlocagemFaseDeserto
+  m_Name: __DesertBlocking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
