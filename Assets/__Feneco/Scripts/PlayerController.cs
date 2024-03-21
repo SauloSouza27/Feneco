@@ -31,7 +31,11 @@ public class PlayerController : MonoBehaviour
         floorMask = LayerMask.GetMask("Floor");
         rb = GetComponent<Rigidbody>();
     }
-   
+
+    private void Start()
+    {
+        Time.timeScale = 1.8f;   
+    }
 
     void FixedUpdate()
     {
