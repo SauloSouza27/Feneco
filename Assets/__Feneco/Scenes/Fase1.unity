@@ -1801,8 +1801,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1618053751}
-  angle: {x: 25, y: 0}
+  angle: {x: 28, y: 0}
   distance: 9
+  alturaCam: 0.5
 --- !u!1 &281233490
 GameObject:
   m_ObjectHideFlags: 0
@@ -7549,9 +7550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767a8a1e8485874409e00d17205c6b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 14
+  speed: 7
   jump: 6.5
-  gravity: 2
+  gravity: 1.2
   cam: {fileID: 275700233}
 --- !u!54 &1618053753
 Rigidbody:

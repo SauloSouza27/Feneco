@@ -9,6 +9,7 @@ public class ScriptCamera : MonoBehaviour
     public float distance = 5; 
     private float rotationSpeed = 500.0f;
     private float angleMinX;
+    public float alturaCam;
 
     private void Start()
     {
@@ -26,15 +27,15 @@ public class ScriptCamera : MonoBehaviour
                 {
                     angle.x = angleMinX;
                 }
-                if (angle.x > 75)
+                if (angle.x > 54)
                 {
-                    angle.x = 75;
+                    angle.x = 54;
                 }
                 angle.y += 1 * Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
             }
         }
         Quaternion rotation = Quaternion.Euler(angle.x, angle.y, 0);
-        Vector3 position = rotation * new Vector3(0, 0, -distance) + target.position;
+        Vector3 position = rotation * new Vector3(0, alturaCam, -distance) + target.position;
 
         transform.position = position;
         transform.rotation = rotation;
