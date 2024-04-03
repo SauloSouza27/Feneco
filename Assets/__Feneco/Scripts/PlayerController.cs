@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded())
         {
             rb.velocity += Vector3.up * jump;
-            Debug.Log(1);
         }
     }
     void Awake()
