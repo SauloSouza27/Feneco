@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78cfc6d3e12261b4ca4a3a1a8fad1b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointAreaName: WaypointsCoiotes1
+  waypointAreaName: WaypointsCoiotes
 --- !u!1101 &7079944319198578103
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
