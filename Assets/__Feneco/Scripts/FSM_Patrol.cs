@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class FSM_Patrol : StateMachineBehaviour
 {
-    public string waypointAreaName = "";
+    public string waypointAreaName;
 
     private GameObject player = null;
 
@@ -24,11 +24,7 @@ public class FSM_Patrol : StateMachineBehaviour
 
         navMeshAgent = animator.transform.GetComponent<NavMeshAgent>();
 
-        if (waypointAreaName != "")
-        {
-            waypointArea = GameObject.Find("waypointAreaName");
-            Debug.Log(waypointArea.name);
-        }
+        waypointArea = GameObject.Find(waypointAreaName);
 
         if (waypointArea != null)
         {
