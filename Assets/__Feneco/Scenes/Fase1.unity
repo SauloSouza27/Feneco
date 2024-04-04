@@ -10970,7 +10970,7 @@ GameObject:
   - component: {fileID: 2279328188316987357}
   - component: {fileID: 321611697706907107}
   - component: {fileID: 3290270485550911705}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: QuestMountain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
