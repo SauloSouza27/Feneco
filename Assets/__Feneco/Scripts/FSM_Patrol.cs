@@ -33,7 +33,6 @@ public class FSM_Patrol : StateMachineBehaviour
             for (int i = 0; i < waypoints.Length; i++)
             {
                 waypoints[i] = waypointArea.transform.GetChild(i).transform;
-                Debug.Log(waypoints[i].name);
             }
         }
 
