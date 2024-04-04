@@ -1454,7 +1454,7 @@ MonoBehaviour:
   angle: {x: 28, y: 0}
   distance: 9.5
   rotationSpeed: 200
-  alturaCam: 0.6
+  alturaCam: 0.52
 --- !u!1 &281233490
 GameObject:
   m_ObjectHideFlags: 0
