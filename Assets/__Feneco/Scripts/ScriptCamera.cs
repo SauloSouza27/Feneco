@@ -27,9 +27,9 @@ public class ScriptCamera : MonoBehaviour
                 {
                     angle.x = angleMinX;
                 }
-                if (angle.x > 28)
+                if (angle.x > 45)
                 {
-                    angle.x = 28;
+                    angle.x = 45;
                 }
                 angle.y += 1 * Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
             }

@@ -1650,8 +1650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1618053751}
-  angle: {x: 28, y: 0}
-  distance: 9.5
+  angle: {x: 2, y: 0}
+  distance: 7
   rotationSpeed: 200
   alturaCam: 0.52
 --- !u!1 &281233490
@@ -8444,7 +8444,7 @@ Transform:
   m_GameObject: {fileID: 1618053750}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9863491, z: -0, w: 0.16466795}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2549, y: 66.9, z: 314}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10209,7 +10209,7 @@ Transform:
   m_GameObject: {fileID: 1944941329}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9717633, z: -0, w: -0.23595805}
-  m_LocalPosition: {x: -62.29, y: -1.0099922, z: 65.04001}
+  m_LocalPosition: {x: -62.29, y: -0.462, z: 65.04001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
