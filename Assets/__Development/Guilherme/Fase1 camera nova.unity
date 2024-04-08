@@ -8482,8 +8482,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  jump: 6.5
+  jump: 8
   gravity: 1.2
+  dashDuration: 0.3
+  dashSpeed: 30
+  dashCooldown: 1.5
   cam: {fileID: 275700233}
 --- !u!54 &1618053753
 Rigidbody:
@@ -8583,7 +8586,19 @@ MonoBehaviour:
     m_ActionId: 05cc8b2c-497a-4bec-80fe-94e1aead4120
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1618053752}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2855e9be-9221-4f6a-b9b5-d8dc75833ed6
     m_ActionName: Player/Dash[/Keyboard/leftShift]
   - m_PersistentCalls:
