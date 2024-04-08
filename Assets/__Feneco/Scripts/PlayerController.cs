@@ -6,19 +6,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 6, jump = 8, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f;
+    public float speed = 6, jump = 8, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f;
+    private bool isDashing = false;
     int floorMask;
     float camRayLength = 100f;
     private Vector2 move;
     private Rigidbody rb;
     public Transform cam;
     private Vector3 movementDirection;
-
+    private float lastDashTime = -999f; // Initialize to a time in the past to allow dashing immediately at the start
 
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        move = context.ReadValue<Vector2>();       
+        move = context.ReadValue<Vector2>();
     }
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -29,9 +30,10 @@ public class PlayerController : MonoBehaviour
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && Time.time >= lastDashTime + dashCooldown)
         {
             StartCoroutine(Dash());
+            lastDashTime = Time.time;
         }
     }
     void Awake()
@@ -42,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 1.8f;   
+        Time.timeScale = 1.8f;
     }
 
     void FixedUpdate()
@@ -84,7 +86,7 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         RaycastHit hit;
-        float distanceToGround = 1.0f; 
+        float distanceToGround = 1.0f;
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, distanceToGround + 0.1f))
         {
             return true;
@@ -93,18 +95,24 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator Dash()
     {
-        rb.useGravity = false;
+        if (!isDashing)
+        {
+            isDashing = true;
+            rb.useGravity = false;
 
-        Vector3 originalVelocity = rb.velocity;
+            Vector3 originalVelocity = rb.velocity;
 
-        Vector3 dashDirection = move.magnitude > 0 ? movementDirection : cam.forward;
+            Vector3 dashDirection = move.magnitude > 0 ? movementDirection : cam.forward;
 
-        rb.velocity = dashDirection * dashSpeed;
+            rb.velocity = dashDirection * dashSpeed;
 
-        yield return new WaitForSeconds(dashDuration);
+            yield return new WaitForSeconds(dashDuration);
 
-        rb.useGravity = true;
-        rb.velocity = originalVelocity;
+            rb.useGravity = true;
+            rb.velocity = originalVelocity;
+
+            isDashing = false;
+        }
     }
     private void UpdateMovementDirection()
     {
@@ -116,4 +124,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-
