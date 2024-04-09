@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class PlayerController : MonoBehaviour
 {
     public float speed = 6, jump = 8, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f;
     private bool isDashing = false;
+    private bool isCombat = false;
     int floorMask;
     float camRayLength = 100f;
     private Vector2 move;
     private Rigidbody rb;
     public Transform cam;
     private Vector3 movementDirection;
-    private float lastDashTime = -999f; // Initialize to a time in the past to allow dashing immediately at the start
-
+    private float lastDashTime = -999f;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -49,26 +48,43 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        PlayerOlhandoProMouse();
+        if (isCombat)
+        {
+            PlayerOlhandoProMouse();
+        }
+        else
+        {
+            RotateWithMovementDirection();
+        }
+
         UpdateMovementDirection();
         Movimento();
     }
-    private void PlayerOlhandoProMouse()
+
+    private void RotateWithMovementDirection()
     {
+        if (move.magnitude > 0)
         {
-            Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit floorHit;
-
-            if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
-            {
-                Vector3 playerToMouse = floorHit.point - transform.position;
-                playerToMouse.y = 0f;
-
-                Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
-                transform.rotation = newRotation;
-            }
+            Quaternion newRotation = Quaternion.LookRotation(movementDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
         }
     }
+
+    private void PlayerOlhandoProMouse()
+    {
+        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit floorHit;
+
+        if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
+        {
+            Vector3 playerToMouse = floorHit.point - transform.position;
+            playerToMouse.y = 0f;
+
+            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
+            transform.rotation = newRotation;
+        }
+    }
+
     private void Movimento()
     {
         Vector3 cameraForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
@@ -83,6 +99,7 @@ public class PlayerController : MonoBehaviour
         }
         rb.velocity += Physics.gravity * gravity * Time.deltaTime;
     }
+
     private bool IsGrounded()
     {
         RaycastHit hit;
@@ -93,6 +110,7 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
     private IEnumerator Dash()
     {
         if (!isDashing)
@@ -114,6 +132,7 @@ public class PlayerController : MonoBehaviour
             isDashing = false;
         }
     }
+
     private void UpdateMovementDirection()
     {
         if (move.magnitude > 0)
