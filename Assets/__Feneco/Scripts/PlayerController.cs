@@ -15,16 +15,26 @@ public class PlayerController : MonoBehaviour
     public Transform cam;
     private Vector3 movementDirection;
     private float lastDashTime = -999f;
+    private Animator animator;
 
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
+        if (move.magnitude == 0)
+        {
+            animator.SetBool("IsMoving", false);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", true);
+        }
     }
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (IsGrounded())
+        if (IsGrounded() && isDashing == false)
         {
             rb.velocity += Vector3.up * jump;
+            animator.SetBool("IsJumping", true);
         }
     }
     public void OnDash(InputAction.CallbackContext context)
@@ -39,6 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         floorMask = LayerMask.GetMask("Floor");
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -59,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
         UpdateMovementDirection();
         Movimento();
+        animator.SetBool("IsJumping", !IsGrounded());
     }
 
     private void RotateWithMovementDirection()
@@ -116,6 +128,7 @@ public class PlayerController : MonoBehaviour
         if (!isDashing)
         {
             isDashing = true;
+            animator.SetBool("IsDashing", true); // Set IsDashing to true when dashing
             rb.useGravity = false;
 
             Vector3 originalVelocity = rb.velocity;
@@ -130,6 +143,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = originalVelocity;
 
             isDashing = false;
+            animator.SetBool("IsDashing", false); // Set IsDashing to false when dash ends
         }
     }
 
