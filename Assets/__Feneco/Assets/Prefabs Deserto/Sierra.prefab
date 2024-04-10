@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6109393064819461319}
   - component: {fileID: 3183977011244123748}
   - component: {fileID: 8901615253412635371}
+  - component: {fileID: -7224766653996466384}
   m_Layer: 6
   m_Name: Sierra
   m_TagString: Untagged
@@ -106,3 +107,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -9116555350695070708, guid: 28da04ff2a025d04a84c46cd47c30914, type: 3}
+--- !u!114 &-7224766653996466384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763935894011549542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
