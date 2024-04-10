@@ -86,8 +86,9 @@ MonoBehaviour:
   gravity: 1.2
   dashDuration: 0.3
   dashSpeed: 30
-  dashCooldown: 1.5
+  dashCooldown: 1.2
   cam: {fileID: 0}
+  timeScale: 1.5
 --- !u!136 &1829231594602297952
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class FreezeCameraRotation : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            UnfreezeRotation();
+            OnfreezeRotation();
         }
         else
         {
@@ -37,7 +37,7 @@ public class FreezeCameraRotation : MonoBehaviour
         }
     }
 
-    void UnfreezeRotation()
+    void OnfreezeRotation()
     {
         if (isRotationFrozen)
         {
