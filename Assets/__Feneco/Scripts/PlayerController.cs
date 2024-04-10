@@ -18,6 +18,35 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     [SerializeField] private float timeScale = 1.0f;
 
+    
+    void Awake()
+    {
+        floorMask = LayerMask.GetMask("Floor");
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        Time.timeScale = timeScale;
+    }
+
+    void FixedUpdate()
+    {
+        if (isCombat)
+        {
+            PlayerOlhandoProMouse();
+        }
+        else
+        {
+            RotateWithMovementDirection();
+        }
+
+        UpdateMovementDirection();
+        Movimento();
+        animator.SetBool("IsJumping", !IsGrounded());
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
@@ -46,32 +75,28 @@ public class PlayerController : MonoBehaviour
             lastDashTime = Time.time;
         }
     }
-    void Awake()
+    private IEnumerator Dash()
     {
-        floorMask = LayerMask.GetMask("Floor");
-        rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
-    }
-
-    private void Start()
-    {
-        Time.timeScale = timeScale;
-    }
-
-    void FixedUpdate()
-    {
-        if (isCombat)
+        if (!isDashing)
         {
-            PlayerOlhandoProMouse();
-        }
-        else
-        {
-            RotateWithMovementDirection();
-        }
+            isDashing = true;
+            animator.SetBool("IsDashing", true); // Set IsDashing to true when dashing
+            rb.useGravity = false;
 
-        UpdateMovementDirection();
-        Movimento();
-        animator.SetBool("IsJumping", !IsGrounded());
+            Vector3 originalVelocity = rb.velocity;
+
+            Vector3 dashDirection = move.magnitude > 0 ? movementDirection : cam.forward;
+
+            rb.velocity = dashDirection * dashSpeed;
+
+            yield return new WaitForSeconds(dashDuration);
+
+            rb.useGravity = true;
+            rb.velocity = originalVelocity;
+
+            isDashing = false;
+            animator.SetBool("IsDashing", false); // Set IsDashing to false when dash ends
+        }
     }
 
     private void RotateWithMovementDirection()
@@ -123,31 +148,6 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-
-    private IEnumerator Dash()
-    {
-        if (!isDashing)
-        {
-            isDashing = true;
-            animator.SetBool("IsDashing", true); // Set IsDashing to true when dashing
-            rb.useGravity = false;
-
-            Vector3 originalVelocity = rb.velocity;
-
-            Vector3 dashDirection = move.magnitude > 0 ? movementDirection : cam.forward;
-
-            rb.velocity = dashDirection * dashSpeed;
-
-            yield return new WaitForSeconds(dashDuration);
-
-            rb.useGravity = true;
-            rb.velocity = originalVelocity;
-
-            isDashing = false;
-            animator.SetBool("IsDashing", false); // Set IsDashing to false when dash ends
-        }
-    }
-
     private void UpdateMovementDirection()
     {
         if (move.magnitude > 0)
