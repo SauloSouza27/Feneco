@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     float camRayLength = 100f;
     private Vector2 move;
     private Rigidbody rb;
-    public Transform cam;
+    [SerializeField] private Transform cam;
     private Vector3 movementDirection;
     private float lastDashTime = -999f;
     private Animator animator;
@@ -75,6 +75,15 @@ public class PlayerController : MonoBehaviour
             lastDashTime = Time.time;
         }
     }
+
+    public void OnAction(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+
+        }
+    }
+
     private IEnumerator Dash()
     {
         if (!isDashing)
