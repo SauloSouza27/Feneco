@@ -82,7 +82,7 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Action"",
+                    ""name"": ""Talk"",
                     ""type"": ""Button"",
                     ""id"": ""e69c5bc7-2bfa-4bd8-8d5a-c7d3e3b716c0"",
                     ""expectedControlType"": ""Button"",
@@ -348,11 +348,11 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c66df7f4-77df-42f5-b128-75361b14d10d"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Action"",
+                    ""action"": ""Talk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -946,7 +946,7 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
         m_Player_Fire2 = m_Player.FindAction("Fire 2", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
+        m_Player_Talk = m_Player.FindAction("Talk", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1026,7 +1026,7 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire2;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_Action;
+    private readonly InputAction m_Player_Talk;
     public struct PlayerActions
     {
         private @NewControlsTrue m_Wrapper;
@@ -1037,7 +1037,7 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
         public InputAction @Fire2 => m_Wrapper.m_Player_Fire2;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @Action => m_Wrapper.m_Player_Action;
+        public InputAction @Talk => m_Wrapper.m_Player_Talk;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1065,9 +1065,9 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @Action.started += instance.OnAction;
-            @Action.performed += instance.OnAction;
-            @Action.canceled += instance.OnAction;
+            @Talk.started += instance.OnTalk;
+            @Talk.performed += instance.OnTalk;
+            @Talk.canceled += instance.OnTalk;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1090,9 +1090,9 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @Action.started -= instance.OnAction;
-            @Action.performed -= instance.OnAction;
-            @Action.canceled -= instance.OnAction;
+            @Talk.started -= instance.OnTalk;
+            @Talk.performed -= instance.OnTalk;
+            @Talk.canceled -= instance.OnTalk;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1281,7 +1281,7 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
         void OnFire2(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnAction(InputAction.CallbackContext context);
+        void OnTalk(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

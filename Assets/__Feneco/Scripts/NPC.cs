@@ -38,10 +38,13 @@ public class NPC : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if (playerController != null)
-            {
-                playerController = other.GetComponent<PlayerController>();
-            }
+            TalkNPC();
+
+            //if (playerController != null)
+            //{
+            //    playerController = other.GetComponent<PlayerController>();
+            //    playerController.SetNPCNearON(true, gameObject);
+            //}
         }
     }
 
@@ -51,6 +54,11 @@ public class NPC : MonoBehaviour
         {
             npc_fsm.SetBool("IsTalking", false);
             dialogueScreen.SetActive(false);
+            
+            //if (playerController != null)
+            //{
+            //    playerController.SetNPCNearON(false, null);  
+            //}
         }
     }
 
