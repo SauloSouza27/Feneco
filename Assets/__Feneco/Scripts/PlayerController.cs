@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 6, jump = 8, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f;
+    [SerializeField] private float speed = 6, jump = 8, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f;
     private bool isDashing = false;
     private bool isCombat = false;
     int floorMask;
@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 movementDirection;
     private float lastDashTime = -999f;
     private Animator animator;
+    [SerializeField] private float timeScale = 1.0f;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 1.8f;
+        Time.timeScale = timeScale;
     }
 
     void FixedUpdate()
