@@ -100,30 +100,31 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsDashing", false); // Set IsDashing to false when dash ends
         }
     }
-    //public void OnTalk(InputAction.CallbackContext context)
-    //{
-        //Debug.Log("E pressed");
-        //if (context.performed && isNearNPC)
-        //{
-        //    talkingNPC.GetComponent<NPC>().TalkNPC();
-        //}
-    //}
-    //public void SetNPCNearON(bool active, GameObject NPC)
-    //{
-    //    if (active)
-    //    {
-    //        isNearNPC = active;
-    //
-    //       if (NPC != null)
-    //        {
-    //            talkingNPC = NPC;
-    //       }
-    //   }
-    //   else
-    //  {
-    //     isNearNPC = active;
-    // }
-    //}
+    public void OnTalk(InputAction.CallbackContext context)
+    {
+        if (context.performed && isNearNPC && talkingNPC != null)
+        {
+            talkingNPC.GetComponent<NPC>().TalkNPC();
+            talkingNPC.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+    public void SetNPCNearON(bool active, GameObject NPC)
+    {
+        if (active)
+        {
+            isNearNPC = active;
+    
+            if (NPC != null)
+            {
+                talkingNPC = NPC;
+            }
+        }
+        else
+        {
+            isNearNPC = active;
+            talkingNPC = null;
+        }
+    }
     private void RotateWithMovementDirection()
     {
         if (move.magnitude > 0)

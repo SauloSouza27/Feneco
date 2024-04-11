@@ -348,7 +348,7 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c66df7f4-77df-42f5-b128-75361b14d10d"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
