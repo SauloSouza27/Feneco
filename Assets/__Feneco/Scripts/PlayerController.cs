@@ -100,8 +100,9 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsDashing", false); // Set IsDashing to false when dash ends
         }
     }
-    public void OnTalk(InputAction.CallbackContext context)
+    public void OnAction(InputAction.CallbackContext context)
     {
+        // Talk NPC
         if (context.performed && isNearNPC && talkingNPC != null)
         {
             talkingNPC.GetComponent<NPC>().TalkNPC();

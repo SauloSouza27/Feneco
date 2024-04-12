@@ -60,9 +60,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Talk",
+                    "name": "Action",
                     "type": "Button",
-                    "id": "e69c5bc7-2bfa-4bd8-8d5a-c7d3e3b716c0",
+                    "id": "a626ff68-0ebb-4522-8c8a-d7524c6b9102",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -325,12 +325,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c66df7f4-77df-42f5-b128-75361b14d10d",
+                    "id": "8cbd8733-667b-4a6c-9d1f-141260377de6",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Talk",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

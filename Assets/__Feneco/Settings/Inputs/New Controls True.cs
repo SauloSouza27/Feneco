@@ -82,9 +82,9 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Talk"",
+                    ""name"": ""Action"",
                     ""type"": ""Button"",
-                    ""id"": ""e69c5bc7-2bfa-4bd8-8d5a-c7d3e3b716c0"",
+                    ""id"": ""a626ff68-0ebb-4522-8c8a-d7524c6b9102"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -347,12 +347,12 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c66df7f4-77df-42f5-b128-75361b14d10d"",
+                    ""id"": ""8cbd8733-667b-4a6c-9d1f-141260377de6"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Talk"",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -946,7 +946,7 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
         m_Player_Fire2 = m_Player.FindAction("Fire 2", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_Talk = m_Player.FindAction("Talk", throwIfNotFound: true);
+        m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1026,7 +1026,7 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire2;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_Talk;
+    private readonly InputAction m_Player_Action;
     public struct PlayerActions
     {
         private @NewControlsTrue m_Wrapper;
@@ -1037,7 +1037,7 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
         public InputAction @Fire2 => m_Wrapper.m_Player_Fire2;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @Talk => m_Wrapper.m_Player_Talk;
+        public InputAction @Action => m_Wrapper.m_Player_Action;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1065,9 +1065,9 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @Talk.started += instance.OnTalk;
-            @Talk.performed += instance.OnTalk;
-            @Talk.canceled += instance.OnTalk;
+            @Action.started += instance.OnAction;
+            @Action.performed += instance.OnAction;
+            @Action.canceled += instance.OnAction;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1090,9 +1090,9 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @Talk.started -= instance.OnTalk;
-            @Talk.performed -= instance.OnTalk;
-            @Talk.canceled -= instance.OnTalk;
+            @Action.started -= instance.OnAction;
+            @Action.performed -= instance.OnAction;
+            @Action.canceled -= instance.OnAction;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1281,7 +1281,7 @@ public partial class @NewControlsTrue: IInputActionCollection2, IDisposable
         void OnFire2(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnTalk(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
