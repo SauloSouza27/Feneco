@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
         // Talk NPC
         if (context.performed && isNearNPC && talkingNPC != null)
         {
-            talkingNPC.GetComponent<NPC>().TalkNPC();
+            talkingNPC.SendMessage("TalkNPC");
             talkingNPC.transform.GetChild(0).gameObject.SetActive(false);
         }
     }

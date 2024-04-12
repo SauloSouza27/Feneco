@@ -25,9 +25,13 @@ public class NPC : MonoBehaviour
 
     private bool acceptedMission = false;
 
-    //[SerializeField] private GameObject callbackObject = null;
+    private bool isQuestCompleted = false;
 
-    //[SerializeField] private string method;
+    [SerializeField] private string[] questCompletedDialogue;
+
+    [SerializeField] private GameObject callbackObject = null;
+
+    [SerializeField] private string method;
 
     private Animator npc_fsm;
 
@@ -37,6 +41,15 @@ public class NPC : MonoBehaviour
     private void Awake()
     {
         npc_fsm = transform.GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        dialogueScreen.transform.GetChild(2).GetComponent<Image>().sprite = avatar;
+        dialogueScreen.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(BtBack);
+        dialogueScreen.transform.GetChild(4).GetComponent<Button>().onClick.AddListener(BtNext);
+        questScreen.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(BtYes);
+        questScreen.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(BtNo);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,15 +74,15 @@ public class NPC : MonoBehaviour
                 playerController.SetNPCNearON(false, null);  
             }
 
-            npc_fsm.SetBool("IsTalking", false);
-            dialogueScreen.SetActive(false);
-            transform.GetChild(0).gameObject.SetActive(true);
-
             if (!acceptedMission)
             {
                 isTalkEnd = false;
                 dialogueIndex = 0;
             }
+
+            npc_fsm.SetBool("IsTalking", false);
+            dialogueScreen.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
@@ -85,25 +98,27 @@ public class NPC : MonoBehaviour
 
     private void BuildDialogue()
     {
-        if (!isTalkEnd)
+        if (!isQuestCompleted)
         {
-            dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = dialogue[dialogueIndex];
+            if (!isTalkEnd)
+            {
+                dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = dialogue[dialogueIndex];
+            }
+            else
+            {
+                dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = questText[3];
+            }
+
+            if (isQuest)
+            {
+                questScreen = dialogueScreen.transform.GetChild(5).gameObject;
+            }
         }
         else
         {
-            dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = questText[3];
+            dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = questCompletedDialogue[0];
         }
         
-        dialogueScreen.transform.GetChild(2).GetComponent<Image>().sprite = avatar;
-        dialogueScreen.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(BtBack);
-        dialogueScreen.transform.GetChild(4).GetComponent<Button>().onClick.AddListener(BtNext);
-
-        if (isQuest)
-        {
-            questScreen = dialogueScreen.transform.GetChild(5).gameObject;
-            questScreen.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(BtYes);
-            questScreen.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(BtNo);
-        }
     }
 
     private void BtBack()
@@ -174,6 +189,11 @@ public class NPC : MonoBehaviour
 
             npc_fsm.SetBool("IsTalking", false);
             dialogueScreen.SetActive(false);
+
+            if (isQuestCompleted)
+            {
+                GameController.instance.ObjectiveCompleted();
+            }
         }
         
     }
@@ -181,20 +201,36 @@ public class NPC : MonoBehaviour
     private void BtYes()
     {
         questScreen.SetActive(false);
+        
         dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = questText[1];
         dialogueScreen.transform.GetChild(3).GetComponent<Button>().interactable = false;
         dialogueScreen.transform.GetChild(4).GetComponent<Button>().interactable = true;
+       
         isTalkEnd = true;
         acceptedMission = true;
+       
+        GameController.instance.SetQuestHint();
+
+        if (callbackObject != null && method != "")
+        {
+            callbackObject.SendMessage(method);
+        }
     }
 
     private void BtNo()
     {
         questScreen.SetActive(false);
+        
         dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = questText[2];
         dialogueScreen.transform.GetChild(3).GetComponent<Button>().interactable = false;
         dialogueScreen.transform.GetChild(4).GetComponent<Button>().interactable = true;
+       
         isTalkEnd = true;
     }
 
+    public void CompleteQuest()
+    {
+        isQuestCompleted = true;
+        GameController.instance.SetNoActiveQuest();
+    }
 }
