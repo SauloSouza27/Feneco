@@ -192,6 +192,7 @@ public class NPC : MonoBehaviour
 
             if (isQuestCompleted)
             {
+                GameController.instance.SetNoActiveQuest();
                 GameController.instance.ObjectiveCompleted();
             }
         }
@@ -231,6 +232,5 @@ public class NPC : MonoBehaviour
     public void CompleteQuest()
     {
         isQuestCompleted = true;
-        GameController.instance.SetNoActiveQuest();
     }
 }

@@ -10,8 +10,6 @@ public class GameController : MonoBehaviour
 
     private GameObject player;
 
-    private int questHintIndex = 0;
-
     private bool isQuestActive = false;
 
     private GameObject HUD;
@@ -19,6 +17,8 @@ public class GameController : MonoBehaviour
     private TextMeshProUGUI questHintText;
 
     [SerializeField] private string[] questHints;
+
+    private int questHintIndex = 0;
 
     private void Awake()
     {
@@ -60,9 +60,9 @@ public class GameController : MonoBehaviour
 
     public void SetQuestHint()
     {
+        isQuestActive = true;
         UpdateHUD();
         questHintIndex++;
-        isQuestActive = true;
     }
     public void SetNoActiveQuest()
     {
