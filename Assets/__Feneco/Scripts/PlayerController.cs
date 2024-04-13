@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     private bool isCombat = false;
     private bool isNearNPC = false;
     private bool isRunning = false;
-    private bool hasJumped = false;
     private GameObject talkingNPC;
     int floorMask;
     float camRayLength = 100f;
@@ -173,8 +172,6 @@ public class PlayerController : MonoBehaviour
         {
             movement = movement.normalized * speed * speedModifier * Time.deltaTime;
 
-            Debug.Log(movement);
-
             rb.MovePosition(transform.position + movement);
         }
         rb.velocity += Physics.gravity * gravity * Time.deltaTime;
@@ -183,7 +180,7 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         RaycastHit hit;
-        float distanceToGround = 1.0f;
+        float distanceToGround = 1.5f;
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, distanceToGround + 0.1f))
         {
             return true;
