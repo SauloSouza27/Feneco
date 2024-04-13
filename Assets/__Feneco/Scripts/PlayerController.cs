@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 6, jump = 8, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f;
+    [SerializeField] private float speed = 6, jump = 15, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f;
     private bool isDashing = false;
     private bool isCombat = false;
     private bool isNearNPC = false;
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded() && isDashing == false)
         {
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.velocity += Vector3.up * jump;
             animator.SetBool("IsJumping", true);
         }
@@ -82,7 +83,7 @@ public class PlayerController : MonoBehaviour
         if (!isDashing)
         {
             isDashing = true;
-            animator.SetBool("IsDashing", true); // Set IsDashing to true when dashing
+            animator.SetBool("IsDashing", true);
             rb.useGravity = false;
 
             Vector3 originalVelocity = rb.velocity;
@@ -97,7 +98,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = originalVelocity;
 
             isDashing = false;
-            animator.SetBool("IsDashing", false); // Set IsDashing to false when dash ends
+            animator.SetBool("IsDashing", false);
         }
     }
     public void OnAction(InputAction.CallbackContext context)
@@ -168,7 +169,7 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         RaycastHit hit;
-        float distanceToGround = 1.0f;
+        float distanceToGround = 0.5f;
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, distanceToGround + 0.1f))
         {
             return true;
