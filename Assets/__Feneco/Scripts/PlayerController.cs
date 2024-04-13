@@ -5,10 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 6, jump = 15, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f;
+    [SerializeField] private float speed = 6, jump = 15, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f, runModifier = 2.5f;
+    private float speedModifier = 1.0f;
     private bool isDashing = false;
     private bool isCombat = false;
     private bool isNearNPC = false;
+    private bool isRunning = false;
+    private bool hasJumped = false;
     private GameObject talkingNPC;
     int floorMask;
     float camRayLength = 100f;
@@ -74,8 +77,16 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && Time.time >= lastDashTime + dashCooldown)
         {
+            isRunning = true;
             StartCoroutine(Dash());
             lastDashTime = Time.time;
+            speedModifier += runModifier;
+        }
+        else if (context.canceled && isRunning == true)
+        {
+            isRunning = false;
+            speedModifier -= runModifier;
+            animator.SetBool("IsRunning", false);
         }
     }
     private IEnumerator Dash()
@@ -84,6 +95,7 @@ public class PlayerController : MonoBehaviour
         {
             isDashing = true;
             animator.SetBool("IsDashing", true);
+            animator.SetBool("IsRunning", true);
             rb.useGravity = false;
 
             Vector3 originalVelocity = rb.velocity;
@@ -159,7 +171,9 @@ public class PlayerController : MonoBehaviour
 
         if (movement != Vector3.zero)
         {
-            movement = movement.normalized * speed * Time.deltaTime;
+            movement = movement.normalized * speed * speedModifier * Time.deltaTime;
+
+            Debug.Log(movement);
 
             rb.MovePosition(transform.position + movement);
         }
@@ -169,7 +183,7 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         RaycastHit hit;
-        float distanceToGround = 0.8f;
+        float distanceToGround = 1.0f;
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, distanceToGround + 0.1f))
         {
             return true;
