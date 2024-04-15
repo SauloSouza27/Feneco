@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 6, jump = 15, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f, runModifier = 2.5f;
     private float speedModifier = 1.0f;
     private bool isDashing = false;
-    private bool isCombat = false;
+    [HideInInspector] public bool isCombat = false;
     private bool isNearNPC = false;
     private bool isRunning = false;
     private GameObject talkingNPC;
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             isRunning = true;
             StartCoroutine(Dash());
             lastDashTime = Time.time;
-            speedModifier += runModifier;
+            
         }
         else if (context.canceled && isRunning == true)
         {
@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
 
             isDashing = false;
             animator.SetBool("IsDashing", false);
+            speedModifier += runModifier;
         }
     }
     public void OnAction(InputAction.CallbackContext context)
@@ -170,7 +171,7 @@ public class PlayerController : MonoBehaviour
 
         if (movement != Vector3.zero)
         {
-            movement = movement.normalized * speed * speedModifier * Time.deltaTime;
+            movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
 
             rb.MovePosition(transform.position + movement);
         }
