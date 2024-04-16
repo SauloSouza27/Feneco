@@ -8,6 +8,7 @@ TagManager:
   - NPC
   - HUD
   - Saida
+  - DanoArma
   layers:
   - Default
   - TransparentFX

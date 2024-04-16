@@ -323,11 +323,11 @@ GameObject:
   - component: {fileID: 8793900962943005475}
   - component: {fileID: 5969059307206030534}
   - component: {fileID: 3049502256492469159}
+  - component: {fileID: 7973372546391813728}
   - component: {fileID: 6022595642281125731}
   - component: {fileID: 6990172745949666295}
   - component: {fileID: 5181313496136486604}
   - component: {fileID: 3962078838098487677}
-  - component: {fileID: 7973372546391813728}
   m_Layer: 0
   m_Name: NPC Fenec
   m_TagString: NPC
@@ -401,6 +401,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7973372546391813728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7965277671062723069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5c4499a396d6a49826d87e157608ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueScreen: {fileID: 0}
+  questScreen: {fileID: 0}
+  avatar: {fileID: 21300000, guid: 944523f94565d144db0d7bb69d8ce8bf, type: 3}
+  dialogue:
+  - Hi!! I need your help!
+  - I'm sure you are the one for the task.
+  - Go get the Object by the Oasis, it's not that far away.
+  isQuest: 1
+  questText:
+  - Do you accept the quest?
+  - Thank you!
+  - Ok, maybe another time.
+  - I'll wait until you come back from the lake.
+  questCompletedDialogue:
+  - You got it! Thanks for the help!!!
+  callbackObject: {fileID: 0}
+  method: TurnOnObjective
 --- !u!136 &6022595642281125731
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -493,32 +522,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7973372546391813728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7965277671062723069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b5c4499a396d6a49826d87e157608ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueScreen: {fileID: 0}
-  questScreen: {fileID: 0}
-  avatar: {fileID: 21300000, guid: 944523f94565d144db0d7bb69d8ce8bf, type: 3}
-  dialogue:
-  - Hi!! I need your help!
-  - I'm sure you are the one for the task.
-  - Go get the Object by the Oasis, it's not that far away.
-  isQuest: 1
-  questText:
-  - Do you accept the quest?
-  - Thank you!
-  - Ok, maybe another time.
-  - I'll wait until you come back from the lake.
-  questCompletedDialogue:
-  - You got it! Thanks for the help!!!
-  callbackObject: {fileID: 0}
-  method: TurnOnObjective
