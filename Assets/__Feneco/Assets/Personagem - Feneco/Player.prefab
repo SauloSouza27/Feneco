@@ -72,11 +72,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8275861923189921331}
   - component: {fileID: 4077284071156416771}
+  - component: {fileID: 7208522016095285396}
   - component: {fileID: 1829231594602297952}
   - component: {fileID: 239925912957800744}
   - component: {fileID: 3625243378196376694}
   - component: {fileID: 384359828123209513}
-  - component: {fileID: 7208522016095285396}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -122,8 +122,22 @@ MonoBehaviour:
   dashCooldown: 1.5
   runModifier: 0.55
   isCombat: 0
+  isCombatTimer: 0
   cam: {fileID: 0}
   timeScale: 1.5
+--- !u!114 &7208522016095285396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900189455875789202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25206baeb50b6e469a5041027bc5f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 986cc92edf248db4193f95096ebf5da8, type: 2}
 --- !u!136 &1829231594602297952
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -342,19 +356,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7208522016095285396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8900189455875789202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c25206baeb50b6e469a5041027bc5f74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 986cc92edf248db4193f95096ebf5da8, type: 2}
 --- !u!1001 &4001208114561223133
 PrefabInstance:
   m_ObjectHideFlags: 0
