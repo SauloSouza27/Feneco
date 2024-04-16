@@ -10,7 +10,7 @@ public class WeaponCreator : WeaponBase
     public override void CastTime(GameObject parent)
     {
         PlayerController inCombat = parent.GetComponent<PlayerController>();
-        inCombat.isCombat = true;
+        inCombat.isCombatTimer = 3.0f;
     }
     public override void Activate(GameObject parent)
     {

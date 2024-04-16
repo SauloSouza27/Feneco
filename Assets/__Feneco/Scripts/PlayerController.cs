@@ -6,9 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 6, jump = 15, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f, runModifier = 2.5f;
+
     private float speedModifier = 1.0f;
     private bool isDashing = false;
     [HideInInspector] public bool isCombat = false;
+    [HideInInspector] public float isCombatTimer = 0f;
     private bool isNearNPC = false;
     private bool isRunning = false;
     private GameObject talkingNPC;
@@ -34,7 +36,10 @@ public class PlayerController : MonoBehaviour
     {
         Time.timeScale = timeScale;
     }
-
+    private void Update()
+    {
+        CombatChecker();
+    }
     void FixedUpdate()
     {
         if (isCombat)
@@ -137,6 +142,18 @@ public class PlayerController : MonoBehaviour
         {
             isNearNPC = active;
             talkingNPC = null;
+        }
+    }
+    private void CombatChecker()
+    {
+        if (isCombatTimer <= 0f)
+        {
+            isCombat = false;
+        }
+        else
+        {
+            isCombatTimer -= Time.deltaTime;
+            isCombat = true;
         }
     }
     private void RotateWithMovementDirection()
