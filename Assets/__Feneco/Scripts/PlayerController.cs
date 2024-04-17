@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     int floorMask;
     float camRayLength = 100f;
     private Vector2 move;
-    private Rigidbody rb;
+    private Rigidbody rigidBody;
     [SerializeField] private Transform cam;
     private Vector3 movementDirection;
     private float lastDashTime = -999f;
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
-        rb = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
 
@@ -72,8 +72,8 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded() && isDashing == false)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            rb.velocity += Vector3.up * jump;
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
+            rigidBody.velocity += Vector3.up * jump;
             animator.SetBool("IsJumping", true);
         }
     }
@@ -100,18 +100,18 @@ public class PlayerController : MonoBehaviour
             isDashing = true;
             animator.SetBool("IsDashing", true);
             animator.SetBool("IsRunning", true);
-            rb.useGravity = false;
+            rigidBody.useGravity = false;
 
-            Vector3 originalVelocity = rb.velocity;
+            Vector3 originalVelocity = rigidBody.velocity;
 
             Vector3 dashDirection = move.magnitude > 0 ? movementDirection : cam.forward;
 
-            rb.velocity = dashDirection * dashSpeed;
+            rigidBody.velocity = dashDirection * dashSpeed;
 
             yield return new WaitForSeconds(dashDuration);
 
-            rb.useGravity = true;
-            rb.velocity = originalVelocity;
+            rigidBody.useGravity = true;
+            rigidBody.velocity = originalVelocity;
 
             isDashing = false;
             animator.SetBool("IsDashing", false);
@@ -185,14 +185,13 @@ public class PlayerController : MonoBehaviour
         Vector3 cameraForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
 
         Vector3 movement = move.y * cameraForward + move.x * cam.right;
-
         if (movement != Vector3.zero)
         {
             movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
 
-            rb.MovePosition(transform.position + movement);
+            rigidBody.MovePosition(transform.position + movement);
         }
-        rb.velocity += Physics.gravity * gravity * Time.deltaTime;
+        rigidBody.velocity += Physics.gravity * gravity * Time.deltaTime;
     }
 
     private bool IsGrounded()
