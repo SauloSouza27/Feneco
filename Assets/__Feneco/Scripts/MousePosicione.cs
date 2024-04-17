@@ -9,18 +9,21 @@ public class MousePosicione : MonoBehaviour
     public float maxRadius;
     void Update()
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, layerMask))
+        if (!Application.isEditor)
         {
-            Vector3 mousePos = raycastHit.point;
-
-            Vector3 difference = mousePos - player.position;
-            float magnitude = difference.magnitude;
-            if (magnitude > maxRadius)
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, layerMask))
             {
-                difference = difference * (maxRadius / magnitude);
+                Vector3 mousePos = raycastHit.point;
+
+                Vector3 difference = mousePos - player.position;
+                float magnitude = difference.magnitude;
+                if (magnitude > maxRadius)
+                {
+                    difference = difference * (maxRadius / magnitude);
+                }
+                transform.position = player.position + difference;
             }
-            transform.position = player.position + difference;
         }
     }
 }
