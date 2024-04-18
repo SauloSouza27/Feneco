@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     private Rigidbody rigidBody;
     [SerializeField] private Transform cam;
-    private Vector3 movementDirection;
+    private Vector3 movementDirection = Vector3.forward;
     private float lastDashTime = -999f;
     private Animator animator;
     [SerializeField] private float timeScale = 1.0f;
@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
 
     private void Movimento()
     {
+        Debug.Log(transform.position);
         Vector3 cameraForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
 
         Vector3 movement = move.y * cameraForward + move.x * cam.right;
