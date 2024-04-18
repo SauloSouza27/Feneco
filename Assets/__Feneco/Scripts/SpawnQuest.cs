@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class SpawnQuest : MonoBehaviour
 {
+
+    private void Start()
+    {
+        SetQuestActive();
+    }
     public void SetQuestActive()
     {
-        this.gameObject.SetActive(true);
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 }

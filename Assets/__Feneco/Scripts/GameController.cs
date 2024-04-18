@@ -98,7 +98,7 @@ public class GameController : MonoBehaviour
         UpdateHUD();
     }
 
-    public void SetActiveQuest(GameObject spawnQuest)
+    public void SpawnQuest(GameObject spawnQuest)
     {
         spawnQuest.SetActive(true);
     }
