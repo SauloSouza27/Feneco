@@ -33,6 +33,8 @@ public class NPC : MonoBehaviour
 
     [SerializeField] private string method;
 
+    [SerializeField] private GameObject spawnQuest = null;
+
     private Animator npc_fsm;
 
     private PlayerController playerController = null;
@@ -214,7 +216,14 @@ public class NPC : MonoBehaviour
 
         if (callbackObject != null && method != "")
         {
-            callbackObject.SendMessage(method);
+            if (!spawnQuest)
+            {
+                callbackObject.SendMessage(method);
+            }
+            else
+            {
+                callbackObject.SendMessage(method, spawnQuest);
+            }
         }
     }
 
