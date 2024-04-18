@@ -17,6 +17,8 @@ public class Counter : MonoBehaviour
     }
     private void Update()
     {
+        if (Time.timeScale == 0) return;
+
         if (active)
         {
             initialTime += Time.deltaTime/Time.timeScale;

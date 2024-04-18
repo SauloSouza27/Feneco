@@ -10,6 +10,10 @@ public class GameController : MonoBehaviour
 
     private GameObject player;
 
+    private int healthPoints = 10;
+
+    private TextMeshProUGUI healthPointsText;
+
     private bool isQuestActive = false;
 
     private GameObject HUD;
@@ -35,6 +39,7 @@ public class GameController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         HUD = GameObject.FindWithTag("HUD");
         questHintText = HUD.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        healthPointsText = HUD.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -44,20 +49,35 @@ public class GameController : MonoBehaviour
 
     public void UpdateHUD()
     {
-        string printText = "Quest Hint: ";
+        string printQuestText = "Quest Hint: ";
+        string printHealthPointsText = "HP: ";
+
+        healthPointsText.text = printHealthPointsText + healthPoints;
 
         if (!isQuestActive)
         {
-            printText += "No quest available";
+            printQuestText += "No quest available";
         }
         else
         {
-            printText += questHints[questHintIndex];
+            printQuestText += questHints[questHintIndex];
         }
         
-        questHintText.text = printText;
+        questHintText.text = printQuestText;
     }
-
+    public void TakeDamage()
+    {
+        healthPoints--;
+        if(healthPoints == 0)
+        {
+            GameOver();
+        }
+        UpdateHUD();
+    }
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+    }
     public void SetQuestHint()
     {
         isQuestActive = true;

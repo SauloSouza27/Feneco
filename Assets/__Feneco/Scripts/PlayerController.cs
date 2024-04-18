@@ -38,10 +38,14 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        if (Time.timeScale == 0) return;
+
         CombatChecker();
     }
     void FixedUpdate()
     {
+        if (Time.timeScale == 0) return;
+
         if (isCombat)
         {
             PlayerOlhandoProMouse();
