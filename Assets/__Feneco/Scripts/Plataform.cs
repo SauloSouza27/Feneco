@@ -24,7 +24,7 @@ public class Plataform : MonoBehaviour
         activeWaypoint = 1;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (waypoints.Length > 0)
         {
@@ -43,20 +43,20 @@ public class Plataform : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        other.transform.parent = transform;
-    //    }
-    //}
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        other.transform.parent = null;
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.transform.parent = transform;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.transform.parent = null;
+        }
+    }
 
     private void OnDrawGizmos()
     {

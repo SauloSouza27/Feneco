@@ -182,7 +182,6 @@ public class PlayerController : MonoBehaviour
 
     private void Movimento()
     {
-        Debug.Log(transform.position);
         Vector3 cameraForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
 
         Vector3 movement = move.y * cameraForward + move.x * cam.right;
@@ -190,7 +189,7 @@ public class PlayerController : MonoBehaviour
         {
             movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
 
-            rigidBody.MovePosition(transform.position + movement);
+            transform.position += movement;
         }
         rigidBody.velocity += Physics.gravity * gravity * Time.deltaTime;
     }
