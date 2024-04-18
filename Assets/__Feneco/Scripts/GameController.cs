@@ -90,6 +90,11 @@ public class GameController : MonoBehaviour
         UpdateHUD();
     }
 
+    public void SetActiveQuest(GameObject spawnQuest)
+    {
+        spawnQuest.SetActive(true);
+    }
+
     public void ObjectiveCompleted()
     {
 

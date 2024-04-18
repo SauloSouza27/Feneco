@@ -430,6 +430,7 @@ MonoBehaviour:
   - You got it! Thanks for the help!!!
   callbackObject: {fileID: 0}
   method: TurnOnObjective
+  spawnQuest: {fileID: 0}
 --- !u!136 &6022595642281125731
 CapsuleCollider:
   m_ObjectHideFlags: 0
