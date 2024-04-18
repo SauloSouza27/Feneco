@@ -100,10 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c678453970065894cb5520e813c14b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
-  prefab: {fileID: 0}
-  HP: 0
-  damage: 0
+  HP: 5
+  damage: 1
   avatar: {fileID: 0}
   meshs: []
 --- !u!95 &1585884952499276781

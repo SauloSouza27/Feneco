@@ -17,12 +17,16 @@ public class FSM_Attack : StateMachineBehaviour
 
     private float backupSpeed;
 
+    private int damage;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state    
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindWithTag("Player");
 
         navMeshAgent = animator.transform.GetComponent<NavMeshAgent>();
+
+        damage = animator.gameObject.GetComponent<EnemyController>().GetDamage();
 
         backupSpeed = navMeshAgent.speed;
 
@@ -42,7 +46,7 @@ public class FSM_Attack : StateMachineBehaviour
 
             if((stateInfo.normalizedTime % 1) > timeToAttack && isAttackOffCooldown)
             {
-                GameController.instance.TakeDamage();
+                GameController.instance.TakeDamage(damage);
                 isAttackOffCooldown = false;
             }
             if ((stateInfo.normalizedTime % 1) < 0.09f && !isAttackOffCooldown)

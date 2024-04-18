@@ -65,9 +65,9 @@ public class GameController : MonoBehaviour
         
         questHintText.text = printQuestText;
     }
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        healthPoints--;
+        healthPoints -= damage;
         if(healthPoints == 0)
         {
             GameOver();

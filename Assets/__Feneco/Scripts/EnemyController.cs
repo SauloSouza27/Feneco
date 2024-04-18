@@ -18,7 +18,21 @@ public class EnemyController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        HP = -damage;
+        HP -= damage;
+
+        if(HP <= 0)
+        {
+            HP = 0;
+        }
+
+        if(HP == 0)
+        {
+            OnDeath();
+        }
+    }
+    private void OnDeath()
+    {
+        Destroy(gameObject);
     }
     public void SetMesh(MeshFilter meshFilter, int index)
     {
