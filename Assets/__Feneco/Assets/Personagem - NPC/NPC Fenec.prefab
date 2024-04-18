@@ -416,20 +416,12 @@ MonoBehaviour:
   dialogueScreen: {fileID: 0}
   questScreen: {fileID: 0}
   avatar: {fileID: 21300000, guid: 944523f94565d144db0d7bb69d8ce8bf, type: 3}
-  dialogue:
-  - Hi!! I need your help!
-  - I'm sure you are the one for the task.
-  - Go get the Object by the Oasis, it's not that far away.
-  isQuest: 1
-  questText:
-  - Do you accept the quest?
-  - Thank you!
-  - Ok, maybe another time.
-  - I'll wait until you come back from the lake.
-  questCompletedDialogue:
-  - You got it! Thanks for the help!!!
+  dialogue: []
+  isQuest: 0
+  questText: []
+  questCompletedDialogue: []
   callbackObject: {fileID: 0}
-  method: TurnOnObjective
+  method: 0
   spawnQuest: {fileID: 0}
 --- !u!136 &6022595642281125731
 CapsuleCollider:

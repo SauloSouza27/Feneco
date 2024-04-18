@@ -12,17 +12,21 @@ public class GameController : MonoBehaviour
 
     private int healthPoints = 10;
 
+    private GameObject HUD;
+
     private TextMeshProUGUI healthPointsText;
 
     private bool isQuestActive = false;
-
-    private GameObject HUD;
 
     private TextMeshProUGUI questHintText;
 
     [SerializeField] private string[] questHints;
 
     private int questHintIndex = 0;
+
+    [SerializeField] private GameObject[] quests;
+
+    private int questIndex = 0;
 
     private void Awake()
     {
@@ -44,9 +48,13 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        foreach(GameObject g in quests)
+        {
+            g.SetActive(false);
+        }
+        UpdateQuest();
         UpdateHUD();
     }
-
     public void UpdateHUD()
     {
         string printQuestText = "Quest Hint: ";
@@ -95,8 +103,9 @@ public class GameController : MonoBehaviour
         spawnQuest.SetActive(true);
     }
 
-    public void ObjectiveCompleted()
+    public void UpdateQuest()
     {
-
+        quests[questIndex].SetActive(true);
+        questIndex++;
     }
 }
