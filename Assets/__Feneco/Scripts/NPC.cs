@@ -46,7 +46,7 @@ public class NPC : MonoBehaviour
     
     private void Awake()
     {
-        instanceNPC = this.GetComponent<NPC>();
+        instanceNPC = gameObject.GetComponent<NPC>();
         npc_fsm = transform.GetComponent<Animator>();
     }
 
