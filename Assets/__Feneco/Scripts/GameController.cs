@@ -106,6 +106,9 @@ public class GameController : MonoBehaviour
     public void UpdateQuest()
     {
         quests[questIndex].SetActive(true);
-        questIndex++;
+        if(questIndex < quests.Length - 1)
+        {
+            questIndex++;
+        }
     }
 }

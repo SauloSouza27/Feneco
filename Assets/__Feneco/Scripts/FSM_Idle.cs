@@ -22,9 +22,9 @@ public class FSM_Idle : StateMachineBehaviour
         if (player != null)
         {
             float distance = Vector3.Distance(player.transform.position, animator.transform.position);
+            NPCObjective npcScript = animator.transform.GetComponent<NPCObjective>();
 
-
-            if (distance > 3 && animator.transform.GetComponent<NPC>().GetAcceptedMission())
+            if (distance > 3 && npcScript.GetAcceptedMission() && npcScript.GetIsDelivered())
             {
                 animator.SetBool("IsEscort", true);
             }
@@ -36,10 +36,13 @@ public class FSM_Idle : StateMachineBehaviour
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (animator.transform.GetComponent<NPCObjective>().GetIsQuestUpdated())
+        {
+            
+        }
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

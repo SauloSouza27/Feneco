@@ -22,9 +22,9 @@ public class FSM_Escort : StateMachineBehaviour
         if (player != null)
         {
             float distance = Vector3.Distance(player.transform.position, animator.transform.position);
+            NPCObjective npcScript = animator.transform.GetComponent<NPCObjective>();
 
-
-            if (distance <= 3)
+            if (distance <= 3 || npcScript.GetIsDelivered())
             {
                 animator.SetBool("IsEscort", false);
             }

@@ -43,14 +43,22 @@ public class NPC : MonoBehaviour
 
     private PlayerController playerController = null;
 
-    
-    private void Awake()
+
+    public void Awake()
     {
         instanceNPC = gameObject.GetComponent<NPC>();
         npc_fsm = transform.GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnEnable()
+    {
+        isTalkEnd = false;
+        acceptedMission = false;
+        isQuestCompleted = false;
+        isQuestUpdated = false;
+    }
+
+    public void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
@@ -63,7 +71,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -106,7 +114,7 @@ public class NPC : MonoBehaviour
         BuildDialogue();
     }
 
-    private void BuildDialogue()
+    public void BuildDialogue()
     {
         if (!isQuestCompleted && instanceNPC.dialogue.Length != 0)
         {
@@ -131,7 +139,7 @@ public class NPC : MonoBehaviour
         
     }
 
-    private void BuildButtons()
+    public void BuildButtons()
     {
         dialogueScreen.transform.GetChild(3).GetComponent<Button>().onClick.RemoveAllListeners();
         dialogueScreen.transform.GetChild(4).GetComponent<Button>().onClick.RemoveAllListeners();
@@ -145,7 +153,7 @@ public class NPC : MonoBehaviour
         questScreen.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(instanceNPC.BtNo);
     }
 
-    private void BtBack()
+    public void BtBack()
     {
         if (!isTalkEnd)
         {
@@ -182,7 +190,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    private void BtNext()
+    public void BtNext()
     {
         if (!isTalkEnd)
         {
@@ -225,7 +233,7 @@ public class NPC : MonoBehaviour
         
     }
 
-    private void BtYes()
+    public void BtYes()
     {
         questScreen.SetActive(false);
         
@@ -244,7 +252,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    private void BtNo()
+    public void BtNo()
     {
         questScreen.SetActive(false);
         
@@ -262,5 +270,9 @@ public class NPC : MonoBehaviour
     public bool GetAcceptedMission()
     {
         return acceptedMission;
+    }
+    public bool GetIsQuestUpdated()
+    {
+        return isQuestUpdated;
     }
 }
