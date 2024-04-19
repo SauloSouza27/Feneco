@@ -6,7 +6,7 @@ public class NPCObjective : NPC
 {
     private bool isDelivered = false;
 
-    public void OnTriggerEnter(Collider other)
+    public new void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name == "Area Deliver Escort")
         {
