@@ -108,7 +108,7 @@ public class NPC : MonoBehaviour
 
     private void BuildDialogue()
     {
-        if (!isQuestCompleted)
+        if (!isQuestCompleted && instanceNPC.dialogue.Length != 0)
         {
             if (!isTalkEnd)
             {
@@ -258,5 +258,9 @@ public class NPC : MonoBehaviour
     public void CompleteQuest()
     {
         isQuestCompleted = true;
+    }
+    public bool GetAcceptedMission()
+    {
+        return acceptedMission;
     }
 }
