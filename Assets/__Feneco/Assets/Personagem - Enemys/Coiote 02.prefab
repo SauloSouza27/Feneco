@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Coyote
-  HP: 5
+  HP: 6
+  maxHP: 6
   damage: 1
   avatar: {fileID: 0}
   meshs: []
