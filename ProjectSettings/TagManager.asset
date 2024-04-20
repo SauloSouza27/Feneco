@@ -8,6 +8,7 @@ TagManager:
   - NPC
   - HUD
   - Saida
+  - WeaponDamage
   - DanoArma
   layers:
   - Default
