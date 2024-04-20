@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DrawGizmos : MonoBehaviour
 {
-    public bool turnOnOff = true;
+    [SerializeField] private bool turnOnOff = true;
 
     private void OnDrawGizmos()
     {

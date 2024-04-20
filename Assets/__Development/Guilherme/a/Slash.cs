@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Slash : MonoBehaviour
 {
-    private float damage = 2.0f;
+    private int damage = 2;
     private float timeToDestroy = 0.5f;
     private GameObject player;
 

@@ -19,28 +19,27 @@ public class FSM_Idle : StateMachineBehaviour
     //  OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (player != null)
+        NPC npcScript = animator.transform.GetComponent<NPC>();
+
+        if (player != null && !npcScript.GetIsDelivered())
         {
             float distance = Vector3.Distance(player.transform.position, animator.transform.position);
-            NPCObjective npcScript = animator.transform.GetComponent<NPCObjective>();
 
-            if (distance > 3 && npcScript.GetAcceptedMission() && npcScript.GetIsDelivered())
+            if (distance > 3 && npcScript.GetAcceptedMission())
             {
                 animator.SetBool("IsEscort", true);
             }
-        }
-        else
-        {
-            animator.SetFloat("distance", 20.0f);
         }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.transform.GetComponent<NPCObjective>().GetIsQuestUpdated())
+        NPC npcScript = animator.transform.GetComponent<NPC>();
+
+        if (npcScript.GetIsQuestUpdated())
         {
-            
+            navMeshAgent.destination = npcScript.GetCallbackObject().transform.GetChild(2).position;
         }
     }
 

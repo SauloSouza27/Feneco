@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     private GameObject player;
 
-    private int healthPoints = 10;
+    private int healthPoints = 1000;
 
     private GameObject HUD;
 

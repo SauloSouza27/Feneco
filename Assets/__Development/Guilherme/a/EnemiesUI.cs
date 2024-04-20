@@ -25,8 +25,8 @@ public class EnemyUIController : MonoBehaviour
                 if (enemyScript != null)
                 {
                     enemyUI.SetActive(true);
-                    enemyNameText.text = enemyScript.enemyName;
-                    healthFillImage.fillAmount = enemyScript.HP / enemyScript.HP;
+                    enemyNameText.text = enemyScript.GetEnemyName();
+                    healthFillImage.fillAmount = enemyScript.GetEnemyHP() / enemyScript.GetEnemyHP();
                 }
                 else
                 {

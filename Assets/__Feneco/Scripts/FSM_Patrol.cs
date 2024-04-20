@@ -58,7 +58,7 @@ public class FSM_Patrol : StateMachineBehaviour
 
         if (waypoints.Length > 0)
         {
-            if (Vector3.Distance(waypoints[choosenWaypoint].position, animator.transform.position) < 1.0f)
+            if (Vector3.Distance(waypoints[choosenWaypoint].position, animator.transform.position) < 2.0f)
             {
                 choosenWaypoint = Random.Range(0, waypoints.Length);
             }

@@ -33,6 +33,8 @@ public class NPC : MonoBehaviour
 
     private bool isQuestUpdated = false;
 
+    private bool isDelivered = false;
+
     [SerializeField] private string[] questCompletedDialogue;
 
     [SerializeField] private GameObject callbackObject = null;
@@ -68,6 +70,12 @@ public class NPC : MonoBehaviour
             {
                 playerController.SetNPCNearON(true, gameObject);
             }
+        }
+
+        if(other.name == "Area Deliver Escort")
+        {
+            isDelivered = true;
+            CompleteQuest();
         }
     }
 
@@ -274,5 +282,13 @@ public class NPC : MonoBehaviour
     public bool GetIsQuestUpdated()
     {
         return isQuestUpdated;
+    }
+    public bool GetIsDelivered()
+    {
+        return isDelivered;
+    }
+    public GameObject GetCallbackObject()
+    {
+        return callbackObject;
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] public string enemyName;
+    [SerializeField] private string enemyName;
 
-    [SerializeField] public float HP;
+    [SerializeField] private int HP;
 
     [SerializeField] private int damage;
 
@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
     {
         return damage;
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         HP -= damage;
 
@@ -39,5 +39,13 @@ public class EnemyController : MonoBehaviour
     public void SetMesh(MeshFilter meshFilter, int index)
     {
         meshFilter.mesh = meshs[index];
+    }
+    public string GetEnemyName()
+    {
+        return enemyName;
+    }
+    public int GetEnemyHP()
+    {
+        return HP;
     }
 }
