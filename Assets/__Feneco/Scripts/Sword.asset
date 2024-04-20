@@ -17,4 +17,5 @@ MonoBehaviour:
   activeTime: 0.05
   castTime: 0.4
   pontaSaida: {fileID: 0}
-  slash: {fileID: 6782882413545161923, guid: 1d4ce46f4683d314081dbf34961d83dc, type: 3}
+  slash1: {fileID: 6782882413545161923, guid: 1d4ce46f4683d314081dbf34961d83dc, type: 3}
+  slash2: {fileID: 6782882413545161923, guid: bdf7e02215516154488960caef07922a, type: 3}

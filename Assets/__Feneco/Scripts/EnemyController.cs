@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private float HP;
+    [SerializeField] public string enemyName;
+
+    [SerializeField] public float HP;
 
     [SerializeField] private int damage;
 
@@ -16,7 +18,7 @@ public class EnemyController : MonoBehaviour
     {
         return damage;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         HP -= damage;
 

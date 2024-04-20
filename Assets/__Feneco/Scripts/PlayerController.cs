@@ -9,25 +9,27 @@ public class PlayerController : MonoBehaviour
 
     private float speedModifier = 1.0f;
     private bool isDashing = false;
-    [HideInInspector] public bool isCombat = false;
+    private bool isCombat = false;
     [HideInInspector] public float isCombatTimer = 0f;
+    [HideInInspector] public bool isAttacking = false;
     private bool isNearNPC = false;
     private bool isRunning = false;
     private GameObject talkingNPC;
-    int floorMask;
+    int floorMask, enemiesMask;
     float camRayLength = 100f;
     private Vector2 move;
     private Rigidbody rigidBody;
     [SerializeField] private Transform cam;
     private Vector3 movementDirection = Vector3.forward;
     private float lastDashTime = -999f;
-    private Animator animator;
+    [HideInInspector] public Animator animator;
     [SerializeField] private float timeScale = 1.0f;
 
     
     void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
+        enemiesMask = LayerMask.GetMask("Enemies");
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
@@ -74,7 +76,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (IsGrounded() && isDashing == false)
+        if (IsGrounded() && isDashing == false && isAttacking == false)
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
             rigidBody.velocity += Vector3.up * jump;
