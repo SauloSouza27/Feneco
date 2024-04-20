@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class WeaponCreator : WeaponBase
+public class SwordCreator : WeaponBase
 {
     public GameObject pontaSaida, slash1, slash2;
     private bool attack = true;

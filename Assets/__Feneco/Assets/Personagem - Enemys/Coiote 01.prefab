@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6055350104797497604}
   - component: {fileID: 2022067150660735478}
   - component: {fileID: 2333890588529562750}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Coiote 01
   m_TagString: Enemy
   m_Icon: {fileID: 0}

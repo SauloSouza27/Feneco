@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Sprite avatar;
 
     [SerializeField] private Mesh[] meshs;
-
+    
     private void Start()
     {
         HP = maxHP;
@@ -26,7 +26,6 @@ public class EnemyController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        Debug.Log("hit");
         HP -= damage;
 
         if(HP <= 0)
