@@ -6,10 +6,10 @@ using TMPro;
 
 public class EnemyUIController : MonoBehaviour
 {
-    public GameObject enemyUI;
-    public TextMeshProUGUI enemyNameText;
-    public Image healthFillImage;
-    public float camRayLength = 100f;
+    [SerializeField] private GameObject enemyUI;
+    [SerializeField] private TextMeshProUGUI enemyNameText;
+    [SerializeField] private Image healthFillImage;
+    [SerializeField] private float camRayLength = 100f;
 
     void FixedUpdate()
     {
