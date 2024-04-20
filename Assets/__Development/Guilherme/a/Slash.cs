@@ -20,11 +20,12 @@ public class Slash : MonoBehaviour
         transform.position = saida.position;
         transform.rotation = saida.rotation;
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+            EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
             enemy.TakeDamage(damage);
         }
     }
