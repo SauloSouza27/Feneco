@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     private GameObject player;
 
-    private int healthPoints = 1000;
+    [SerializeField] private int healthPoints = 1000;
 
     private GameObject HUD;
 
@@ -90,7 +90,10 @@ public class GameController : MonoBehaviour
     {
         isQuestActive = true;
         UpdateHUD();
-        questHintIndex++;
+        if (questHintIndex < questHints.Length - 1)
+        {
+            questHintIndex++;
+        }
     }
     public void SetNoActiveQuest()
     {
