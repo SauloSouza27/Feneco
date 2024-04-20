@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c678453970065894cb5520e813c14b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyName: Coyote
   HP: 5
   damage: 1
   avatar: {fileID: 0}
