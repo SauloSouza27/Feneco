@@ -37,6 +37,7 @@ public class NPC : MonoBehaviour
 
     [SerializeField] private string[] questCompletedDialogue;
 
+    [Header ("Turn Active Objective in Scene")] 
     [SerializeField] private GameObject callbackObject = null;
 
     [SerializeField] private string method;
