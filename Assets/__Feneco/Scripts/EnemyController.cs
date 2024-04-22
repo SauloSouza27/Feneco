@@ -46,10 +46,7 @@ public class EnemyController : MonoBehaviour
     {
         meshFilter.mesh = meshs[index];
     }
-    public string GetEnemyName()
-    {
-        return enemyName;
-    }
+    public string EnemyName { get; set; }
     public int GetEnemyHP()
     {
         return HP;

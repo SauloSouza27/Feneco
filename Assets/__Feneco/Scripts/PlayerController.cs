@@ -150,9 +150,9 @@ public class PlayerController : MonoBehaviour
             talkingNPC = null;
         }
     }
-    public bool GetIsNearNPC()
+    public bool IsNearNPC
     {
-        return isNearNPC;
+        get { return isNearNPC; }
     }
     private void CombatChecker()
     {

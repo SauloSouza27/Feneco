@@ -66,7 +66,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed && state == AbilityState.ready && !playerController.GetIsNearNPC())
+        if (context.performed && state == AbilityState.ready && !playerController.IsNearNPC)
         {
             state = AbilityState.casttime;
             weapon.CastTime(gameObject);
