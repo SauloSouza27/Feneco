@@ -20,7 +20,7 @@ public class FSM_Attack : StateMachineBehaviour
     private int damage;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state    
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindWithTag("Player");
 
@@ -44,12 +44,12 @@ public class FSM_Attack : StateMachineBehaviour
 
             navMeshAgent.destination = player.transform.position;
 
-            if((stateInfo.normalizedTime % 1) > timeToAttack && isAttackOffCooldown)
+            if(!isAttackOffCooldown && (stateInfo.normalizedTime % 1) > timeToAttack)
             {
                 GameController.instance.TakeDamage(damage);
                 isAttackOffCooldown = false;
             }
-            if ((stateInfo.normalizedTime % 1) < 0.09f && !isAttackOffCooldown)
+            if (!isAttackOffCooldown && (stateInfo.normalizedTime % 1) < 0.09f)
             {
                 isAttackOffCooldown = true;
             }

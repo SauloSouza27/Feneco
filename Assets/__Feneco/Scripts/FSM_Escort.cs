@@ -30,7 +30,7 @@ public class FSM_Escort : StateMachineBehaviour
                 animator.SetBool("IsEscort", false);
             }
 
-            if (animator.GetBool("IsEscort") && distance > 3 && !npcScript.GetIsDelivered())
+            if (!npcScript.GetIsDelivered() && animator.GetBool("IsEscort") && distance > 3)
             {
                 navMeshAgent.destination = player.transform.position;
             }
