@@ -4,9 +4,11 @@ using UnityEngine.InputSystem;
 public class WeaponHolder : MonoBehaviour
 {
     public WeaponBase weapon;
-    float castTime;
-    float activeTime;
-    float cooldownTime;
+    private float castTime;
+    private float activeTime;
+    private float cooldownTime;
+
+    private PlayerController playerController;
 
     enum AbilityState
     {
@@ -16,6 +18,10 @@ public class WeaponHolder : MonoBehaviour
         cooldown
     }
     AbilityState state = AbilityState.ready;
+    private void Start()
+    {
+        playerController = this.transform.GetComponent<PlayerController>();
+    }
 
     void Update()
     {
@@ -60,7 +66,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed && state == AbilityState.ready)
+        if (context.performed && state == AbilityState.ready && !playerController.GetIsNearNPC())
         {
             state = AbilityState.casttime;
             weapon.CastTime(gameObject);

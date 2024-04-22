@@ -150,6 +150,10 @@ public class PlayerController : MonoBehaviour
             talkingNPC = null;
         }
     }
+    public bool GetIsNearNPC()
+    {
+        return isNearNPC;
+    }
     private void CombatChecker()
     {
         if (isCombatTimer <= 0f)
