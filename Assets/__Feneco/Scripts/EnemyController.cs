@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private string enemyName;
+    [SerializeField] private string _enemyName;
 
     [SerializeField] private int HP;
 
@@ -17,7 +17,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Mesh[] meshs;
 
     private Rigidbody rigidBody;
-    
+
+    public string EnemyName
+    {
+        get { return _enemyName; }
+        set { _enemyName = value; }
+    }
+
     private void Start()
     {
         HP = maxHP;
@@ -54,7 +60,6 @@ public class EnemyController : MonoBehaviour
     {
         meshFilter.mesh = meshs[index];
     }
-    public string EnemyName { get; set; }
     public int GetEnemyHP()
     {
         return HP;
