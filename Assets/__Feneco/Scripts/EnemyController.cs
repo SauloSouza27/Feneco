@@ -15,6 +15,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Sprite avatar;
 
     [SerializeField] private Mesh[] meshs;
+
+    private Rigidbody rigidBody;
     
     private void Start()
     {
@@ -37,6 +39,12 @@ public class EnemyController : MonoBehaviour
         {
             OnDeath();
         }
+    }
+    public void KnockBack(Vector3 direction, float knockbackForce)
+    {
+        direction.Normalize();
+
+        rigidBody.AddForce(direction * knockbackForce, ForceMode.VelocityChange);
     }
     private void OnDeath()
     {
