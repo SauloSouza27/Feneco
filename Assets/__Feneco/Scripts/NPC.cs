@@ -64,7 +64,10 @@ public class NPC : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            playerController = other.GetComponent<PlayerController>();
+            if(playerController == null)
+            {
+                playerController = other.GetComponent<PlayerController>();
+            }
 
             if (playerController != null)
             {
@@ -210,7 +213,7 @@ public class NPC : MonoBehaviour
             if (instanceNPC.dialogueIndex < instanceNPC.dialogue.Length - 1)
             {
                 instanceNPC.dialogueIndex++;
-                dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = name + ": " + instanceNPC.dialogue[dialogueIndex];
+                dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = instanceNPC.name + ": " + instanceNPC.dialogue[dialogueIndex];
 
                 if (instanceNPC.dialogueIndex == instanceNPC.dialogue.Length - 1)
                 {
@@ -264,7 +267,7 @@ public class NPC : MonoBehaviour
     {
         questScreen.SetActive(false);
         
-        dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = name + ": " + instanceNPC.questText[2];
+        dialogueScreen.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = instanceNPC.name + ": " + instanceNPC.questText[2];
         dialogueScreen.transform.GetChild(3).GetComponent<Button>().interactable = false;
         dialogueScreen.transform.GetChild(4).GetComponent<Button>().interactable = true;
 
