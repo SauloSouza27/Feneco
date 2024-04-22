@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
 
         rigidBody.AddForce(direction * knockbackForce, ForceMode.VelocityChange);
     }
-    private void OnDeath()
+    public void OnDeath()
     {
         Destroy(gameObject);
     }
