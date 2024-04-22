@@ -9,6 +9,7 @@ public class Slash : MonoBehaviour
     private float timeToDestroy = 0.5f;
     private GameObject player;
 
+    
     void Start()
     {
         Destroy(gameObject, timeToDestroy);
