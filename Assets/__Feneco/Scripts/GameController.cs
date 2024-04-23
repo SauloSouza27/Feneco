@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
     {
         if (instance != null)
         {
-            GameObject.Destroy(this);
+            Destroy(gameObject);
         }
         else
         {

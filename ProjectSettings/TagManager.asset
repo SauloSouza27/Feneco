@@ -10,6 +10,7 @@ TagManager:
   - Saida
   - WeaponDamage
   - DanoArma
+  - Inventory
   layers:
   - Default
   - TransparentFX
