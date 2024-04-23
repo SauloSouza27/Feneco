@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Inventory : MonoBehaviour
         }
 
         inventoryScoll = transform.GetChild(1).gameObject;
+        transform.GetChild(0).GetComponent<Button>().onClick.AddListener(TurnOnOffInventory);
     }
     public void UpdateItems()
     {
