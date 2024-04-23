@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FSM_Escort : StateMachineBehaviour
+public class FSM_NPC_Escort : StateMachineBehaviour
 {
     private GameObject player = null;
 
