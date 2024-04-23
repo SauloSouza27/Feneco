@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FSM_Escort : StateMachineBehaviour
+public class FSM_NPC_Escort : StateMachineBehaviour
 {
     private GameObject player = null;
 
@@ -30,7 +30,7 @@ public class FSM_Escort : StateMachineBehaviour
                 animator.SetBool("IsEscort", false);
             }
 
-            if (animator.GetBool("IsEscort") && distance > 3 && !npcScript.GetIsDelivered())
+            if (!npcScript.GetIsDelivered() && animator.GetBool("IsEscort") && distance > 3)
             {
                 navMeshAgent.destination = player.transform.position;
             }

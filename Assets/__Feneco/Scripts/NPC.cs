@@ -37,10 +37,9 @@ public class NPC : MonoBehaviour
 
     [SerializeField] private string[] questCompletedDialogue;
 
+    [Header("Called When Accept Mission")]
     [SerializeField] private GameObject callbackObject = null;
-
     [SerializeField] private string method;
-
     private Animator npc_fsm;
 
     private PlayerController playerController = null;

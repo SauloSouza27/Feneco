@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c678453970065894cb5520e813c14b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: Coyote
+  _enemyName: 
   HP: 4
   maxHP: 4
   damage: 1
@@ -147,7 +147,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1.3
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 27
   m_ObstacleAvoidanceType: 4
 --- !u!136 &2022067150660735478
 CapsuleCollider:
@@ -197,5 +197,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 112
   m_CollisionDetection: 0

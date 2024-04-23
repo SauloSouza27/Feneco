@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectiveItem : MonoBehaviour
 {
+    [Header("Called on Trigger")]
     [SerializeField] private GameObject callbackObject = null;
 
     [SerializeField] private string method;

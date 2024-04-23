@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private string enemyName;
+    [SerializeField] private string _enemyName;
 
     [SerializeField] private int HP;
 
@@ -15,7 +15,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Sprite avatar;
 
     [SerializeField] private Mesh[] meshs;
-    
+
+    private Rigidbody rigidBody;
+
+    public string EnemyName
+    {
+        get { return _enemyName; }
+        set { _enemyName = value; }
+    }
+    private void Awake()
+    {
+        rigidBody = transform.GetComponent<Rigidbody>();
+    }
     private void Start()
     {
         HP = maxHP;
@@ -38,7 +49,19 @@ public class EnemyController : MonoBehaviour
             OnDeath();
         }
     }
-    private void OnDeath()
+    public void KnockBack(Vector3 direction, float knockbackForce)
+    {
+        direction.Normalize();
+
+        rigidBody.AddForce(direction * knockbackForce, ForceMode.VelocityChange);
+        StartCoroutine(KnockbackCooldown());
+    }
+    private IEnumerator KnockbackCooldown()
+    {
+        yield return new WaitForSeconds(0.5f);
+        rigidBody.velocity = Vector3.zero;
+    }
+    public void OnDeath()
     {
         Destroy(gameObject);
     }
@@ -46,7 +69,6 @@ public class EnemyController : MonoBehaviour
     {
         meshFilter.mesh = meshs[index];
     }
-    public string EnemyName { get; set; }
     public int GetEnemyHP()
     {
         return HP;

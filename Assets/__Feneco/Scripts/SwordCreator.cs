@@ -7,7 +7,7 @@ public class SwordCreator : WeaponBase
 {
     public GameObject pontaSaida, slash1, slash2;
     private bool attack = true;
-
+    
     public override void CastTime(GameObject parent)
     {
         PlayerController inCombat = parent.GetComponent<PlayerController>();

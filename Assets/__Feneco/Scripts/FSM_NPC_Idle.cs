@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FSM_Idle : StateMachineBehaviour
+public class FSM_NPC_Idle : StateMachineBehaviour
 {
     private GameObject player = null;
 

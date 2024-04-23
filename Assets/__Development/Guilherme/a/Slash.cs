@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Slash : MonoBehaviour
 {
-    private int damage = 2;
+    [SerializeField] private int damage = 2;
+    [SerializeField] private float knockbackForce = 5.0f;
     private float timeToDestroy = 0.5f;
     private GameObject player;
 
+    
     void Start()
     {
         Destroy(gameObject, timeToDestroy);
@@ -26,6 +28,9 @@ public class Slash : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
+            Vector3 direction = other.transform.position - player.transform.position;
+
+            enemy.KnockBack(direction, knockbackForce);
             enemy.TakeDamage(damage);
         }
     }
