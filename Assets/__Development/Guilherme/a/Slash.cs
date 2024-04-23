@@ -30,8 +30,8 @@ public class Slash : MonoBehaviour
             EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
             Vector3 direction = other.transform.position - player.transform.position;
 
-            enemy.TakeDamage(damage);
             enemy.KnockBack(direction, knockbackForce);
+            enemy.TakeDamage(damage);
         }
     }
 }

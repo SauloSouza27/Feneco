@@ -44,12 +44,12 @@ public class FSM_Attack : StateMachineBehaviour
 
             navMeshAgent.destination = player.transform.position;
 
-            if(!isAttackOffCooldown && (stateInfo.normalizedTime % 1) > timeToAttack)
+            if(isAttackOffCooldown && (stateInfo.normalizedTime % 1) > timeToAttack)
             {
                 GameController.instance.TakeDamage(damage);
                 isAttackOffCooldown = false;
             }
-            if (!isAttackOffCooldown && (stateInfo.normalizedTime % 1) < 0.09f)
+            if (!isAttackOffCooldown && (stateInfo.normalizedTime % 1) < 0.15f)
             {
                 isAttackOffCooldown = true;
             }

@@ -23,7 +23,10 @@ public class EnemyController : MonoBehaviour
         get { return _enemyName; }
         set { _enemyName = value; }
     }
-
+    private void Awake()
+    {
+        rigidBody = transform.GetComponent<Rigidbody>();
+    }
     private void Start()
     {
         HP = maxHP;
@@ -51,6 +54,12 @@ public class EnemyController : MonoBehaviour
         direction.Normalize();
 
         rigidBody.AddForce(direction * knockbackForce, ForceMode.VelocityChange);
+        StartCoroutine(KnockbackCooldown());
+    }
+    private IEnumerator KnockbackCooldown()
+    {
+        yield return new WaitForSeconds(0.5f);
+        rigidBody.velocity = Vector3.zero;
     }
     public void OnDeath()
     {
