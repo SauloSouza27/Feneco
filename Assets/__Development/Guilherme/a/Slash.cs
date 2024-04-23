@@ -5,7 +5,7 @@ using UnityEngine;
 public class Slash : MonoBehaviour
 {
     [SerializeField] private int damage = 2;
-    [SerializeField] private float knockbackForce = 2.0f;
+    [SerializeField] private float knockbackForce = 5.0f;
     private float timeToDestroy = 0.5f;
     private GameObject player;
 
