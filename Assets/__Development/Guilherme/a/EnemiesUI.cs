@@ -29,8 +29,6 @@ public class EnemyUIController : MonoBehaviour
                     enemyUI.SetActive(true);
                     enemyNameText.text = enemyScript.EnemyName;
                     healthSlider.value = sliderValue;
-                    Debug.Log(enemyScript.HealthPoints +" : "+ enemyScript.MaxHealthPoints);
-                    Debug.Log(sliderValue);
                 }
                 else
                 {

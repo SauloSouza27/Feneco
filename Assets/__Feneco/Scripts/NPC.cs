@@ -121,7 +121,7 @@ public class NPC : MonoBehaviour
                 instance.dialogueIndex = 0;
             }
 
-            npc_fsm.SetBool("IsTalking", false);
+            npc_fsm.SetBool("isTalking", false);
             dialogueScreen.SetActive(false);
             transform.GetChild(0).gameObject.SetActive(true);
         }
@@ -131,7 +131,7 @@ public class NPC : MonoBehaviour
     {
         transform.GetChild(0).gameObject.SetActive(false);
 
-        npc_fsm.SetBool("IsTalking", true);
+        npc_fsm.SetBool("isTalking", true);
 
         instance.dialogueIndex = 0;
         dialogueScreen.SetActive(true);
@@ -212,7 +212,7 @@ public class NPC : MonoBehaviour
                 playerController.SetNPCNearON(false, null);
             }
 
-            npc_fsm.SetBool("IsTalking", false);
+            npc_fsm.SetBool("isTalking", false);
             dialogueScreen.SetActive(false);
         }
     }
@@ -246,7 +246,7 @@ public class NPC : MonoBehaviour
                 playerController.SetNPCNearON(false, null);
             }
 
-            npc_fsm.SetBool("IsTalking", false);
+            npc_fsm.SetBool("isTalking", false);
             dialogueScreen.SetActive(false);
 
             if (instance.isQuestCompleted && !instance.isQuestUpdated)
