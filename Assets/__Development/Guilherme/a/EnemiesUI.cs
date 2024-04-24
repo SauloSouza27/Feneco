@@ -8,7 +8,7 @@ public class EnemyUIController : MonoBehaviour
 {
     [SerializeField] private GameObject enemyUI;
     [SerializeField] private TextMeshProUGUI enemyNameText;
-    [SerializeField] private Image healthFillImage;
+    [SerializeField] private Slider healthSlider;
     [SerializeField] private float camRayLength = 100f;
 
     void FixedUpdate()
@@ -24,9 +24,13 @@ public class EnemyUIController : MonoBehaviour
 
                 if (enemyScript != null)
                 {
+                    float sliderValue = (float)enemyScript.HealthPoints / (float)enemyScript.MaxHealthPoints;
+
                     enemyUI.SetActive(true);
                     enemyNameText.text = enemyScript.EnemyName;
-                    healthFillImage.fillAmount = enemyScript.HealthPoints / enemyScript.MaxHealthPoints;
+                    healthSlider.value = sliderValue;
+                    Debug.Log(enemyScript.HealthPoints +" : "+ enemyScript.MaxHealthPoints);
+                    Debug.Log(sliderValue);
                 }
                 else
                 {
