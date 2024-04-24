@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerFreeLookState : PlayerBaseState
 {
+    private Vector2 dodgingDirectionInput;
+    private float remainingDodgeTime;
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
 
     private readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed");
@@ -15,13 +17,14 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Enter()
     {
        stateMachine.InputReader.TargetEvent += OnTarget;
+       stateMachine.InputReader.DodgeEvent += OnDodge;
 
        stateMachine.Animator.Play(FreeLookBlendTreeHash);
     }
 
     public override void Tick(float deltaTime)
     {
-        Vector3 movement = CalculateMovement();
+        Vector3 movement = CalculateMovement(deltaTime);
 
         Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
 
@@ -38,6 +41,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Exit()
     {
         stateMachine.InputReader.TargetEvent -= OnTarget;
+        stateMachine.InputReader.DodgeEvent -= OnDodge;
     }
 
     private void OnTarget()
@@ -47,18 +51,43 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
     }
 
-    private Vector3 CalculateMovement()
+    private void OnDodge()
     {
-        Vector3 forward = stateMachine.MainCameraTransform.forward;
-        Vector3 right = stateMachine.MainCameraTransform.right;
+        if(Time.time - stateMachine.PreviousDodgeTime < stateMachine.DodgeCooldown) { return; }
 
-        forward.y = 0;
-        right.y = 0;
-
-        forward.Normalize();
-        right.Normalize();
-
-        return forward * stateMachine.InputReader.MovementValue.y + right * stateMachine.InputReader.MovementValue.x;
+        stateMachine.SetDodgeTime(Time.time);
+        dodgingDirectionInput = stateMachine.InputReader.MovementValue;
+        remainingDodgeTime = stateMachine.DodgeDuration;
+    }
+    private Vector3 CalculateMovement(float deltaTime)
+    {
+        Vector3 cameraForward = stateMachine.MainCameraTransform.forward;
+        Vector3 cameraRight = stateMachine.MainCameraTransform.right;
+ 
+        cameraForward.y = 0f;  
+        
+        cameraForward.Normalize();
+ 
+        if (remainingDodgeTime > 0f)
+        {
+            
+            Vector3 dodgeDirection = (cameraForward * dodgingDirectionInput.y + cameraRight * dodgingDirectionInput.x).normalized;
+ 
+            
+            Vector3 dodgeMovement = dodgeDirection * stateMachine.DodgeLenght / stateMachine.DodgeDuration;
+ 
+        
+            remainingDodgeTime = Mathf.Max(remainingDodgeTime - deltaTime, 0f);
+ 
+            return dodgeMovement;
+        }
+        else
+        {
+            
+            Vector3 movement = cameraForward * stateMachine.InputReader.MovementValue.y + cameraRight * stateMachine.InputReader.MovementValue.x;
+ 
+            return movement;
+        }
     }
 
     private void FaceMovementDirection(Vector3 movement, float deltaTime)
