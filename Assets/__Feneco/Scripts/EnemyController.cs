@@ -6,15 +6,13 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private string _enemyName;
 
-    [SerializeField] private int HP;
+    [SerializeField] private int _maxHealthPoints;
 
-    [SerializeField] private int maxHP;
+    private int _healthPoints;
 
-    [SerializeField] private int damage;
+    [SerializeField] private int _damage;
 
     [SerializeField] private Sprite avatar;
-
-    [SerializeField] private Mesh[] meshs;
 
     private Rigidbody rigidBody;
 
@@ -23,28 +21,36 @@ public class EnemyController : MonoBehaviour
         get { return _enemyName; }
         set { _enemyName = value; }
     }
+    public int HealthPoints
+    {
+        get { return _healthPoints; }
+    }
+    public int MaxHealthPoints
+    {
+        get { return _maxHealthPoints; }
+    }
+    public int Damage
+    {
+        get { return _damage; }
+    }
     private void Awake()
     {
         rigidBody = transform.GetComponent<Rigidbody>();
     }
     private void Start()
     {
-        HP = maxHP;
-    }
-    public int GetDamage()
-    {
-        return damage;
+        _healthPoints = _maxHealthPoints;
     }
     public void TakeDamage(int damage)
     {
-        HP -= damage;
+        _healthPoints -= damage;
 
-        if(HP <= 0)
+        if(_healthPoints <= 0)
         {
-            HP = 0;
+            _healthPoints = 0;
         }
 
-        if(HP == 0)
+        if(_healthPoints == 0)
         {
             OnDeath();
         }
@@ -64,17 +70,5 @@ public class EnemyController : MonoBehaviour
     public void OnDeath()
     {
         Destroy(gameObject);
-    }
-    public void SetMesh(MeshFilter meshFilter, int index)
-    {
-        meshFilter.mesh = meshs[index];
-    }
-    public int GetEnemyHP()
-    {
-        return HP;
-    }
-    public int GetEnemyMaxHP()
-    {
-        return maxHP;
     }
 }
