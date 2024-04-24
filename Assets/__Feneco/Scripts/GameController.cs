@@ -48,11 +48,16 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        foreach(GameObject g in quests)
+        if(quests.Length > 0)
         {
-            g.SetActive(false);
+            foreach (GameObject g in quests)
+            {
+                g.SetActive(false);
+            }
+
+            UpdateQuest();
         }
-        UpdateQuest();
+        
         UpdateHUD();
     }
     public void UpdateHUD()

@@ -25,25 +25,25 @@ public class FSM_NPC_Escort : StateMachineBehaviour
         {
             float distance = Vector3.Distance(player.transform.position, animator.transform.position);
 
-            if (distance <= 3 && !npcScript.GetIsDelivered())
+            if (distance <= 3 && !npcScript.IsDelivered)
             {
-                animator.SetBool("IsEscort", false);
+                animator.SetBool("isEscort", false);
             }
 
-            if (!npcScript.GetIsDelivered() && animator.GetBool("IsEscort") && distance > 3)
+            if (!npcScript.IsDelivered && animator.GetBool("isEscort") && distance > 3)
             {
                 navMeshAgent.destination = player.transform.position;
             }
 
-            if (npcScript.GetIsDelivered())
+            if (npcScript.IsDelivered)
             {
-                navMeshAgent.destination = npcScript.GetCallbackObject().transform.GetChild(2).position;
+                navMeshAgent.destination = npcScript.CallbackObject.transform.GetChild(2).position;
 
                 navMeshAgent.transform.LookAt(player.transform);
 
-                if(Vector3.Distance(animator.transform.position, npcScript.GetCallbackObject().transform.GetChild(2).position) <= 1f)
+                if(Vector3.Distance(animator.transform.position, npcScript.CallbackObject.transform.GetChild(2).position) <= 1f)
                 {
-                    animator.SetBool("IsEscort", false);
+                    animator.SetBool("isEscort", false);
                 }
             }
         }
@@ -54,7 +54,7 @@ public class FSM_NPC_Escort : StateMachineBehaviour
     {
         NPC npcScript = animator.transform.GetComponent<NPC>();
 
-        if (!npcScript.GetIsDelivered())
+        if (!npcScript.IsDelivered)
         {
             navMeshAgent.destination = animator.transform.position;
         }

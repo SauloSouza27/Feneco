@@ -26,7 +26,7 @@ public class EnemyUIController : MonoBehaviour
                 {
                     enemyUI.SetActive(true);
                     enemyNameText.text = enemyScript.EnemyName;
-                    healthFillImage.fillAmount = enemyScript.GetEnemyHP() / enemyScript.GetEnemyHP();
+                    healthFillImage.fillAmount = enemyScript.HealthPoints / enemyScript.MaxHealthPoints;
                 }
                 else
                 {
