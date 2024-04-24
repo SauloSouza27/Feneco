@@ -19,4 +19,9 @@ public class ForceReceiver : MonoBehaviour
             verticalVelocity += Physics.gravity.y * Time.deltaTime;
         }
     }
+
+    public void Jump(float jumpForce)
+    {
+        verticalVelocity += jumpForce;
+    }
 }

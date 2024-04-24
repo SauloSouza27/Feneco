@@ -7,7 +7,6 @@ public class PlayerFreeLookState : PlayerBaseState
     private Vector2 dodgingDirectionInput;
     private float remainingDodgeTime;
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
-
     private readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed");
 
     private const float AnimatorDampTime = 0.1f;
@@ -18,6 +17,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
        stateMachine.InputReader.TargetEvent += OnTarget;
        stateMachine.InputReader.DodgeEvent += OnDodge;
+       stateMachine.InputReader.JumpEvent += OnJump;
 
        stateMachine.Animator.Play(FreeLookBlendTreeHash);
     }
@@ -42,6 +42,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputReader.TargetEvent -= OnTarget;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
+        stateMachine.InputReader.JumpEvent -= OnJump;
     }
 
     private void OnTarget()
@@ -58,6 +59,11 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.SetDodgeTime(Time.time);
         dodgingDirectionInput = stateMachine.InputReader.MovementValue;
         remainingDodgeTime = stateMachine.DodgeDuration;
+    }
+
+    private void OnJump()
+    {
+        stateMachine.SwitchState(new PlayerJumpingState(stateMachine));
     }
     private Vector3 CalculateMovement(float deltaTime)
     {
