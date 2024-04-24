@@ -9,6 +9,13 @@ public class Inventory : MonoBehaviour
 
     private GameObject inventoryScoll;
 
+    [SerializeField] private GameObject _content;
+
+    public GameObject Content
+    {
+        get { return _content; }
+    }
+
     private void Awake()
     {
         if (instance != null)

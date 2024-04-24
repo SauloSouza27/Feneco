@@ -13,6 +13,8 @@ public class ObjectiveItem : MonoBehaviour
 
     private MeshRenderer meshRenderer;
 
+    [SerializeField] private GameObject inventoryItem;
+
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();

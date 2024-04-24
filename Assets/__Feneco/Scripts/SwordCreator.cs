@@ -22,14 +22,12 @@ public class SwordCreator : WeaponBase
         {
             animator.animator.SetBool("Attack1", true);
             Instantiate(slash1, pontaSaida.transform.position, pontaSaida.transform.rotation);
-            Debug.Log("Attack1");
             attack = false;
         }
         else
         {
             animator.animator.SetBool("Attack2", true);
             Instantiate(slash2, pontaSaida.transform.position, pontaSaida.transform.rotation);
-            Debug.Log("Attack2");
             attack = true;
         }
         

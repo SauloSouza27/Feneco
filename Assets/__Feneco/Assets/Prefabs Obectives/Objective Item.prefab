@@ -120,3 +120,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   callbackObject: {fileID: 0}
   method: 
+  inventoryItem: {fileID: 7112353318663442603, guid: a6f6144b70bbece479ca88d4d1d01d9e,
+    type: 3}
