@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum SceneItemArchetype
+public class ObjectiveItem : MonoBehaviour
 {
-    objective, healthPotion
-}
-public class SceneItem : MonoBehaviour
-{
-    [SerializeField] private SceneItemArchetype sceneItemArchetype;
-
     [Header("Called on Trigger")]
     [SerializeField] private GameObject callbackObject = null;
 
@@ -20,7 +14,7 @@ public class SceneItem : MonoBehaviour
 
     private MeshRenderer meshRenderer;
 
-    [SerializeField] private GameObject inventoryItem;
+    [SerializeField] private GameObject _inventoryItem;
 
     [SerializeField] private Sprite itemSprite;
 
@@ -29,13 +23,8 @@ public class SceneItem : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         meshRenderer = GetComponent<MeshRenderer>();
 
-        switch (sceneItemArchetype)
-        {
-            case SceneItemArchetype.objective:
-                boxCollider.enabled = false;
-                meshRenderer.enabled = false;
-                break;
-        }
+        boxCollider.enabled = false;
+        meshRenderer.enabled = false;
     }
     
     private void OnTriggerEnter(Collider other)
@@ -49,10 +38,10 @@ public class SceneItem : MonoBehaviour
                 callbackObject.SendMessage(method);
             }
 
-            InventoryItem instanceInventoryItem = inventoryItem.GetComponent<InventoryItem>();
-            GameObject instance = instanceInventoryItem.InstantiateItemOnInventory();
+            InventoryItem inventoryItem = _inventoryItem.GetComponent<InventoryItem>();
+            GameObject instance = inventoryItem.InstantiateItemOnInventory();
 
-            Image itemImage = instance.transform.GetChild(0).GetComponent<Image>();
+            Image itemImage = instance.gameObject.transform.GetChild(0).GetComponent<Image>();
 
             itemImage.sprite = itemSprite;
 

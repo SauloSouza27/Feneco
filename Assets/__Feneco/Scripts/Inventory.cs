@@ -31,8 +31,13 @@ public class Inventory : MonoBehaviour
         inventoryScoll = transform.GetChild(1).gameObject;
         transform.GetChild(0).GetComponent<Button>().onClick.AddListener(TurnOnOffInventory);
     }
+    public void UpdateItems()
+    {
+        
+    }
     public void TurnOnOffInventory()
     {
+        UpdateItems();
         inventoryScoll.SetActive(!inventoryScoll.activeSelf);
     }
 }

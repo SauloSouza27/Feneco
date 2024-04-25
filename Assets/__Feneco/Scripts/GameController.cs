@@ -10,9 +10,7 @@ public class GameController : MonoBehaviour
 
     private GameObject player;
 
-    [SerializeField] private int maxHealthPoints = 1000;
-
-    private int healthPoints;
+    [SerializeField] private int healthPoints = 1000;
 
     private GameObject HUD;
 
@@ -43,7 +41,6 @@ public class GameController : MonoBehaviour
         }
 
         player = GameObject.FindWithTag("Player");
-        healthPoints = maxHealthPoints;
         HUD = GameObject.FindWithTag("HUD");
         questHintText = HUD.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         healthPointsText = HUD.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
@@ -89,17 +86,6 @@ public class GameController : MonoBehaviour
             GameOver();
         }
         UpdateHUD();
-    }
-    public void Heal(int lifeGain)
-    {
-        if(healthPoints < maxHealthPoints)
-        {
-            healthPoints += lifeGain;
-            if(healthPoints >= maxHealthPoints)
-            {
-                healthPoints = maxHealthPoints;
-            }
-        }
     }
     public void GameOver()
     {

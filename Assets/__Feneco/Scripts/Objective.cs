@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class Objective : InventoryItem
 {
-    public override void ItemFunction()
-    {
-
-    }
+    
 }
