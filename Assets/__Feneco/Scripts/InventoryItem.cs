@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum ItemArchetype
+enum InventoryItemArchetype
 {
-    objective, potionHealth
+    objective, healthPotion
 }
 public class InventoryItem : MonoBehaviour
 {
     [SerializeField] private string _name;
 
-    [SerializeField] private ItemArchetype itemArchetype;
+    [SerializeField] private InventoryItemArchetype inventoryItemArchetype;
 
     private Image _backGroundSprite, _itemSprite;
 
@@ -26,6 +26,10 @@ public class InventoryItem : MonoBehaviour
     {
         get { return _itemSprite; }
         set { _itemSprite = value; }
+    }
+    public virtual void ItemFunction()
+    {
+
     }
     public GameObject InstantiateItemOnInventory()
     {
