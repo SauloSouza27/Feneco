@@ -15,23 +15,26 @@ public class InventoryItem : MonoBehaviour
 
     private Image _backGroundSprite, _itemSprite;
 
-    private GameObject inventoryContent;
-
-    private GameObject sceneItem;
+    private GameObject _inventoryContent;
 
     public Image BackGroundSprite
     {
         get { return _backGroundSprite; }
         set { _backGroundSprite = value; }
     }
-
-    private void Start()
+    public Image ItemSprite
     {
-        inventoryContent = Inventory.instance.Content;
+        get { return _itemSprite; }
+        set { _itemSprite = value; }
     }
-
-    public void InstantiateItemOnInventory()
+    public GameObject InstantiateItemOnInventory()
     {
-        GameObject.Instantiate(gameObject, inventoryContent.transform);
+        if (_inventoryContent == null)
+        {
+            _inventoryContent = Inventory.instance.Content;
+        }
+        GameObject instance = Instantiate(gameObject);
+        instance.transform.SetParent(_inventoryContent.transform, false);
+        return instance;
     }
 }

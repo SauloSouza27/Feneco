@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectiveItem : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class ObjectiveItem : MonoBehaviour
 
     private MeshRenderer meshRenderer;
 
-    [SerializeField] private GameObject inventoryItem;
+    [SerializeField] private GameObject _inventoryItem;
+
+    [SerializeField] private Sprite itemSprite;
 
     private void Awake()
     {
@@ -28,14 +31,21 @@ public class ObjectiveItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
-
             GameController.instance.SetQuestHint();
 
             if(callbackObject != null && method != "")
             {
                 callbackObject.SendMessage(method);
             }
+
+            InventoryItem inventoryItem = _inventoryItem.GetComponent<InventoryItem>();
+            GameObject instance = inventoryItem.InstantiateItemOnInventory();
+
+            Image itemImage = instance.gameObject.transform.GetChild(0).GetComponent<Image>();
+
+            itemImage.sprite = itemSprite;
+
+            Destroy(gameObject);
         }
     }
 

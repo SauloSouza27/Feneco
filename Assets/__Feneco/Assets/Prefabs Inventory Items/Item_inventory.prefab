@@ -166,5 +166,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: 
   itemArchetype: 0
-  _backGroundSprite: {fileID: 0}
-  _itemSprite: {fileID: 0}

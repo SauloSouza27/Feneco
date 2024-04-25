@@ -121,9 +121,10 @@ MonoBehaviour:
   dashSpeed: 30
   dashCooldown: 1.5
   runModifier: 0.55
-  isCombat: 0
   isCombatTimer: 0
+  isAttacking: 0
   cam: {fileID: 0}
+  animator: {fileID: 0}
   timeScale: 1.5
 --- !u!114 &7208522016095285396
 MonoBehaviour:
@@ -160,7 +161,7 @@ CapsuleCollider:
   m_Radius: 0.22999999
   m_Height: 1.0227969
   m_Direction: 1
-  m_Center: {x: 0, y: 0.48154593, z: 0.060000002}
+  m_Center: {x: 0, y: 0.48154593, z: 0}
 --- !u!54 &239925912957800744
 Rigidbody:
   m_ObjectHideFlags: 0
