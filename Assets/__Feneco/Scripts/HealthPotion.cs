@@ -17,7 +17,6 @@ public class HealthPotion : InventoryItem
     }
     public override void ItemFunction()
     {
-        Debug.Log("Heal");
         GameController.instance.Heal(lifeGain);
 
         Destroy(gameObject);

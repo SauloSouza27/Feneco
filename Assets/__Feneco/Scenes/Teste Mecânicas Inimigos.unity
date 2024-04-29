@@ -2501,7 +2501,7 @@ PrefabInstance:
     - target: {fileID: 9108915387449882977, guid: e86e266315093da46a03c466a4bc94a0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.65078163
+      value: -5.19
       objectReference: {fileID: 0}
     - target: {fileID: 9108915387449882977, guid: e86e266315093da46a03c466a4bc94a0,
         type: 3}
@@ -3045,7 +3045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4026491ff91357429cfc124fde37a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 20
+  maxHealthPoints: 1000
   questHints:
   - Get the Object at the Oasis
   - Go back to the camp
@@ -4457,7 +4457,7 @@ PrefabInstance:
     - target: {fileID: 9108915387449882977, guid: e86e266315093da46a03c466a4bc94a0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.65078163
+      value: 3.57
       objectReference: {fileID: 0}
     - target: {fileID: 9108915387449882977, guid: e86e266315093da46a03c466a4bc94a0,
         type: 3}
@@ -4826,7 +4826,7 @@ PrefabInstance:
     - target: {fileID: 9108915387449882977, guid: e86e266315093da46a03c466a4bc94a0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.65078163
+      value: -1.97
       objectReference: {fileID: 0}
     - target: {fileID: 9108915387449882977, guid: e86e266315093da46a03c466a4bc94a0,
         type: 3}

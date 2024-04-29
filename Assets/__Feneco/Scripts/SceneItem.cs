@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 enum SceneItemArchetype
 {
-    objective, healthPotion
+    objective, healthPotion, granada
 }
 public class SceneItem : MonoBehaviour
 {
@@ -42,7 +42,12 @@ public class SceneItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameController.instance.SetQuestHint();
+            switch (sceneItemArchetype)
+            {
+                case SceneItemArchetype.objective:
+                    GameController.instance.SetQuestHint();
+                    break;
+            }
 
             if(callbackObject != null && method != "")
             {

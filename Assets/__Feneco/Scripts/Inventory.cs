@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour
         }
 
         inventoryConsumables = transform.GetChild(1).gameObject;
+        inventoryArmor = transform.GetChild(2).gameObject;
         transform.GetChild(0).GetComponent<Button>().onClick.AddListener(TurnOnOffInventory);
     }
     public void TurnOnOffInventory()

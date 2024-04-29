@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 enum InventoryItemArchetype
 {
-    objective, healthPotion
+    objective, healthPotion, granade
 }
 public class InventoryItem : MonoBehaviour
 {
