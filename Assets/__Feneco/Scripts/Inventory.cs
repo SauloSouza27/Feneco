@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
-    private GameObject inventoryScoll;
+    private GameObject inventoryConsumables, inventoryArmor;
 
     [SerializeField] private GameObject _content;
 
@@ -28,11 +28,13 @@ public class Inventory : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        inventoryScoll = transform.GetChild(1).gameObject;
+        inventoryConsumables = transform.GetChild(1).gameObject;
         transform.GetChild(0).GetComponent<Button>().onClick.AddListener(TurnOnOffInventory);
     }
     public void TurnOnOffInventory()
     {
-        inventoryScoll.SetActive(!inventoryScoll.activeSelf);
+        inventoryConsumables.SetActive(!inventoryConsumables.activeSelf);
+
+        inventoryArmor.SetActive(!inventoryArmor.activeSelf);
     }
 }
