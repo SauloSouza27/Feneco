@@ -54,12 +54,12 @@ public class SceneItem : MonoBehaviour
                 callbackObject.SendMessage(method);
             }
 
-            InventoryItem instanceInventoryItem = inventoryItem.GetComponent<InventoryItem>();
-            GameObject instance = instanceInventoryItem.InstantiateItemOnInventory();
+            //InventoryItem instanceInventoryItem = inventoryItem.GetComponent<InventoryItem>();
+            //GameObject instance = instanceInventoryItem.InstantiateItemOnInventory();
 
-            Image itemImage = instance.transform.GetChild(0).GetComponent<Image>();
+            //Image itemImage = instance.transform.GetChild(0).GetComponent<Image>();
 
-            itemImage.sprite = itemSprite;
+            //itemImage.sprite = itemSprite;
 
             Destroy(gameObject);
         }
