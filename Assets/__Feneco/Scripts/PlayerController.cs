@@ -200,6 +200,8 @@ public class PlayerController : MonoBehaviour
             movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
 
             transform.position += movement;
+
+            //rigidBody.AddForce(movement, ForceMode.VelocityChange);
         }
         rigidBody.velocity += Physics.gravity * gravity * Time.deltaTime;
     }
