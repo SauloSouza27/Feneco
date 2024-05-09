@@ -9,14 +9,20 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
 
     [Header("UI")]
-    public Image image;
-    public TextMeshProUGUI countText;
+    private Image image;
+    private TextMeshProUGUI countText;
 
     [HideInInspector] public Item item;
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
 
-    public void InitialiseItem(Item newItem) {
+    private void Awake()
+    {
+        image = transform.GetComponent<Image>();
+        countText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+    }
+    public void InitialiseItem(Item newItem)
+    {
         item = newItem;
         image.sprite = newItem.image;
         RefreshCount();
