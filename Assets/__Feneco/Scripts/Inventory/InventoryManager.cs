@@ -24,10 +24,7 @@ public class InventoryManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-    }
-
-    private void Start()
-    {
+        
         int index = mainInventory.transform.childCount + toolbar.transform.childCount - 1;
 
         inventorySlots = new InventorySlot[index];
@@ -41,7 +38,10 @@ public class InventoryManager : MonoBehaviour
         {
             inventorySlots[i + toolbar.transform.childCount - 1] = mainInventory.transform.GetChild(i).GetComponent<InventorySlot>();
         }
+    }
 
+    private void Start()
+    {
         ChangeSelectSlot(0);
     }
 
