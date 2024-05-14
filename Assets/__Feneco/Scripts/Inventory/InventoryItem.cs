@@ -19,10 +19,31 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private void Awake()
     {
         image = transform.GetComponent<Image>();
+        if (image == null)
+        {
+            Debug.LogError("Image component not found on InventoryItem GameObject.");
+        }
+
         countText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        if (countText == null)
+        {
+            Debug.LogError("TextMeshProUGUI component not found on InventoryItem's child GameObject.");
+        }
     }
     public void InitialiseItem(Item newItem)
     {
+         if (newItem == null)
+        {
+            Debug.LogError("newItem is null in InitialiseItem.");
+            return;
+        }
+
+        if (newItem.image == null)
+        {
+            Debug.LogError("newItem.image is null in InitialiseItem.");
+            return;
+        }
+
         item = newItem;
         image.sprite = newItem.image;
         RefreshCount();

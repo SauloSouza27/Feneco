@@ -11,6 +11,7 @@ public class InventoryManager : MonoBehaviour
     private InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
+
     int selectedSlot = -1;
 
     private void Awake()
@@ -123,6 +124,7 @@ public class InventoryManager : MonoBehaviour
                     iteminSlot.RefreshCount();
                 }
             }
+            return item;
         }
         return null;
     }

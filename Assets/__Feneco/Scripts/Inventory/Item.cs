@@ -12,7 +12,7 @@ public class Item : ScriptableObject
     //public ActionType actionType;
 
     [Header("Only UI")]
-    public bool stackable = true;
+    public bool stackable;
 
     [Header("Both")]
     public Sprite image;
