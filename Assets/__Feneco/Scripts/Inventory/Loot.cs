@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class Loot : MonoBehaviour
 {
-    [SerializeField] private BoxCollider collider;
+    [SerializeField] private new BoxCollider collider;
     [SerializeField] private float moveSpeed;
     [SerializeField] private Item item;
-
-    
     
 
     private void OnTriggerEnter(Collider other)

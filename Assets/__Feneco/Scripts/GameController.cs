@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private int maxHealthPoints = 1000;
 
+    public int armor { get; set; }
+
     private int healthPoints;
 
     private GameObject HUD;
@@ -83,6 +85,7 @@ public class GameController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        damage -= armor;
         healthPoints -= damage;
         if(healthPoints == 0)
         {
