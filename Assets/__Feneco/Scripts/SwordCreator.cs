@@ -11,7 +11,7 @@ public class SwordCreator : WeaponBase
     public override void CastTime(GameObject parent)
     {
         PlayerController inCombat = parent.GetComponent<PlayerController>();
-        inCombat.isCombatTimer = 3.0f;
+        inCombat.isCombatTimer = 6.0f;
         inCombat.isAttacking = true;
     }
     public override void Activate(GameObject parent)
