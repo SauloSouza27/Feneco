@@ -6,7 +6,7 @@ AvatarMask:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Feneco Avatar Mask
+  m_Name: Feneco Avatar Mask Upper Body
   m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   m_Elements:
   - m_Path: 
@@ -22,11 +22,11 @@ AvatarMask:
   - m_Path: Feneco_Armature/Root/IkArmCtrl.R
     m_Weight: 1
   - m_Path: Feneco_Armature/Root/IkLegCtrl.L
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Feneco_Armature/Root/IkLegCtrl.L/PoleLeg.L
     m_Weight: 1
   - m_Path: Feneco_Armature/Root/IkLegCtrl.R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Feneco_Armature/Root/IkLegCtrl.R/PoleLeg.R
     m_Weight: 1
   - m_Path: Feneco_Armature/Root/Master
@@ -146,9 +146,9 @@ AvatarMask:
   - m_Path: Feneco_Armature/Root/Master/Belly/Diafrag/Chest/Traps/Sword_BackSnapPoint.001
     m_Weight: 1
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Leg.L
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Leg.L/Calves.L
     m_Weight: 1
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Leg.L/Calves.L/Ankle.L
@@ -158,7 +158,7 @@ AvatarMask:
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Leg.L/Calves.L/Ankle.L/Foot.L/Toe.L
     m_Weight: 1
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Leg.R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Leg.R/Calves.R
     m_Weight: 1
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Leg.R/Calves.R/Ankle.R
@@ -168,9 +168,9 @@ AvatarMask:
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Leg.R/Calves.R/Ankle.R/Foot.R/Toe.R
     m_Weight: 1
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Tail_Constraint
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Tail_Start
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Tail_Start/Tail_Mid_01
     m_Weight: 1
   - m_Path: Feneco_Armature/Root/Master/Belly/Hips/Tail_Start/Tail_Mid_01/Tail_Mid_02
