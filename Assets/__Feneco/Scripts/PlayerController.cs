@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time >= lastDashTime + dashCooldown)
+        if (context.performed && Time.time >= lastDashTime + dashCooldown && !isAttacking)
         {
             isRunning = true;
             StartCoroutine(Dash());
