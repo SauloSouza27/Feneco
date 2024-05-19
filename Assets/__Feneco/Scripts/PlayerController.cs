@@ -48,15 +48,15 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.timeScale == 0) return;
 
-        if (isCombat)
-        {
-            PlayerOlhandoProMouse();
-        }
-        else
-        {
-            RotateWithMovementDirection();
-        }
-
+//        if (isCombat)
+//        {
+//            PlayerOlhandoProMouse();
+//        }
+//        else
+//        {
+//            RotateWithMovementDirection();
+//        }
+        RotateWithMovementDirection();
         UpdateMovementDirection();
         Movimento();
         animator.SetBool("IsJumping", !IsGrounded());
@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
             isRunning = true;
             StartCoroutine(Dash());
             lastDashTime = Time.time;
+
             
         }
         else if (context.canceled && isRunning == true)
@@ -168,7 +169,7 @@ public class PlayerController : MonoBehaviour
     }
     private void RotateWithMovementDirection()
     {
-        if (move.magnitude > 0)
+        if (move.magnitude > 0 && !isAttacking)
         {
             Quaternion newRotation = Quaternion.LookRotation(movementDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
@@ -199,10 +200,16 @@ public class PlayerController : MonoBehaviour
         {
             movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
 
-            transform.position += movement;
-
-            //rigidBody.AddForce(movement, ForceMode.VelocityChange);
+            if (!isDashing && !isAttacking)
+            {
+                rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
+            }
         }
+//        else if(IsGrounded())
+//        {
+//            rigidBody.velocity = Vector3.zero;
+//        }
+
         rigidBody.velocity += Physics.gravity * gravity * Time.deltaTime;
     }
 

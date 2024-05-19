@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   name: Sword
-  cooldownTime: 0.15
-  activeTime: 0.05
-  castTime: 0.4
+  cooldownTime: 0.35
+  activeTime: 0.65
+  castTime: 0.1
   pontaSaida: {fileID: 0}
   slash1: {fileID: 6782882413545161923, guid: 1d4ce46f4683d314081dbf34961d83dc, type: 3}
   slash2: {fileID: 6782882413545161923, guid: bdf7e02215516154488960caef07922a, type: 3}
