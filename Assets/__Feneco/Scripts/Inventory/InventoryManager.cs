@@ -8,7 +8,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
 
     public int maxStackedItems = 10;
-    public GameObject mainInventory, toolbar;
+    public GameObject mainInventory, toolbar, equipInventory;
     private InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 

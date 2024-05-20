@@ -5,11 +5,18 @@ using UnityEngine.UI;
 
 public class Loot : MonoBehaviour
 {
-    [SerializeField] private new BoxCollider collider;
+    [Header("Called on Trigger")]
+    [SerializeField] private GameObject callbackObject = null;
+    [SerializeField] private string method;
+
+    private new BoxCollider collider;
     [SerializeField] private float moveSpeed;
     [SerializeField] private Item item;
-    
 
+    private void Awake()
+    {
+        collider = transform.GetComponent<BoxCollider>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -20,6 +27,10 @@ public class Loot : MonoBehaviour
                 StartCoroutine(MoveAndCollect(other.transform));
             }
 
+            if (callbackObject != null && method != "")
+            {
+                callbackObject.SendMessage(method);
+            }
         }
     }
 
