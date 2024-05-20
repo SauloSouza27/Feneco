@@ -27,19 +27,19 @@ public class InventoryManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         
-        int index = mainInventory.transform.childCount + toolbar.transform.childCount - 1;
+        int index = mainInventory.transform.childCount + toolbar.transform.childCount;
 
-        inventorySlots = new InventorySlot[index];
+    inventorySlots = new InventorySlot[index];
 
-        for (int i = 0; i < toolbar.transform.childCount; i++)
-        {
-            inventorySlots[i] = toolbar.transform.GetChild(i).GetComponent<InventorySlot>();
-        }
+    for (int i = 0; i < toolbar.transform.childCount; i++)
+    {
+        inventorySlots[i] = toolbar.transform.GetChild(i).GetComponent<InventorySlot>();
+    }
 
-        for (int i = 0; i < mainInventory.transform.childCount; i++)
-        {
-            inventorySlots[i + toolbar.transform.childCount - 1] = mainInventory.transform.GetChild(i).GetComponent<InventorySlot>();
-        }
+    for (int i = 0; i < mainInventory.transform.childCount; i++)
+    {
+        inventorySlots[i + toolbar.transform.childCount] = mainInventory.transform.GetChild(i).GetComponent<InventorySlot>();
+    }
     }
 
     private void Start()
