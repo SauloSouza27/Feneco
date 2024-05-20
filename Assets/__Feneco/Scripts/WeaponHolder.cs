@@ -9,6 +9,7 @@ public class WeaponHolder : MonoBehaviour
     private float cooldownTime;
 
     private PlayerController playerController;
+    private GameObject weaponHolding;
 
     enum AbilityState
     {
@@ -21,6 +22,9 @@ public class WeaponHolder : MonoBehaviour
     private void Start()
     {
         playerController = this.transform.GetComponent<PlayerController>();
+        weaponHolding = GameObject.FindGameObjectWithTag("DanoArma");
+        BoxCollider weaponCollider = weaponHolding.GetComponent<BoxCollider>();
+        weaponCollider.enabled = false;
     }
 
     void Update()
@@ -37,6 +41,9 @@ public class WeaponHolder : MonoBehaviour
                     weapon.Activate(gameObject);
                     state = AbilityState.active;
                     activeTime = weapon.activeTime;
+                    weaponHolding = GameObject.FindGameObjectWithTag("DanoArma");
+                    BoxCollider weaponCollider = weaponHolding.GetComponent<BoxCollider>();
+                    weaponCollider.enabled = true;
                 }
                 break;
             case AbilityState.active:
@@ -49,6 +56,9 @@ public class WeaponHolder : MonoBehaviour
                     weapon.BeginCooldown(gameObject);
                     state = AbilityState.cooldown;
                     cooldownTime = weapon.cooldownTime;
+                    weaponHolding = GameObject.FindGameObjectWithTag("DanoArma");
+                    BoxCollider weaponCollider = weaponHolding.GetComponent<BoxCollider>();
+                    weaponCollider.enabled = false;
                 }
                 break;
             case AbilityState.cooldown:
