@@ -6,21 +6,21 @@ public class Slash : MonoBehaviour
 {
     [SerializeField] private int damage = 2;
     [SerializeField] private float knockbackForce = 5.0f;
-    private float timeToDestroy = 0.5f;
+//    private float timeToDestroy = 0.5f;
     private GameObject player;
 
     
     void Start()
     {
-        Destroy(gameObject, timeToDestroy);
+//        Destroy(gameObject, timeToDestroy);
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
-        Transform saida = player.transform.GetChild(2);
-        transform.position = saida.position;
-        transform.rotation = saida.rotation;
+//        Transform saida = player.transform.GetChild(2);
+//        transform.position = saida.position;
+//        transform.rotation = saida.rotation;
     }
 
     private void OnTriggerEnter(Collider other)

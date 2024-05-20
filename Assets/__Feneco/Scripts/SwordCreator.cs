@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class SwordCreator : WeaponBase
 {
-    public GameObject pontaSaida, slash1, slash2;
+//    public GameObject pontaSaida, slash1, slash2;
     private bool attack = true;
     
     public override void CastTime(GameObject parent)
@@ -16,18 +16,18 @@ public class SwordCreator : WeaponBase
     }
     public override void Activate(GameObject parent)
     {
-        pontaSaida = GameObject.FindGameObjectWithTag("Saida");
+//        pontaSaida = GameObject.FindGameObjectWithTag("Saida");
         PlayerController animator = parent.GetComponent<PlayerController>();
         if(attack == true)
         {
             animator.animator.SetBool("Attack1", true);
-            Instantiate(slash1, pontaSaida.transform.position, pontaSaida.transform.rotation);
+//            Instantiate(slash1, pontaSaida.transform.position, pontaSaida.transform.rotation);
             attack = false;
         }
         else
         {
             animator.animator.SetBool("Attack2", true);
-            Instantiate(slash2, pontaSaida.transform.position, pontaSaida.transform.rotation);
+//            Instantiate(slash2, pontaSaida.transform.position, pontaSaida.transform.rotation);
             attack = true;
         }
         
