@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "Scriptable object/Item")]
 public class Item : ScriptableObject 
 {
+   
     [Header("Only gameplay")]
-    //public ItemType type;
     //public ActionType actionType;
 
     [Header("Only UI")]
