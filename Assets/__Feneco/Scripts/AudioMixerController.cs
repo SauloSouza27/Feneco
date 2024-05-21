@@ -19,24 +19,43 @@ public class AudioMixerController : MonoBehaviour
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
+
+        // Apply initial volume levels
+        SetMasterVolume(masterSlider.value);
+        SetSFXVolume(sfxSlider.value);
+        SetMusicVolume(musicSlider.value);
     }
 
     public void SetMasterVolume(float volume)
     {
         Debug.Log("Setting Master Volume: " + volume);
-        audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
+        SetVolume("Master", volume);
         PlayerPrefs.SetFloat("Master", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+        Debug.Log("Setting SFX Volume: " + volume);
+        SetVolume("SFX", volume);
         PlayerPrefs.SetFloat("SFX", volume);
     }
 
     public void SetMusicVolume(float volume)
     {
-        audioMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
+        Debug.Log("Setting Music Volume: " + volume);
+        SetVolume("Music", volume);
         PlayerPrefs.SetFloat("Music", volume);
+    }
+
+    private void SetVolume(string parameterName, float volume)
+    {
+        if (volume == 0)
+        {
+            audioMixer.SetFloat(parameterName, -80f); // Set to a very low value to simulate silence
+        }
+        else
+        {
+            audioMixer.SetFloat(parameterName, Mathf.Log10(volume) * 20);
+        }
     }
 }
