@@ -25,7 +25,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     }
     
     // Drag and drop
-    public void OnDrop(PointerEventData eventData) {
+    public virtual void OnDrop(PointerEventData eventData) {
         if (transform.childCount == 0) 
         {
             InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();

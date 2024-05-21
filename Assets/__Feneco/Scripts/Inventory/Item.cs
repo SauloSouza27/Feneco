@@ -4,8 +4,10 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+
 [CreateAssetMenu(menuName = "Scriptable object/Item")]
-public class Item : ScriptableObject 
+public class Item : ScriptableObject
 {
    
     [Header("Only gameplay")]
@@ -16,4 +18,5 @@ public class Item : ScriptableObject
 
     [Header("Both")]
     public Sprite image;
+
 }
