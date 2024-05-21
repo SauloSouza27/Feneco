@@ -129,4 +129,9 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
+
+    void UpdateArmor()
+    {
+        GameController.instance.armor = 0;
+    }
 }
