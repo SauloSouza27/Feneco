@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool isCombat = false;
     [HideInInspector] public float isCombatTimer = 0f;
     [HideInInspector] public bool isAttacking = false;
-    private bool isNearNPC = false;
+    public bool isNearNPC { get; private set; } = false;
     private bool isRunning = false;
     private GameObject talkingNPC;
     int floorMask, enemiesMask;
@@ -151,10 +151,7 @@ public class PlayerController : MonoBehaviour
             talkingNPC = null;
         }
     }
-    public bool IsNearNPC
-    {
-        get { return isNearNPC; }
-    }
+
     private void CombatChecker()
     {
         if (isCombatTimer <= 0f)
