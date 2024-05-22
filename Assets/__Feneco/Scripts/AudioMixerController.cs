@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class AudioMixerController : MonoBehaviour
 {
-    public AudioMixer audioMixer;
-    public Slider masterSlider;
-    public Slider sfxSlider;
-    public Slider musicSlider;
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Slider musicSlider;
 
     private void Start()
     {
@@ -28,21 +28,21 @@ public class AudioMixerController : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        Debug.Log("Setting Master Volume: " + volume);
+        //Debug.Log("Setting Master Volume: " + volume);
         SetVolume("Master", volume);
         PlayerPrefs.SetFloat("Master", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        Debug.Log("Setting SFX Volume: " + volume);
+        //Debug.Log("Setting SFX Volume: " + volume);
         SetVolume("SFX", volume);
         PlayerPrefs.SetFloat("SFX", volume);
     }
 
     public void SetMusicVolume(float volume)
     {
-        Debug.Log("Setting Music Volume: " + volume);
+        //Debug.Log("Setting Music Volume: " + volume);
         SetVolume("Music", volume);
         PlayerPrefs.SetFloat("Music", volume);
     }
