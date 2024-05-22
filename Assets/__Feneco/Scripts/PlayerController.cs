@@ -199,7 +199,7 @@ public class PlayerController : MonoBehaviour
         if (movement != Vector3.zero)
         {
             movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
-
+            
             if (!isDashing && !isAttacking)
             {
                 rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
