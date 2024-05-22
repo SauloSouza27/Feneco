@@ -9,5 +9,6 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "Scriptable object/Helmet")]
 public class Helmet : Item
 {
-
+    public int armor = 0;
+    public int hp = 0;
 }
