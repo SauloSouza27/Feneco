@@ -21,11 +21,11 @@ public class FSM_NPC_Idle : StateMachineBehaviour
     {
         NPC npcScript = animator.transform.GetComponent<NPC>();
 
-        if (player != null && !npcScript.IsDelivered)
+        if (player != null && !npcScript.isDelivered)
         {
             float distance = Vector3.Distance(player.transform.position, animator.transform.position);
 
-            if (distance > 3 && npcScript.AcceptedMission)
+            if (distance > 3 && npcScript.acceptedMission)
             {
                 animator.SetBool("isEscort", true);
             }
@@ -37,7 +37,7 @@ public class FSM_NPC_Idle : StateMachineBehaviour
     {
         NPC npcScript = animator.transform.GetComponent<NPC>();
 
-        if (npcScript.IsQuestUpdated)
+        if (npcScript.isQuestUpdated)
         {
             navMeshAgent.destination = npcScript.CallbackObject.transform.GetChild(2).position;
         }

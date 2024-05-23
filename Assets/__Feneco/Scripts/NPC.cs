@@ -27,13 +27,13 @@ public class NPC : MonoBehaviour
 
     private bool isTalkEnd = false;
 
-    private bool acceptedMission = false;
+    public bool acceptedMission { get; private set; } = false;
 
-    private bool isQuestCompleted = false;
+    public bool isQuestCompleted { get; private set; } = false;
 
-    private bool isQuestUpdated = false;
+    public bool isQuestUpdated { get; private set; } = false;
 
-    private bool isDelivered = false;
+    public bool isDelivered { get; private set; } = false;
 
     [SerializeField] private string[] questCompletedDialogue;
 
@@ -44,18 +44,6 @@ public class NPC : MonoBehaviour
 
     private PlayerController playerController = null;
 
-    public bool AcceptedMission
-    {
-        get { return instance.acceptedMission; }
-    }
-    public bool IsQuestUpdated
-    {
-        get { return instance.isQuestUpdated; }
-    }
-    public bool IsDelivered
-    {
-        get { return instance.isDelivered; }
-    }
     public GameObject CallbackObject
     {
         get { return instance.callbackObject; }
