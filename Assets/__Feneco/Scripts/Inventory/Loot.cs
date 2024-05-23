@@ -30,6 +30,7 @@ public class Loot : MonoBehaviour
             if (callbackObject != null && method != "")
             {
                 callbackObject.SendMessage(method);
+                GameController.instance.SetQuestHint();
             }
         }
     }

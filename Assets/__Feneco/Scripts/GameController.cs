@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
 
     private int questIndex = 0;
 
+    [SerializeField] private GameObject configMenu;
+
     private void Awake()
     {
         if (instance != null)
@@ -64,6 +66,9 @@ public class GameController : MonoBehaviour
         }
         
         UpdateHUD();
+
+        configMenu.SetActive(true);
+        configMenu.SetActive(false);
     }
     public void UpdateHUD()
     {
@@ -131,6 +136,7 @@ public class GameController : MonoBehaviour
     public void UpdateQuest()
     {
         quests[questIndex].SetActive(true);
+
         if(questIndex < quests.Length - 1)
         {
             questIndex++;
