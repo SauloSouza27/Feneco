@@ -64,6 +64,15 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsJumping", !IsGrounded());
     }
 
+    public void OnAction(InputAction.CallbackContext context)
+    {
+        if (context.performed && isNearNPC && talkingNPC != null)
+        {
+            talkingNPC.SendMessage("TalkNPC");
+            talkingNPC.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
@@ -120,39 +129,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnAction(InputAction.CallbackContext context)
-    {
-        if (context.performed && isNearNPC && talkingNPC != null)
-        {
-            talkingNPC.SendMessage("TalkNPC");
-            talkingNPC.transform.GetChild(0).gameObject.SetActive(false);
-        }
-    }
-
-    public void SetNPCNearON(bool active, GameObject NPC)
-    {
-        isNearNPC = active;
-        talkingNPC = active ? NPC : null;
-    }
-
-    private void CombatChecker()
-    {
-        isCombat = isCombatTimer > 0f;
-        if (isCombat)
-        {
-            isCombatTimer -= Time.deltaTime;
-        }
-    }
-
-    private void RotateWithMovementDirection()
-    {
-        if (move.magnitude > 0 && !isAttacking)
-        {
-            Quaternion newRotation = Quaternion.LookRotation(movementDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
-        }
-    }
-
     private void Movimento()
     {
         Vector3 cameraForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
@@ -184,4 +160,29 @@ public class PlayerController : MonoBehaviour
             movementDirection = movement.normalized;
         }
     }
+
+    private void RotateWithMovementDirection()
+    {
+        if (move.magnitude > 0 && !isAttacking)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(movementDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
+        }
+    }
+
+    public void SetNPCNearON(bool active, GameObject NPC)
+    {
+        isNearNPC = active;
+        talkingNPC = active ? NPC : null;
+    }
+
+    private void CombatChecker()
+    {
+        isCombat = isCombatTimer > 0f;
+        if (isCombat)
+        {
+            isCombatTimer -= Time.deltaTime;
+        }
+    }
+
 }
