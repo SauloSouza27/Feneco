@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private int maxHealthPoints = 1000;
 
-    public int armor { get; set; }
+    public int armor { get; set; } = 0;
 
     private int healthPoints;
 
