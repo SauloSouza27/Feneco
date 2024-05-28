@@ -1,32 +1,40 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 6, jump = 15, gravity = 1.02f, dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f, runModifier = 2.5f;
+    [Header("Movement Settings")]
+    [SerializeField] private float speed = 6, jump = 15, gravity = 1.02f,
+    dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f, runModifier = 2.5f;
+
+    [Header("Other Settings")]
+    [SerializeField] private Transform cam;
+    [SerializeField] private float timeScale = 1.0f;
 
     private float speedModifier = 1.0f;
     private bool isDashing = false;
     private bool isCombat = false;
+    private bool isRunning = false;
+    private float lastDashTime = -999f;
+    private Vector2 move;
+    private Vector3 movementDirection = Vector3.forward;
+
+    private Rigidbody rigidBody;
+    [HideInInspector] public Animator animator;
+    private GameObject talkingNPC;
+
+    private int floorMask;
+    private int enemiesMask;
+
     [HideInInspector] public float isCombatTimer = 0f;
     [HideInInspector] public bool isAttacking = false;
     public bool isNearNPC { get; private set; } = false;
-    private bool isRunning = false;
-    private GameObject talkingNPC;
-    int floorMask, enemiesMask;
-    float camRayLength = 100f;
-    private Vector2 move;
-    private Rigidbody rigidBody;
-    [SerializeField] private Transform cam;
-    private Vector3 movementDirection = Vector3.forward;
-    private float lastDashTime = -999f;
-    [HideInInspector] public Animator animator;
-    [SerializeField] private float timeScale = 1.0f;
 
-    
-    void Awake()
+    private const float camRayLength = 100f;
+    private const float distanceToGround = 1.5f;
+
+    private void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
         enemiesMask = LayerMask.GetMask("Enemies");
@@ -38,24 +46,18 @@ public class PlayerController : MonoBehaviour
     {
         Time.timeScale = timeScale;
     }
+
     private void Update()
     {
         if (Time.timeScale == 0) return;
 
         CombatChecker();
     }
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
         if (Time.timeScale == 0) return;
 
-//        if (isCombat)
-//        {
-//            PlayerOlhandoProMouse();
-//        }
-//        else
-//        {
-//            RotateWithMovementDirection();
-//        }
         RotateWithMovementDirection();
         UpdateMovementDirection();
         Movimento();
@@ -65,24 +67,19 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
-        if (move.magnitude == 0)
-        {
-            animator.SetBool("IsMoving", false);
-        }
-        else
-        {
-            animator.SetBool("IsMoving", true);
-        }
+        animator.SetBool("IsMoving", move.magnitude > 0);
     }
+
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (IsGrounded() && isDashing == false && isAttacking == false)
+        if (IsGrounded() && !isDashing && !isAttacking)
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
             rigidBody.velocity += Vector3.up * jump;
             animator.SetBool("IsJumping", true);
         }
     }
+
     public void OnDash(InputAction.CallbackContext context)
     {
         if (context.performed && Time.time >= lastDashTime + dashCooldown && !isAttacking)
@@ -90,16 +87,15 @@ public class PlayerController : MonoBehaviour
             isRunning = true;
             StartCoroutine(Dash());
             lastDashTime = Time.time;
-
-            
         }
-        else if (context.canceled && isRunning == true)
+        else if (context.canceled && isRunning)
         {
             isRunning = false;
             speedModifier -= runModifier;
             animator.SetBool("IsRunning", false);
         }
     }
+
     private IEnumerator Dash()
     {
         if (!isDashing)
@@ -110,11 +106,9 @@ public class PlayerController : MonoBehaviour
             rigidBody.useGravity = false;
 
             Vector3 originalVelocity = rigidBody.velocity;
-
             Vector3 dashDirection = move.magnitude > 0 ? movementDirection : cam.forward;
 
             rigidBody.velocity = dashDirection * dashSpeed;
-
             yield return new WaitForSeconds(dashDuration);
 
             rigidBody.useGravity = true;
@@ -125,45 +119,31 @@ public class PlayerController : MonoBehaviour
             speedModifier += runModifier;
         }
     }
+
     public void OnAction(InputAction.CallbackContext context)
     {
-        // Talk NPC
         if (context.performed && isNearNPC && talkingNPC != null)
         {
             talkingNPC.SendMessage("TalkNPC");
             talkingNPC.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
+
     public void SetNPCNearON(bool active, GameObject NPC)
     {
-        if (active)
-        {
-            isNearNPC = active;
-    
-            if (NPC != null)
-            {
-                talkingNPC = NPC;
-            }
-        }
-        else
-        {
-            isNearNPC = active;
-            talkingNPC = null;
-        }
+        isNearNPC = active;
+        talkingNPC = active ? NPC : null;
     }
 
     private void CombatChecker()
     {
-        if (isCombatTimer <= 0f)
-        {
-            isCombat = false;
-        }
-        else
+        isCombat = isCombatTimer > 0f;
+        if (isCombat)
         {
             isCombatTimer -= Time.deltaTime;
-            isCombat = true;
         }
     }
+
     private void RotateWithMovementDirection()
     {
         if (move.magnitude > 0 && !isAttacking)
@@ -173,53 +153,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PlayerOlhandoProMouse()
-    {
-        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit floorHit;
-
-        if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
-        {
-            Vector3 playerToMouse = floorHit.point - transform.position;
-            playerToMouse.y = 0f;
-
-            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
-            transform.rotation = newRotation;
-        }
-    }
-
     private void Movimento()
     {
         Vector3 cameraForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
-
         Vector3 movement = move.y * cameraForward + move.x * cam.right;
+
         if (movement != Vector3.zero)
         {
             movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
-            
             if (!isDashing && !isAttacking)
             {
                 rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
             }
         }
-//        else if(IsGrounded())
-//        {
-//            rigidBody.velocity = Vector3.zero;
-//        }
 
         rigidBody.velocity += Physics.gravity * gravity * Time.deltaTime;
     }
 
     private bool IsGrounded()
     {
-        RaycastHit hit;
-        float distanceToGround = 1.5f;
-        if (Physics.Raycast(transform.position, -Vector3.up, out hit, distanceToGround + 0.1f))
-        {
-            return true;
-        }
-        return false;
+        return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.1f);
     }
+
     private void UpdateMovementDirection()
     {
         if (move.magnitude > 0)
