@@ -12,7 +12,7 @@ public class Potion : Item
     [SerializeField]
     private int healAmount = 0;
 
-    public override void useItem()
+    public override void UseItem()
     {
         GameController.instance.Heal(healAmount);
         if(consumable)

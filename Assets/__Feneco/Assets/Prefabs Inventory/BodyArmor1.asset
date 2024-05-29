@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BodyArmor1
   m_EditorClassIdentifier: 
   stackable: 0
+  consumable: 0
   image: {fileID: 21300000, guid: 44e30e813c016094ab0a48083b8bbc5e, type: 3}
-  armor: 0
-  hp: 0
+  armor: 2
+  bonusHP: 5

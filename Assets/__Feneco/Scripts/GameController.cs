@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     private GameObject player;
 
-    [SerializeField] private int maxHealthPoints = 1000;
+    [SerializeField] public int maxHealthPoints { get; set; } = 1000;
 
     public int armor { get; set; } = 0;
 

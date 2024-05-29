@@ -9,7 +9,8 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "Scriptable object/BodyArmor")]
 public class BodyArmor : Item
 {
-    [SerializeField]
-    public int armor = 0;
-    public int hp = 0;
+    [SerializeField] public int armor = 0;
+    [SerializeField] public int bonusHP = 0;
+
+    
 }
