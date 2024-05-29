@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float lastDashTime = -999f;
     private Vector2 move;
     private Vector3 movementDirection = Vector3.forward;
-    public FreezeCameraRotation camFreeze;
+    private FreezeCameraRotation camFreeze;
 
     private Rigidbody rigidBody;
     [HideInInspector] public Animator animator;
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Time.timeScale = timeScale;
+        camFreeze = GameObject.Find("PlayerCamera").GetComponent<FreezeCameraRotation>();
 //        Cursor.lockState = CursorLockMode.Locked;
     }
 
