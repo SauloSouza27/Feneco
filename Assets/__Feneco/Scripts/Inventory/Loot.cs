@@ -13,9 +13,12 @@ public class Loot : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Item item;
 
+    private MeshRenderer meshRenderer;
+
     private void Awake()
     {
         collider = transform.GetComponent<BoxCollider>();
+        meshRenderer = transform.GetComponent<MeshRenderer>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -45,5 +48,11 @@ public class Loot : MonoBehaviour
             yield return 0;
         }
         Destroy(gameObject);
+    }
+
+    public void TurnOnObjective()
+    {
+        collider.enabled = true;
+        meshRenderer.enabled = true;
     }
 }

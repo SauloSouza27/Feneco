@@ -18,7 +18,7 @@ public class Potion : Item
         GameController.instance.Heal(healAmount);
         if(consumable)
         {
-            //deletar o item (ou uma quantidade dele) quando for utilizado
+            InventoryManager.instance.GetSelectedItem(true);
         }
     }
 
