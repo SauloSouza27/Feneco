@@ -92,7 +92,8 @@ public class NPC : MonoBehaviour
         {
             if (playerController != null)
             {
-                playerController.SetNPCNearON(false, null);  
+                playerController.SetNPCNearON(false, null);
+                playerController.UnfreezeCamera();
             }
 
             if (instance.isQuestCompleted && !isQuestUpdated)
@@ -198,6 +199,7 @@ public class NPC : MonoBehaviour
             if (playerController != null)
             {
                 playerController.SetNPCNearON(false, null);
+                playerController.UnfreezeCamera();
             }
 
             npc_fsm.SetBool("isTalking", false);
@@ -232,6 +234,7 @@ public class NPC : MonoBehaviour
             if (playerController != null)
             {
                 playerController.SetNPCNearON(false, null);
+                playerController.UnfreezeCamera();
             }
 
             npc_fsm.SetBool("isTalking", false);

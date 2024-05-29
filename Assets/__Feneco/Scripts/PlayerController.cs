@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         Time.timeScale = timeScale;
         camFreeze = GameObject.Find("PlayerCamera").GetComponent<FreezeCameraRotation>();
-//        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && isNearNPC && talkingNPC != null)
         {
+            FreezeCamera();
             talkingNPC.SendMessage("TalkNPC");
             talkingNPC.transform.GetChild(0).gameObject.SetActive(false);
         }
@@ -119,13 +120,11 @@ public class PlayerController : MonoBehaviour
 
             if (isActive)
             {
-                camFreeze.UnfreezeRotation();
-//                Cursor.lockState = CursorLockMode.Locked;
+                UnfreezeCamera();
             }
             else if (!isActive)
             {
-                camFreeze.FreezeRotation();
-//                Cursor.lockState = CursorLockMode.None;
+                FreezeCamera();
             }
         }
     }
@@ -141,13 +140,11 @@ public class PlayerController : MonoBehaviour
 
             if (isActive)
             {
-                camFreeze.UnfreezeRotation();
-//                Cursor.lockState = CursorLockMode.Locked;
+                UnfreezeCamera();
             }
             else if (!isActive)
             {
-                camFreeze.FreezeRotation();
-//                Cursor.lockState = CursorLockMode.None;
+                FreezeCamera();
             }
         }
     }
@@ -231,5 +228,14 @@ public class PlayerController : MonoBehaviour
             isCombatTimer -= Time.deltaTime;
         }
     }
-
+    public void UnfreezeCamera()
+    {
+        camFreeze.UnfreezeRotation();
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    public void FreezeCamera()
+    {
+        camFreeze.FreezeRotation();
+        Cursor.lockState = CursorLockMode.None;
+    }
 }
