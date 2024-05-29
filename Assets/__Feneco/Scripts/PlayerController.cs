@@ -11,14 +11,17 @@ public class PlayerController : MonoBehaviour
     [Header("Other Settings")]
     [SerializeField] private Transform cam;
     [SerializeField] private float timeScale = 1.0f;
+    [SerializeField] private GameObject settingsUI, inventoryUI;
 
     private float speedModifier = 1.0f;
     private bool isDashing = false;
     private bool isCombat = false;
     private bool isRunning = false;
+    private bool isInventory = false;
     private float lastDashTime = -999f;
     private Vector2 move;
     private Vector3 movementDirection = Vector3.forward;
+    public FreezeCameraRotation camFreeze;
 
     private Rigidbody rigidBody;
     [HideInInspector] public Animator animator;
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Time.timeScale = timeScale;
+//        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -104,6 +108,48 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsRunning", false);
         }
     }
+    public void OnSettings(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            bool isActive = settingsUI.activeSelf;
+
+            settingsUI.SetActive(!isActive);
+
+            if (isActive)
+            {
+                camFreeze.UnfreezeRotation();
+//                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else if (!isActive)
+            {
+                camFreeze.FreezeRotation();
+//                Cursor.lockState = CursorLockMode.None;
+            }
+        }
+    }
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            bool isActive = inventoryUI.activeSelf;
+
+            inventoryUI.SetActive(!isActive);
+
+            isInventory = !isActive;
+
+            if (isActive)
+            {
+                camFreeze.UnfreezeRotation();
+//                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else if (!isActive)
+            {
+                camFreeze.FreezeRotation();
+//                Cursor.lockState = CursorLockMode.None;
+            }
+        }
+    }
 
     private IEnumerator Dash()
     {
@@ -137,7 +183,7 @@ public class PlayerController : MonoBehaviour
         if (movement != Vector3.zero)
         {
             movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
-            if (!isDashing && !isAttacking)
+            if (!isDashing && !isAttacking && !isInventory)
             {
                 rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
             }
