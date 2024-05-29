@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool isCombat = false;
     private bool isRunning = false;
-    private bool isInventory = false;
+    private bool isInventory = false, isPaused = false;
     private float lastDashTime = -999f;
     private Vector2 move;
     private Vector3 movementDirection = Vector3.forward;
@@ -118,6 +118,8 @@ public class PlayerController : MonoBehaviour
 
             settingsUI.SetActive(!isActive);
 
+            isPaused = !isActive;
+
             if (isActive)
             {
                 UnfreezeCamera();
@@ -130,7 +132,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnInventory(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isPaused)
         {
             bool isActive = inventoryUI.activeSelf;
 
@@ -181,7 +183,7 @@ public class PlayerController : MonoBehaviour
         if (movement != Vector3.zero)
         {
             movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
-            if (!isDashing && !isAttacking && !isInventory)
+            if (!isDashing && !isAttacking && !isInventory && !isPaused)
             {
                 rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
             }
