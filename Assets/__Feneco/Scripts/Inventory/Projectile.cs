@@ -18,9 +18,9 @@ public class Projectile : MonoBehaviour
     public float explosionForce;
     public int explosionDamage;
     public GameObject explosionEffect;
+    public float explosionDelay; // Add this line
 
     private Rigidbody rb;
-
     private bool hitTarget;
 
     private void Start()
@@ -29,8 +29,14 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         // spawn muzzleEffect (if assigned)
-        if(muzzleEffect != null)
+        if (muzzleEffect != null)
             Instantiate(muzzleEffect, transform.position, Quaternion.identity);
+
+        // Start explosion timer if projectile is explosive
+        if (isExplosive)
+        {
+            StartCoroutine(DelayedExplosion());
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -51,68 +57,68 @@ public class Projectile : MonoBehaviour
             // spawn hit effect (if assigned)
             if (hitEffect != null)
                 Instantiate(hitEffect, transform.position, Quaternion.identity);
-            
+
             // destroy projectile
             if (!isExplosive && destroyOnHit)
                 Invoke(nameof(DestroyProjectile), 0.1f);
         }
 
-        // explode projectile if it's explosive
-        if (isExplosive)
+        // make sure projectile sticks to surface if not explosive
+        if (!isExplosive)
         {
-            Explode();
-            return;
+            rb.isKinematic = true;
+            transform.SetParent(collision.transform);
         }
-
-        // make sure projectile sticks to surface
-        rb.isKinematic = true;
-
-        // make sure projectile moves with target
-        transform.SetParent(collision.transform);
     }
+
+    private IEnumerator DelayedExplosion()
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(explosionDelay);
+        Explode();
+    }
+
+    
 
     private void Explode()
+{
+    // spawn explosion effect (if assigned)
+    if (explosionEffect != null)
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
+
+    // find all the objects that are inside the explosion range
+    Collider[] objectsInRange = Physics.OverlapSphere(transform.position, explosionRadius);
+
+    // loop through all of the found objects and apply damage and explosion force
+    foreach (Collider nearbyObject in objectsInRange)
     {
-        // spawn explosion effect (if assigned)
-        if (explosionEffect != null)
-            Instantiate(explosionEffect, transform.position, Quaternion.identity);
-
-        // find all the objects that are inside the explosion range
-        Collider[] objectsInRange = Physics.OverlapSphere(transform.position, explosionRadius);
-
-        // loop through all of the found objects and apply damage and explosion force
-        for (int i = 0; i < objectsInRange.Length; i++)
+        if (nearbyObject.gameObject == gameObject)
         {
-            if (objectsInRange[i].gameObject == gameObject)
-            {
-                // don't break or return please, thanks
-            }
-            else
-            {
-                // check if object is enemy, if so deal explosionDamage
-                if (objectsInRange[i].GetComponent<EnemyController>() != null)
-                    objectsInRange[i].GetComponent<EnemyController>().TakeDamage(explosionDamage);
-
-                // check if object has a rigidbody
-                if (objectsInRange[i].GetComponent<Rigidbody>() != null)
-                {
-                    // custom explosionForce
-                    Vector3 objectPos = objectsInRange[i].transform.position;
-
-                    // calculate force direction
-                    Vector3 forceDirection = (objectPos - transform.position).normalized;
-
-                    // apply force to object in range
-                    objectsInRange[i].GetComponent<Rigidbody>().AddForceAtPosition(forceDirection * explosionForce + Vector3.up * explosionForce, transform.position + new Vector3(0,-0.5f,0), ForceMode.Impulse);
-
-                    Debug.Log("Kabooom " + objectsInRange[i].name);
-                }
-            }
+            continue;
         }
 
-        // destroy projectile with 0.1 seconds delay
-        Invoke(nameof(DestroyProjectile), 0.1f);
+        // check if object is enemy, if so deal explosionDamage
+        if (nearbyObject.GetComponent<EnemyController>() != null)
+        {
+            nearbyObject.GetComponent<EnemyController>().TakeDamage(explosionDamage);
+        }
+
+        // check if object has a rigidbody
+        Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            // apply explosion force
+            rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 1.5f, ForceMode.Impulse);
+            Debug.Log("Kabooom " + nearbyObject.name);
+        }
     }
+
+    // destroy projectile with 0.1 seconds delay
+    Invoke(nameof(DestroyProjectile), 1f);
+}
+
+
+
 
     private void DestroyProjectile()
     {
