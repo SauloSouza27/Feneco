@@ -11,5 +11,4 @@ public class BodyArmor : Item
 {
     public int armor = 0;
     public int bonusHP = 0;
-
 }

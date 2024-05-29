@@ -24,6 +24,14 @@ public class HelmetSlot : InventorySlot
         }
     }
 
+    private void OnTransformChildrenChanged()
+    {
+        if (transform.childCount == 0)
+        {
+            UpdatePlayerStatus(false);
+        }
+    }
+
     public override void SetStatus(Item item)
     {
         Helmet helmet = item as Helmet;
@@ -33,8 +41,17 @@ public class HelmetSlot : InventorySlot
 
     public override void UpdatePlayerStatus(bool equip)
     {
-        GameController.instance.armor += armor;
-        GameController.instance.maxHealthPoints += bonusHP;
-        GameController.instance.UpdateHUD();
+        if (equip)
+        {
+            GameController.instance.armor += armor;
+            GameController.instance.maxHealthPoints += bonusHP;
+            GameController.instance.UpdateHUD();
+        }
+        else
+        {
+            GameController.instance.armor -= armor;
+            GameController.instance.maxHealthPoints -= bonusHP;
+            GameController.instance.UpdateHUD();
+        }
     }
 }

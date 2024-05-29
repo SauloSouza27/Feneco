@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Weapon1
   m_EditorClassIdentifier: 
   stackable: 0
+  consumable: 0
   image: {fileID: 21300000, guid: 7d3c96c3936359b4cbce1469f0b5f1b2, type: 3}
-  damage: 0
+  damage: 4
+  weapon: {fileID: 0}
