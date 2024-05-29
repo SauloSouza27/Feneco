@@ -123,4 +123,4 @@ MonoBehaviour:
   callbackObject: {fileID: 0}
   method: 
   moveSpeed: 8
-  item: {fileID: 11400000, guid: 9800cd91c12f52b49884aa0bbeaaa8d8, type: 2}
+  item: {fileID: 11400000, guid: e3cb6e42b4aceaa4eb4d821390bceb9d, type: 2}

@@ -11,7 +11,6 @@ public class Potion : Item
 {
     [SerializeField]
     private int healAmount = 0;
-    private bool consumable = true;
 
     public override void useItem()
     {

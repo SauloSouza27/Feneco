@@ -57,6 +57,7 @@ public class InventoryManager : MonoBehaviour
                 ChangeSelectSlot(number - 1);
                 if(inventorySlots[number - 1].GetComponentInChildren<InventoryItem>() != null && inventorySlots[number - 1].GetComponentInChildren<InventoryItem>().item != null)
                 {
+                    Debug.Log("usa item");
                     inventorySlots[number - 1].GetComponentInChildren<InventoryItem>().item.useItem();
                 }
             }
