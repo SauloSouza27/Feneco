@@ -18,25 +18,22 @@ public class HelmetSlot : InventorySlot
                 InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
                 inventoryItem.parentAfterDrag = transform;
 
-                Debug.Log("armadura entrou slot");
-
-                SetStatus(inventoryItem.item.bodyArmor);
-                UpdatePlayerStatus();
-
-                Debug.Log("Armor: " + armor + "HP: "+bonusHP);
+                SetStatus(inventoryItem.item as Helmet);
+                UpdatePlayerStatus(true);
             }
         }
     }
 
-    public override void SetStatus(BodyArmor bodyArmor)
+    public override void SetStatus(Item item)
     {
-        armor = bodyArmor.armor;
-        bonusHP = bodyArmor.bonusHP;
+        Helmet helmet = item as Helmet;
+        armor = helmet.armor;
+        bonusHP = helmet.bonusHP;
     }
 
-    public override void UpdatePlayerStatus()
+    public override void UpdatePlayerStatus(bool equip)
     {
-        GameController.instance.armor = armor;
+        GameController.instance.armor += armor;
         GameController.instance.maxHealthPoints += bonusHP;
         GameController.instance.UpdateHUD();
     }

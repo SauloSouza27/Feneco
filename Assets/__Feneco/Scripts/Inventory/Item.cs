@@ -20,7 +20,6 @@ public class Item : ScriptableObject
     [Header("Both")]
     public Sprite image;
 
-    public BodyArmor bodyArmor { get; private set; }
-
     public virtual void UseItem() { }
+
 }

@@ -75,6 +75,11 @@ public class GameController : MonoBehaviour
         string printQuestText = "Quest Hint: ";
         string printHealthPointsText = "HP: ";
 
+        if(healthPoints > maxHealthPoints)
+        {
+            healthPoints = maxHealthPoints;
+        }
+
         healthPointsText.text = printHealthPointsText + healthPoints;
 
         if (!isQuestActive)
