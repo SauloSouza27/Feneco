@@ -9,6 +9,5 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "Scriptable object/Weapon")]
 public class Weapon : Item
 {
-    [SerializeField]
     public int damage = 0;
 }

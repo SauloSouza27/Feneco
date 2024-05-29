@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 
     public int armor { get; set; } = 0;
 
-    private int healthPoints;
+    [SerializeField] private int healthPoints;
 
     private GameObject HUD;
 
@@ -91,6 +91,10 @@ public class GameController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         damage -= armor;
+        if(damage < 0)
+        {
+            damage = 0;
+        }
         healthPoints -= damage;
         if(healthPoints == 0)
         {
@@ -107,6 +111,7 @@ public class GameController : MonoBehaviour
             {
                 healthPoints = maxHealthPoints;
             }
+            UpdateHUD();
         }
     }
     public void GameOver()
@@ -142,4 +147,11 @@ public class GameController : MonoBehaviour
             questIndex++;
         }
     }
+
+
+    //atualizar armadura quando um item for equipado?
+    //public void UpdateArmor()
+    //{
+        
+    //}
 }
