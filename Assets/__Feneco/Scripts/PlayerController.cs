@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float speed = 6, jump = 15, gravity = 1.02f,
+    [SerializeField] private float speed = 6;
+    [SerializeField] private float jump = 15, gravity = 1.02f,
     dashDuration = 0.3f, dashSpeed = 30f, dashCooldown = 1.5f, runModifier = 2.5f;
 
     [Header("Other Settings")]
