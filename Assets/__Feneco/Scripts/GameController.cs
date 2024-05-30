@@ -152,11 +152,4 @@ public class GameController : MonoBehaviour
             questIndex++;
         }
     }
-
-
-    //atualizar armadura quando um item for equipado?
-    //public void UpdateArmor()
-    //{
-        
-    //}
 }

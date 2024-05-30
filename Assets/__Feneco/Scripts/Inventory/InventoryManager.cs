@@ -52,7 +52,7 @@ public class InventoryManager : MonoBehaviour
         if(Input.inputString != null)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number); 
-            if (isNumber && number > 0 && number < 4)
+            if (isNumber && number > 0 && number < 5)
             {
                 ChangeSelectSlot(number - 1);
                 if(inventorySlots[number - 1].GetComponentInChildren<InventoryItem>() != null && inventorySlots[number - 1].GetComponentInChildren<InventoryItem>().item != null)
