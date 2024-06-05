@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -11,7 +10,6 @@ public class InventoryManager : MonoBehaviour
     public GameObject mainInventory, toolbar, equipInventory;
     private InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
-
 
     int selectedSlot = -1;
 
@@ -28,18 +26,17 @@ public class InventoryManager : MonoBehaviour
         }
         
         int index = mainInventory.transform.childCount + toolbar.transform.childCount;
+        inventorySlots = new InventorySlot[index];
 
-    inventorySlots = new InventorySlot[index];
+        for (int i = 0; i < toolbar.transform.childCount; i++)
+        {
+            inventorySlots[i] = toolbar.transform.GetChild(i).GetComponent<InventorySlot>();
+        }
 
-    for (int i = 0; i < toolbar.transform.childCount; i++)
-    {
-        inventorySlots[i] = toolbar.transform.GetChild(i).GetComponent<InventorySlot>();
-    }
-
-    for (int i = 0; i < mainInventory.transform.childCount; i++)
-    {
-        inventorySlots[i + toolbar.transform.childCount] = mainInventory.transform.GetChild(i).GetComponent<InventorySlot>();
-    }
+        for (int i = 0; i < mainInventory.transform.childCount; i++)
+        {
+            inventorySlots[i + toolbar.transform.childCount] = mainInventory.transform.GetChild(i).GetComponent<InventorySlot>();
+        }
     }
 
     private void Start()
@@ -49,13 +46,13 @@ public class InventoryManager : MonoBehaviour
 
     private void Update() 
     {
-        if(Input.inputString != null)
+        if (Input.inputString != null)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number); 
             if (isNumber && number > 0 && number < 5)
             {
                 ChangeSelectSlot(number - 1);
-                if(inventorySlots[number - 1].GetComponentInChildren<InventoryItem>() != null && inventorySlots[number - 1].GetComponentInChildren<InventoryItem>().item != null)
+                if (inventorySlots[number - 1].GetComponentInChildren<InventoryItem>() != null && inventorySlots[number - 1].GetComponentInChildren<InventoryItem>().item != null)
                 {
                     inventorySlots[number - 1].GetComponentInChildren<InventoryItem>().item.UseItem();
                 }
@@ -63,7 +60,8 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void ChangeSelectSlot(int newValue) {
+    void ChangeSelectSlot(int newValue)
+    {
         if (selectedSlot >= 0)
         {
             inventorySlots[selectedSlot].Deselect();
@@ -73,11 +71,11 @@ public class InventoryManager : MonoBehaviour
         selectedSlot = newValue;
     }
 
-
     public bool AddItem(Item item)
     {
         // Check if any slot has the same item with count lower than max
-        for (int i = 0; i < inventorySlots.Length; i++) {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
             InventorySlot slot = inventorySlots[i];
             InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
             if (iteminSlot != null && 
@@ -91,7 +89,8 @@ public class InventoryManager : MonoBehaviour
             }
         }
         // Find any empty slot
-        for (int i = 0; i < inventorySlots.Length; i++) {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
             InventorySlot slot = inventorySlots[i];
             InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
             if (iteminSlot == null) 
@@ -103,24 +102,24 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    void SpawnNewItem(Item item, InventorySlot slot) 
+    void SpawnNewItem(Item item, InventorySlot slot)
     {
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
     }
 
-    public Item GetSelectedItem(bool use) 
+    public Item GetSelectedItem(bool use)
     {
         InventorySlot slot = inventorySlots[selectedSlot];
         InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
         if (iteminSlot != null)
         {
             Item item = iteminSlot.item;
-            if (use == true) 
+            if (use == true)
             {
                 iteminSlot.count--;
-                if(iteminSlot.count <= 0)
+                if (iteminSlot.count <= 0)
                 {
                     Destroy(iteminSlot.gameObject);  
                 }
@@ -132,5 +131,48 @@ public class InventoryManager : MonoBehaviour
             return item;
         }
         return null;
+    }
+
+    // New Methods for Grenades
+
+    public bool HasGrenades()
+    {
+        return GetGrenadeCount() > 0;
+    }
+
+    public int GetGrenadeCount()
+    {
+        int grenadeCount = 0;
+        foreach (var slot in inventorySlots)
+        {
+            InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (iteminSlot != null && iteminSlot.item != null && iteminSlot.item.name == "Grenade")
+            {
+                grenadeCount += iteminSlot.count;
+            }
+        }
+        return grenadeCount;
+    }
+
+    public void UseGrenade()
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (iteminSlot != null && iteminSlot.item != null && iteminSlot.item.name == "Grenade")
+            {
+                iteminSlot.count--;
+                if (iteminSlot.count <= 0)
+                {
+                    Destroy(iteminSlot.gameObject);
+                }
+                else
+                {
+                    iteminSlot.RefreshCount();
+                }
+                break; // We only use one grenade at a time
+            }
+        }
     }
 }
