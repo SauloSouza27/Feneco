@@ -10,7 +10,9 @@ public class EnemyController : MonoBehaviour
 
     public int healthPoints { get; private set; }
 
-    [SerializeField] public int damage { get; private set; }
+    [SerializeField] private int enemyDamage;
+
+    public int damage { get; private set; }
 
     [SerializeField] private Sprite avatar;
 
@@ -23,6 +25,7 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         healthPoints = maxHealthPoints;
+        damage = enemyDamage;
     }
     public void TakeDamage(int damage)
     {

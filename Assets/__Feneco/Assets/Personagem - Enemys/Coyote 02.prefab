@@ -100,9 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c678453970065894cb5520e813c14b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyName: 
-  _maxHealthPoints: 0
-  _damage: 0
+  enemyDamage: 4
   avatar: {fileID: 0}
 --- !u!95 &1585884952499276781
 Animator:
