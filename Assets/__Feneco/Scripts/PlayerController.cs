@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.timeScale == 0) return;
 
-        CombatChecker();
+        //CombatChecker();
     }
 
     private void FixedUpdate()
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.1f);
+        return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.15f);
     }
 
     private void UpdateMovementDirection()

@@ -22,7 +22,7 @@ public class DemoScript : MonoBehaviour
 
     public void GetSelectedItem() 
     {
-        Item receivedItem = InventoryManager.instance.GetSelectedItem(false);
+        Item receivedItem = InventoryManager.instance.UseSelectedItem(false);
         if(receivedItem != null)
         {
             Debug.Log("Received item " + receivedItem);
@@ -35,7 +35,7 @@ public class DemoScript : MonoBehaviour
 
     public void UseSelectedItem() 
     {
-        Item receivedItem = InventoryManager.instance.GetSelectedItem(true);
+        Item receivedItem = InventoryManager.instance.UseSelectedItem(true);
         if(receivedItem != null)
         {
             Debug.Log("Used item " + receivedItem);
