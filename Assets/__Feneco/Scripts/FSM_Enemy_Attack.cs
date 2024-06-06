@@ -26,7 +26,7 @@ public class FSM_Enemy_Attack : StateMachineBehaviour
 
         navMeshAgent = animator.transform.GetComponent<NavMeshAgent>();
 
-        damage = animator.gameObject.GetComponent<EnemyController>().Damage;
+        damage = animator.gameObject.GetComponent<EnemyController>().damage;
 
         backupSpeed = navMeshAgent.speed;
 

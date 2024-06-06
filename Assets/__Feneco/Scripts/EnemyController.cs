@@ -4,53 +4,36 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private string _enemyName;
+    [SerializeField] public string enemyName { get; set; }
 
-    [SerializeField] private int _maxHealthPoints;
+    [SerializeField] public int maxHealthPoints { get; private set; }
 
-    private int _healthPoints;
+    public int healthPoints { get; private set; }
 
-    [SerializeField] private int _damage;
+    [SerializeField] public int damage { get; private set; }
 
     [SerializeField] private Sprite avatar;
 
     private Rigidbody rigidBody;
 
-    public string EnemyName
-    {
-        get { return _enemyName; }
-        set { _enemyName = value; }
-    }
-    public int HealthPoints
-    {
-        get { return _healthPoints; }
-    }
-    public int MaxHealthPoints
-    {
-        get { return _maxHealthPoints; }
-    }
-    public int Damage
-    {
-        get { return _damage; }
-    }
     private void Awake()
     {
         rigidBody = transform.GetComponent<Rigidbody>();
     }
     private void Start()
     {
-        _healthPoints = _maxHealthPoints;
+        healthPoints = maxHealthPoints;
     }
     public void TakeDamage(int damage)
     {
-        _healthPoints -= damage;
+        healthPoints -= damage;
 
-        if(_healthPoints <= 0)
+        if(healthPoints <= 0)
         {
-            _healthPoints = 0;
+            healthPoints = 0;
         }
 
-        if(_healthPoints == 0)
+        if(healthPoints == 0)
         {
             OnDeath();
         }

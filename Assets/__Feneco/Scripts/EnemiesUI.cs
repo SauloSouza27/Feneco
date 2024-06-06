@@ -26,10 +26,10 @@ public class EnemyUIController : MonoBehaviour
 
                     if (enemyScript != null)
                     {
-                        float sliderValue = (float)enemyScript.HealthPoints / (float)enemyScript.MaxHealthPoints;
+                        float sliderValue = (float)enemyScript.healthPoints / (float)enemyScript.maxHealthPoints;
 
                         enemyUI.SetActive(true);
-                        enemyNameText.text = enemyScript.EnemyName;
+                        enemyNameText.text = enemyScript.enemyName;
                         healthSlider.value = sliderValue;
                     }
                     else
