@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   name: Sword
-  cooldownTime: 0.15
+  cooldownTime: 0.2
   activeTime: 0.65
   castTime: 0.1
+  attackSpeed: 11
+  attackDuration: 0.07

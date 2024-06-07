@@ -9,6 +9,7 @@ public class WeaponBase : ScriptableObject
     public float cooldownTime;
     public float activeTime;
     public float castTime;
+    public float attackSpeed, attackDuration;
 
     public virtual void CastTime(GameObject parent) { }
     public virtual void Activate(GameObject parent) { }

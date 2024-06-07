@@ -10,7 +10,6 @@ public class WeaponHolder : MonoBehaviour
     private float cooldownTime;
     private Rigidbody rigidBody;
     [SerializeField] private Transform cam;
-    [SerializeField] private float attackSpeed, attackDuration;
 
     private PlayerController playerController;
     private GameObject weaponHolding;
@@ -99,8 +98,8 @@ public class WeaponHolder : MonoBehaviour
 
         Vector3 attackDirection = new Vector3(cam.forward.x, 0, cam.forward.z).normalized;
 
-        rigidBody.velocity = attackDirection * attackSpeed;
-        yield return new WaitForSeconds(attackDuration);
+        rigidBody.velocity = attackDirection * weapon.attackSpeed;
+        yield return new WaitForSeconds(weapon.attackDuration);
 
         
     }
