@@ -9,6 +9,7 @@ public class WeaponHolder : MonoBehaviour
     private float activeTime;
     private float cooldownTime;
     private Rigidbody rigidBody;
+    private const float distanceToGround = 1.5f;
     [SerializeField] private Transform cam;
 
     private PlayerController playerController;
@@ -81,7 +82,7 @@ public class WeaponHolder : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed && state == AbilityState.ready && !playerController.isNearNPC)
+        if (context.performed && state == AbilityState.ready && !playerController.isNearNPC && !playerController.isInventory && !playerController.isPaused && Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.15f))
         {
             state = AbilityState.casttime;
             weapon.CastTime(gameObject);

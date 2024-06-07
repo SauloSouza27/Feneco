@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool isCombat = false;
     private bool isRunning = false;
-    private bool isInventory = false, isPaused = false;
+    [HideInInspector] public bool isInventory = false, isPaused = false;
     private float lastDashTime = -999f;
     private Vector2 move;
     private Vector3 movementDirection = Vector3.forward;
@@ -122,8 +122,11 @@ public class PlayerController : MonoBehaviour
             isPaused = !isActive;
 
             if (isActive)
-            {
-                UnfreezeCamera();
+            {   
+                if (!isInventory)
+                {
+                    UnfreezeCamera();
+                }
             }
             else if (!isActive)
             {
@@ -142,7 +145,7 @@ public class PlayerController : MonoBehaviour
             isInventory = !isActive;
 
             if (isActive)
-            {
+            {                
                 UnfreezeCamera();
             }
             else if (!isActive)
@@ -193,7 +196,7 @@ public class PlayerController : MonoBehaviour
         rigidBody.velocity += Physics.gravity * gravity * Time.deltaTime;
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.15f);
     }
