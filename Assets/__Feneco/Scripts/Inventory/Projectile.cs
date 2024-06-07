@@ -77,11 +77,10 @@ public class Projectile : MonoBehaviour
         yield return new WaitForSeconds(explosionDelay);
         Explode();
     }
-
-    
+        
 
     private void Explode()
-{
+    {
     // spawn explosion effect (if assigned)
     if (explosionEffect != null)
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
@@ -93,32 +92,35 @@ public class Projectile : MonoBehaviour
     foreach (Collider nearbyObject in objectsInRange)
     {
         if (nearbyObject.gameObject == gameObject)
-        {
-            continue;
-        }
+            {
+                continue;
+            }
 
         // check if object is enemy, if so deal explosionDamage
         if (nearbyObject.GetComponent<EnemyController>() != null)
-        {
-            nearbyObject.GetComponent<EnemyController>().TakeDamage(explosionDamage);
-        }
+            {
+                nearbyObject.GetComponent<EnemyController>().TakeDamage(explosionDamage);
+            }
 
         // check if object has a rigidbody
         Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
         if (rb != null)
-        {
-            // apply explosion force
-            rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 1.5f, ForceMode.Impulse);
-            Debug.Log("Kabooom " + nearbyObject.name);
-        }
+            {
+                // apply explosion force
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 1.5f, ForceMode.Impulse);
+                Debug.Log("Kabooom " + nearbyObject.name);
+                StartCoroutine(ExplosionEnd(rb.velocity));
+            }
     }
+        // destroy projectile with 0.1 seconds delay
+        Invoke(nameof(DestroyProjectile), 1f);
+    }   
 
-    // destroy projectile with 0.1 seconds delay
-    Invoke(nameof(DestroyProjectile), 1f);
-}
-
-
-
+    private IEnumerator ExplosionEnd(Vector3 velocity)
+    {
+        yield return new WaitForSeconds(0.5f);
+        velocity = Vector3.zero;
+    }
 
     private void DestroyProjectile()
     {
