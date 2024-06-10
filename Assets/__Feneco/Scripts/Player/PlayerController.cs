@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject settingsUI, inventoryUI;
 
     private float speedModifier = 1.0f;
+    private bool isExploded = false;
     private bool isDashing = false;
     private bool isCombat = false;
     private bool isRunning = false;
@@ -179,6 +181,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+
     private void Movimento()
     {
         Vector3 cameraForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
@@ -187,7 +191,7 @@ public class PlayerController : MonoBehaviour
         if (movement != Vector3.zero)
         {
             movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
-            if (!isDashing && !isAttacking && !isInventory && !isPaused)
+            if (!isDashing && !isAttacking && !isInventory && !isPaused && !isExploded)
             {
                 rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
             }
@@ -244,4 +248,14 @@ public class PlayerController : MonoBehaviour
         camFreeze.FreezeRotation();
         Cursor.lockState = CursorLockMode.None;
     }
+
+    internal IEnumerator DisableMovement(float v)
+    {
+        isExploded = true;
+        yield return new WaitForSeconds(v);
+        isExploded = false;
+    }
+
+    
+
 }

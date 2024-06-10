@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
     public bool isExplosive;
     public float explosionRadius;
     public float explosionForce;
+    public float upwardsExplosionForce;
     public int explosionDamage;
     public GameObject explosionEffect;
     public float explosionDelay; // Add this line
@@ -106,14 +107,19 @@ public class Projectile : MonoBehaviour
         Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
         if (rb != null)
             {
+                if (nearbyObject.CompareTag("Player"))
+                {
+                    nearbyObject.GetComponent<PlayerController>().StartCoroutine(nearbyObject.GetComponent<PlayerController>().DisableMovement(1f));
+                }
                 // apply explosion force
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 1.5f, ForceMode.Impulse);
+                
                 Debug.Log("Kabooom " + nearbyObject.name);
                 StartCoroutine(ExplosionEnd(rb.velocity));
             }
     }
         // destroy projectile with 0.1 seconds delay
-        Invoke(nameof(DestroyProjectile), 1f);
+        Invoke(nameof(DestroyProjectile), 0.1f);
     }   
 
     private IEnumerator ExplosionEnd(Vector3 velocity)
