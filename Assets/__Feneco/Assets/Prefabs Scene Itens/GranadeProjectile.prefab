@@ -154,6 +154,6 @@ MonoBehaviour:
   explosionRadius: 30
   explosionForce: 300
   upwardsExplosionForce: 8
-  explosionDamage: 5
+  explosionDamage: 0
   explosionEffect: {fileID: 0}
   explosionDelay: 3

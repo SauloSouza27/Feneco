@@ -100,7 +100,9 @@ public class Projectile : MonoBehaviour
         // check if object is enemy, if so deal explosionDamage
         if (nearbyObject.GetComponent<EnemyController>() != null)
             {
-                nearbyObject.GetComponent<EnemyController>().TakeDamage(explosionDamage);
+                Debug.Log("damage: "+ explosionDamage);
+                //nearbyObject.GetComponent<EnemyController>().TakeDamage(explosionDamage);
+                nearbyObject.GetComponent<EnemyController>().PauseNavMeshAgent(1.5f);  // Disable NavMeshAgent for 0.5 seconds
             }
 
         // check if object has a rigidbody

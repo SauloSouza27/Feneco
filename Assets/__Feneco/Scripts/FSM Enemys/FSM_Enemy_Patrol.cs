@@ -66,7 +66,7 @@ public class FSM_Enemy_Patrol : StateMachineBehaviour
             }
         }
 
-        if (animator.velocity == Vector3.zero)
+        if (animator.velocity == Vector3.zero && waypoints != null)
         {
             navMeshAgent.destination = waypoints[choosenWaypoint].position;
         }

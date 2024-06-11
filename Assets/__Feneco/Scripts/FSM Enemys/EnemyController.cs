@@ -19,6 +19,11 @@ public class EnemyController : MonoBehaviour
 
     private Rigidbody rigidBody;
 
+    private bool isExploded = false;
+
+    private NavMeshAgent navMeshAgent;
+    private Vector3 savedPosition;
+
     private void Awake()
     {
         rigidBody = transform.GetComponent<Rigidbody>();
@@ -27,6 +32,7 @@ public class EnemyController : MonoBehaviour
     {
         healthPoints = maxHealthPoints;
         damage = enemyDamage;
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
     public void TakeDamage(int damage)
     {
@@ -57,5 +63,39 @@ public class EnemyController : MonoBehaviour
     public void OnDeath()
     {
         Destroy(gameObject);
+    }
+
+
+    public void PauseNavMeshAgent(float duration)
+    {
+        if (!isExploded)
+        {
+            StartCoroutine(PauseNavMeshAgentCoroutine(duration));
+        }
+    }
+    
+
+    private IEnumerator PauseNavMeshAgentCoroutine(float duration)
+    {
+        isExploded = true;
+
+        navMeshAgent.isStopped = true;
+        navMeshAgent.updatePosition = false;
+        navMeshAgent.updateRotation = false;
+
+        // Save the current position and reset velocity to zero
+        //savedPosition = transform.position;
+        //navMeshAgent.velocity = Vector3.zero;
+
+        yield return new WaitForSeconds(duration);
+
+        // Ensure the agent remains at the saved position
+        //navMeshAgent.Warp(savedPosition);
+
+        navMeshAgent.isStopped = false;
+        navMeshAgent.updatePosition = true;
+        navMeshAgent.updateRotation = true;
+
+        isExploded = false;
     }
 }
