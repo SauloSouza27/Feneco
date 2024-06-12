@@ -5,6 +5,8 @@ using TMPro;
 
 public class Throwing : MonoBehaviour
 {
+    public static Throwing instance;
+
     [Header("References")]
     public Transform cam;
     public Transform attackPoint;
@@ -29,15 +31,26 @@ public class Throwing : MonoBehaviour
 
     [Header("Extra Settings")]
     public bool allowButtonHold;
-    bool throwing, readyToThrow, reloading;
+    private bool throwing, readyToThrow, reloading;
 
+    public bool usedInventoryItem { get; set; }
+
+    private void Awake()
+    {
+        instance = transform.GetComponent<Throwing>();
+    }
     private void Start()
     {
         readyToThrow = true;
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        MyInput();
+        if (readyToThrow && !reloading && InventoryManager.instance.HasGrenades() && usedInventoryItem)
+        {
+            Debug.Log("Usou Granada");
+            throwsToExecute = throwsPerTap;
+            Throw();
+        }
 
         // set info text
         //int grenadesLeft = InventoryManager.instance.GetGrenadeCount();
@@ -49,15 +62,12 @@ public class Throwing : MonoBehaviour
         else throwing = Input.GetKeyDown(KeyCode.Alpha1);
 
         // throw
-        if (readyToThrow && throwing && !reloading && InventoryManager.instance.HasGrenades())
-        {
-            throwsToExecute = throwsPerTap;
-            Throw();
-        }
+        
     }
     private void Throw()
     {
         readyToThrow = false;
+        usedInventoryItem = false;
 
         // spread
         float x = Random.Range(-spread, spread);

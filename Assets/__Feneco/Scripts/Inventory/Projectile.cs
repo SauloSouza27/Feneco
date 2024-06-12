@@ -21,6 +21,8 @@ public class Projectile : MonoBehaviour
     public GameObject explosionEffect;
     public float explosionDelay; // Add this line
 
+    private bool isTimeToExplode = false;
+
     private Rigidbody rb;
     private bool hitTarget;
 
@@ -40,6 +42,13 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (isTimeToExplode)
+        {
+            Explode();
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (hitTarget)
@@ -76,7 +85,7 @@ public class Projectile : MonoBehaviour
     {
         // Wait for the specified delay
         yield return new WaitForSeconds(explosionDelay);
-        Explode();
+        isTimeToExplode = true;
     }
         
 
@@ -122,6 +131,8 @@ public class Projectile : MonoBehaviour
     }
         // destroy projectile with 0.1 seconds delay
         Invoke(nameof(DestroyProjectile), 0.1f);
+
+        isTimeToExplode = false;
     }   
 
     private IEnumerator ExplosionEnd(Vector3 velocity)

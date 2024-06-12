@@ -5,17 +5,21 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] public string enemyName { get; set; }
+    private EnemyController instance;
 
-    [SerializeField] public int maxHealthPoints { get; private set; }
+    [Header ("Enemy Status")]
+    [SerializeField] private int _healthPoints;
+    [SerializeField] private int enemyDamage;
+    [SerializeField] private Sprite avatar;
+
+    public string enemyName { get; set; }
+
+    public int maxHealthPoints { get; private set; }
 
     public int healthPoints { get; private set; }
 
-    [SerializeField] private int enemyDamage;
-
     public int damage { get; private set; }
 
-    [SerializeField] private Sprite avatar;
 
     private Rigidbody rigidBody;
 
@@ -26,12 +30,15 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        instance = transform.GetComponent<EnemyController>();
         rigidBody = transform.GetComponent<Rigidbody>();
     }
     private void Start()
     {
-        healthPoints = maxHealthPoints;
-        damage = enemyDamage;
+        instance.healthPoints = instance._healthPoints;
+        instance.maxHealthPoints = instance._healthPoints;
+        Debug.Log(instance.healthPoints);
+        instance.damage = instance.enemyDamage;
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
     public void TakeDamage(int damage)
@@ -88,6 +95,8 @@ public class EnemyController : MonoBehaviour
         //navMeshAgent.velocity = Vector3.zero;
 
         yield return new WaitForSeconds(duration);
+
+        rigidBody.velocity = Vector3.zero;
 
         // Ensure the agent remains at the saved position
         //navMeshAgent.Warp(savedPosition);
