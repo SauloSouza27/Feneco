@@ -51,8 +51,9 @@ public class FSM_Enemy_Attack : StateMachineBehaviour
                 navMeshAgent.destination = player.transform.position;
             }
 
-            if(isAttackOffCooldown && (stateInfo.normalizedTime % 1) > timeToAttack)
+            if(isAttackOffCooldown && (stateInfo.normalizedTime % 1) > timeToAttack && distance < 1.6)
             {
+                Debug.Log(distance);
                 GameController.instance.TakeDamage(damage);
                 isAttackOffCooldown = false;
             }
