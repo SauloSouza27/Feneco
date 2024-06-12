@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private int floorMask;
     private int enemiesMask;
+    private int dunesMask;
 
     [HideInInspector] public float isCombatTimer = 0f;
     [HideInInspector] public bool isAttacking = false;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         floorMask = LayerMask.GetMask("Floor");
         enemiesMask = LayerMask.GetMask("Enemies");
+        dunesMask = LayerMask.GetMask("Dunes");
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
@@ -90,6 +92,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        Physics.Raycast(transform.position, -Vector3.up, out RaycastHit hitInfo);
+
+        if (hitInfo.collider.gameObject.layer == dunesMask)
+        {
+
+        }
+
         if (IsGrounded() && !isDashing && !isAttacking)
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
