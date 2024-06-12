@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class FSM_Enemy_Following : StateMachineBehaviour
 {
-    [SerializeField] private float speedOverride = 6.0f;
+    [SerializeField] private float speedOverride = 4.0f;
 
     private GameObject player = null;
 
