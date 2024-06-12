@@ -17,6 +17,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
 
+    private InventoryItem objectiveItem;
+
     private void Awake()
     {
         image = transform.GetComponent<Image>();

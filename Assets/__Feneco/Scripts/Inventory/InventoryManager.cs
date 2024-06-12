@@ -102,7 +102,7 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    void SpawnNewItem(Item item, InventorySlot slot)
+    private void SpawnNewItem(Item item, InventorySlot slot)
     {
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
@@ -131,6 +131,19 @@ public class InventoryManager : MonoBehaviour
             return item;
         }
         return null;
+    }
+
+    public void DeliverItemToNPC()
+    {
+        InventoryItem[] activeInventoryItens = FindObjectsOfType<InventoryItem>();
+
+        foreach(InventoryItem it in activeInventoryItens)
+        {
+            if(it.item.GetType() == typeof(ObjectiveItem))
+            {
+                Destroy(it.gameObject);
+            }
+        }
     }
 
     // New Methods for Grenades

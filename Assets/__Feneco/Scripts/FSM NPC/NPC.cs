@@ -40,6 +40,8 @@ public class NPC : MonoBehaviour
     [Header("Called When Accept Mission")]
     [SerializeField] private GameObject callbackObject = null;
     [SerializeField] private string method;
+    public ObjectiveItem receivedItem { get; set; } = null;
+
     private Animator npc_fsm;
 
     private PlayerController playerController = null;
@@ -244,6 +246,11 @@ public class NPC : MonoBehaviour
             {
                 GameController.instance.SetNoActiveQuest();
                 GameController.instance.UpdateQuest();
+
+                if(receivedItem != null)
+                {
+                    receivedItem.DeliverItemNPC();
+                }
 
                 instance.isQuestUpdated = true;
             }

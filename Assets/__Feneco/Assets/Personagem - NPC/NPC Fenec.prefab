@@ -286,6 +286,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Signs - E
       objectReference: {fileID: 0}
+    - target: {fileID: 8571377362554573170, guid: cad728a3e7de269409cea42e68ad3174,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 61545fdeb4705b540a6e8a91cf470c84, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

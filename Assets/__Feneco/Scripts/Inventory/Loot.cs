@@ -34,6 +34,7 @@ public class Loot : MonoBehaviour
             {
                 callbackObject.SendMessage(method);
                 GameController.instance.SetQuestHint();
+                callbackObject.GetComponent<NPC>().receivedItem = item as ObjectiveItem;
             }
         }
     }

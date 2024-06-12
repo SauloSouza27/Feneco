@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
 
     private bool isQuestActive = false;
 
-    private TextMeshProUGUI questHintText;
+    [SerializeField] private TextMeshProUGUI questHintText;
 
     [SerializeField] private string[] questHints;
 
@@ -51,8 +51,6 @@ public class GameController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         healthPoints = maxHealthPoints;
         HUD = GameObject.FindWithTag("HUD");
-        questHintText = HUD.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        healthPointsText = HUD.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -75,14 +73,11 @@ public class GameController : MonoBehaviour
     public void UpdateHUD()
     {
         string printQuestText = "Quest Hint: ";
-        string printHealthPointsText = "HP: ";
 
         if(healthPoints > maxHealthPoints)
         {
             healthPoints = maxHealthPoints;
         }
-
-        healthPointsText.text = printHealthPointsText + healthPoints;
 
         if (!isQuestActive)
         {
