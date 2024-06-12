@@ -24,7 +24,10 @@ public class InventoryManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        
+    }
+
+    private void Start()
+    {
         int index = mainInventory.transform.childCount + toolbar.transform.childCount;
         inventorySlots = new InventorySlot[index];
 
@@ -37,10 +40,7 @@ public class InventoryManager : MonoBehaviour
         {
             inventorySlots[i + toolbar.transform.childCount] = mainInventory.transform.GetChild(i).GetComponent<InventorySlot>();
         }
-    }
 
-    private void Start()
-    {
         ChangeSelectSlot(0);
     }
 
@@ -156,14 +156,19 @@ public class InventoryManager : MonoBehaviour
     public int GetGrenadeCount()
     {
         int grenadeCount = 0;
-        foreach (var slot in inventorySlots)
+
+        if(inventorySlots != null)
         {
-            InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (iteminSlot != null && iteminSlot.item != null && iteminSlot.item.name == "Grenade")
+            foreach (var slot in inventorySlots)
             {
-                grenadeCount += iteminSlot.count;
+                InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
+                if (iteminSlot != null && iteminSlot.item != null && iteminSlot.item.name == "Grenade")
+                {
+                    grenadeCount += iteminSlot.count;
+                }
             }
         }
+        
         return grenadeCount;
     }
 
