@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [Header("Other Settings")]
     [SerializeField] private Transform cam;
     [SerializeField] private float timeScale = 1.0f;
-    [SerializeField] private GameObject settingsUI, inventoryUI;
+    [SerializeField] private GameObject inventoryUI;
 
     private float speedModifier = 1.0f;
     private bool isExploded = false;
@@ -123,9 +123,9 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            bool isActive = settingsUI.activeSelf;
+            bool isActive = MenuConfig.instance.gameObject.GetComponent<Canvas>().enabled;
 
-            settingsUI.SetActive(!isActive);
+            MenuConfig.instance.StartMenuConfig(!isActive);
 
             isPaused = !isActive;
 
@@ -265,6 +265,11 @@ public class PlayerController : MonoBehaviour
     {
         camFreeze.FreezeRotation();
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void SetIsPausedOFF()
+    {
+        isPaused = false;
     }
 
     internal IEnumerator DisableMovement(float v)

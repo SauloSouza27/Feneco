@@ -37,7 +37,6 @@ public class EnemyController : MonoBehaviour
     {
         instance.healthPoints = instance._healthPoints;
         instance.maxHealthPoints = instance._healthPoints;
-        Debug.Log(instance.healthPoints);
         instance.damage = instance.enemyDamage;
         navMeshAgent = GetComponent<NavMeshAgent>();
     }

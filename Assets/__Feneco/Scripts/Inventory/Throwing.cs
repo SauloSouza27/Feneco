@@ -56,14 +56,7 @@ public class Throwing : MonoBehaviour
         //int grenadesLeft = InventoryManager.instance.GetGrenadeCount();
         //text_info.SetText("Grenades left: " + grenadesLeft);
     }
-    private void MyInput()
-    {
-        if (allowButtonHold) throwing = Input.GetKey(KeyCode.Alpha1);
-        else throwing = Input.GetKeyDown(KeyCode.Alpha1);
 
-        // throw
-        
-    }
     private void Throw()
     {
         readyToThrow = false;

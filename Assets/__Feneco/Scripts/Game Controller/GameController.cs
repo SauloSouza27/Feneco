@@ -34,8 +34,6 @@ public class GameController : MonoBehaviour
 
     private int questIndex = 0;
 
-    [SerializeField] private GameObject configMenu;
-
     private void Awake()
     {
         if (instance != null)
@@ -66,9 +64,6 @@ public class GameController : MonoBehaviour
         }
         
         UpdateHUD();
-
-        configMenu.SetActive(true);
-        configMenu.SetActive(false);
     }
     public void UpdateHUD()
     {

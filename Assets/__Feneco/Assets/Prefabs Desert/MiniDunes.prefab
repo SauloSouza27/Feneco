@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6628616608342562697}
   - component: {fileID: 8595629192064226242}
   - component: {fileID: -6047342066975368778}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: MiniDunes
   m_TagString: Untagged
   m_Icon: {fileID: 0}

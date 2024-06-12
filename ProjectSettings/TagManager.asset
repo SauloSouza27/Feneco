@@ -12,6 +12,7 @@ TagManager:
   - DanoArma
   - Inventory
   - GroundCheck
+  - MenuConfig
   layers:
   - Default
   - TransparentFX
