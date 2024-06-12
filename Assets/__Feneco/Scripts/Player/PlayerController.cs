@@ -194,10 +194,22 @@ public class PlayerController : MonoBehaviour
 
         if (movement != Vector3.zero)
         {
-            movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
-            if (!isDashing && !isAttacking && !isInventory && !isPaused && !isExploded)
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, Vector3.down, out hit, 1.0f, dunesMask))
             {
-                rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
+                movement = movement.normalized * (speed * speedModifier)/3.0f * Time.deltaTime;
+                if (!isDashing && !isAttacking && !isInventory && !isPaused && !isExploded)
+                {
+                    rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
+                }
+            }
+            else
+            {
+                movement = movement.normalized * (speed * speedModifier) * Time.deltaTime;
+                if (!isDashing && !isAttacking && !isInventory && !isPaused && !isExploded)
+                {
+                    rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
+                }
             }
         }
 
