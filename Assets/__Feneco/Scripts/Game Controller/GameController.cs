@@ -6,6 +6,8 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
+
+    public HealthBarScript healthBar;
     public static GameController instance;
 
     private GameObject player;
@@ -92,6 +94,11 @@ public class GameController : MonoBehaviour
         }
         
         questHintText.text = printQuestText;
+
+        //Update HP Bar
+        healthBar.SetMaxHealth(maxHealthPoints);
+        healthBar.SetHealth(healthPoints);
+
     }
     public void TakeDamage(int damage)
     {
