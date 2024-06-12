@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
 
     public int maxStackedItems = 10;
-    public GameObject mainInventory, toolbar, equipInventory;
+    public GameObject inventory, mainInventory, toolbar, equipInventory;
     private InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
@@ -22,30 +23,40 @@ public class InventoryManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
 
     private void Start()
     {
-        int index = mainInventory.transform.childCount + toolbar.transform.childCount;
-        inventorySlots = new InventorySlot[index];
-
-        for (int i = 0; i < toolbar.transform.childCount; i++)
+        if (SceneManager.GetActiveScene().buildIndex != 0)
         {
-            inventorySlots[i] = toolbar.transform.GetChild(i).GetComponent<InventorySlot>();
-        }
+            inventory = GameObject.Find("Inventory");
+            toolbar = inventory.transform.Find("Toolbar").gameObject;
+            mainInventory = inventory.transform.GetChild(0).transform.Find("MainInventory").gameObject;
+            equipInventory = inventory.transform.GetChild(0).transform.Find("EquipInventory").gameObject;
 
-        for (int i = 0; i < mainInventory.transform.childCount; i++)
-        {
-            inventorySlots[i + toolbar.transform.childCount] = mainInventory.transform.GetChild(i).GetComponent<InventorySlot>();
-        }
+            int index = mainInventory.transform.childCount + toolbar.transform.childCount;
+            inventorySlots = new InventorySlot[index];
 
-        ChangeSelectSlot(0);
+            for (int i = 0; i < toolbar.transform.childCount; i++)
+            {
+                inventorySlots[i] = toolbar.transform.GetChild(i).GetComponent<InventorySlot>();
+            }
+
+            for (int i = 0; i < mainInventory.transform.childCount; i++)
+            {
+                inventorySlots[i + toolbar.transform.childCount] = mainInventory.transform.GetChild(i).GetComponent<InventorySlot>();
+            }
+
+            ChangeSelectSlot(0);
+        }
     }
 
     private void Update() 
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0) return;
+
         if (Input.inputString != null)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number); 
@@ -157,18 +168,15 @@ public class InventoryManager : MonoBehaviour
     {
         int grenadeCount = 0;
 
-        if(inventorySlots != null)
+        foreach (var slot in inventorySlots)
         {
-            foreach (var slot in inventorySlots)
+            InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (iteminSlot != null && iteminSlot.item != null && iteminSlot.item.name == "Grenade")
             {
-                InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
-                if (iteminSlot != null && iteminSlot.item != null && iteminSlot.item.name == "Grenade")
-                {
-                    grenadeCount += iteminSlot.count;
-                }
+                grenadeCount += iteminSlot.count;
             }
         }
-        
+
         return grenadeCount;
     }
 
