@@ -9,6 +9,7 @@ public class WeaponHolder : MonoBehaviour
     private float activeTime;
     private float cooldownTime;
     private Rigidbody rigidBody;
+    private int dunesMask;
     private const float distanceToGround = 1.5f;
     [SerializeField] private Transform cam;
 
@@ -25,6 +26,7 @@ public class WeaponHolder : MonoBehaviour
     AbilityState state = AbilityState.ready;
     private void Start()
     {
+        dunesMask = LayerMask.GetMask("Dunes");
         rigidBody = GetComponent<Rigidbody>();
         playerController = this.transform.GetComponent<PlayerController>();
         weaponHolding = GameObject.FindGameObjectWithTag("DanoArma");
@@ -82,7 +84,8 @@ public class WeaponHolder : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed && state == AbilityState.ready && !playerController.isNearNPC && !playerController.isInventory && !playerController.isPaused && Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.15f))
+        RaycastHit hit;
+        if (context.performed && state == AbilityState.ready && !playerController.isNearNPC && !playerController.isInventory && !playerController.isPaused && Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.15f) && !Physics.Raycast(transform.position, Vector3.down, out hit, 1.0f, dunesMask))
         {
             state = AbilityState.casttime;
             weapon.CastTime(gameObject);

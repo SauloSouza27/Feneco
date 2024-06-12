@@ -104,7 +104,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time >= lastDashTime + dashCooldown && !isAttacking)
+        RaycastHit hit;
+
+        if (context.performed && Time.time >= lastDashTime + dashCooldown && !isAttacking && !Physics.Raycast(transform.position, Vector3.down, out hit, 1.0f, dunesMask) && !isInventory && !isPaused)
         {
             isRunning = true;
             StartCoroutine(Dash());
@@ -142,7 +144,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnInventory(InputAction.CallbackContext context)
     {
-        if (context.performed && !isPaused)
+        if (context.performed && !isPaused && talkingNPC == null)
         {
             bool isActive = inventoryUI.activeSelf;
 
@@ -197,7 +199,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(transform.position, Vector3.down, out hit, 1.0f, dunesMask))
             {
-                movement = movement.normalized * (speed * speedModifier)/3.0f * Time.deltaTime;
+                movement = movement.normalized * (speed * speedModifier)/4.0f * Time.deltaTime;
                 if (!isDashing && !isAttacking && !isInventory && !isPaused && !isExploded)
                 {
                     rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
