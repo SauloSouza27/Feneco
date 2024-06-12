@@ -92,14 +92,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        Physics.Raycast(transform.position, -Vector3.up * 3, out RaycastHit hitInfo);
+        RaycastHit hit;
 
-        if (hitInfo.collider.gameObject.layer == dunesMask)
-        {
-
-        }
-
-        if (IsGrounded() && !isDashing && !isAttacking)
+        if (IsGrounded() && !isDashing && !isAttacking && !Physics.Raycast(transform.position, Vector3.down, out hit, 1.0f, dunesMask))
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
             rigidBody.velocity += Vector3.up * jump;
