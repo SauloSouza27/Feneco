@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        Physics.Raycast(transform.position, -Vector3.up, out RaycastHit hitInfo);
+        Physics.Raycast(transform.position, -Vector3.up * 3, out RaycastHit hitInfo);
 
         if (hitInfo.collider.gameObject.layer == dunesMask)
         {
