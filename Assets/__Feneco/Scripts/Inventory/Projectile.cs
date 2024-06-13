@@ -110,7 +110,7 @@ public class Projectile : MonoBehaviour
         if (nearbyObject.GetComponent<EnemyController>() != null)
             {
                 Debug.Log("damage: "+ explosionDamage);
-                //nearbyObject.GetComponent<EnemyController>().TakeDamage(explosionDamage);
+                nearbyObject.GetComponent<EnemyController>().TakeDamage(explosionDamage);
                 nearbyObject.GetComponent<EnemyController>().PauseNavMeshAgent(1.5f);  // Disable NavMeshAgent for 0.5 seconds
             }
 

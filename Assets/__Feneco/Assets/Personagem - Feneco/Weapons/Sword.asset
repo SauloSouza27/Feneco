@@ -16,5 +16,5 @@ MonoBehaviour:
   cooldownTime: 0.18
   activeTime: 0.65
   castTime: 0.1
-  attackSpeed: 12
+  attackSpeed: 8
   attackDuration: 0.08

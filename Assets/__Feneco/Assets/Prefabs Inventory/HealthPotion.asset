@@ -15,4 +15,4 @@ MonoBehaviour:
   stackable: 1
   consumable: 1
   image: {fileID: 21300000, guid: b8abff0609f606c4fbef90e0f172f9fe, type: 3}
-  healAmount: 2
+  healAmount: 4
