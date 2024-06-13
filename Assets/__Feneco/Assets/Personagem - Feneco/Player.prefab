@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 8275861923189921331}
   - component: {fileID: 4077284071156416771}
   - component: {fileID: 7208522016095285396}
+  - component: {fileID: 4012901222347277511}
   - component: {fileID: 1829231594602297952}
   - component: {fileID: 239925912957800744}
   - component: {fileID: 3625243378196376694}
@@ -125,8 +126,9 @@ MonoBehaviour:
   runModifier: 0.65
   cam: {fileID: 0}
   timeScale: 1.5
-  settingsUI: {fileID: 0}
   inventoryUI: {fileID: 0}
+  isInventory: 0
+  isPaused: 0
   animator: {fileID: 0}
   isCombatTimer: 0
   isAttacking: 0
@@ -143,6 +145,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 986cc92edf248db4193f95096ebf5da8, type: 2}
+  cam: {fileID: 0}
+--- !u!114 &4012901222347277511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900189455875789202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ccc1d5aa8b0583409623ac6156de71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 8275861923189921331}
+  attackPoint: {fileID: 1534072213310832591}
+  objectToThrow: {fileID: 15733732215193724, guid: 660c1b46992f7fb478f96c099bb226d0,
+    type: 3}
+  text_info: {fileID: 0}
+  throwCooldown: 0.1
+  timeBetweenThrows: 0
+  throwForce: 5
+  throwUpwardForce: 5
+  spread: 0
+  throwsPerTap: 0
+  useRaycasts: 0
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 128
+  allowButtonHold: 0
 --- !u!136 &1829231594602297952
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -612,6 +643,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 3966835593371195059, guid: 5b39ed4466c114e448a29caa5e0a30a8,
+        type: 3}
+      propertyPath: m_TagString
+      value: DanoArma
+      objectReference: {fileID: 0}
     - target: {fileID: 7612136293997122395, guid: 5b39ed4466c114e448a29caa5e0a30a8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -670,6 +706,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3457302587783746027}
+    - targetCorrespondingSourceObject: {fileID: 3966835593371195059, guid: 5b39ed4466c114e448a29caa5e0a30a8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2808878496299533701}
   m_SourcePrefab: {fileID: 100100000, guid: 5b39ed4466c114e448a29caa5e0a30a8, type: 3}
 --- !u!1 &2129845479377812751 stripped
 GameObject:
@@ -692,12 +732,26 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.21248366, y: 0.8145248, z: 0.10821954}
   m_Center: {x: 0.0000016988612, y: 0.49616876, z: 0.0000001584981}
+--- !u!114 &2808878496299533701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129845479377812751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec1e4963156f734ab8d130adde7f8b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  knockbackForce: 5
 --- !u!4 &4836867620206786791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7612136293997122395, guid: 5b39ed4466c114e448a29caa5e0a30a8,

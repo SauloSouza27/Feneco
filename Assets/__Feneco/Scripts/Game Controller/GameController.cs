@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 
     private GameObject player;
 
-    [SerializeField] public int maxHealthPoints { get; set; } = 1000;
+    public int maxHealthPoints { get; set; }
 
     public int armor { get; set; } = 0;
 
@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
         }
 
         player = GameObject.FindWithTag("Player");
-        healthPoints = maxHealthPoints;
+        maxHealthPoints = healthPoints;
         HUD = GameObject.FindWithTag("HUD");
     }
 
