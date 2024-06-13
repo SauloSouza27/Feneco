@@ -67,6 +67,8 @@ public class GameController : MonoBehaviour
     }
     public void UpdateHUD()
     {
+        //Update Quest Hint
+
         string printQuestText = "Quest Hint: ";
 
         if(healthPoints > maxHealthPoints)
