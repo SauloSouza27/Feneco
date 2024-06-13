@@ -123,7 +123,7 @@ public class Projectile : MonoBehaviour
                     nearbyObject.GetComponent<PlayerController>().StartCoroutine(nearbyObject.GetComponent<PlayerController>().DisableMovement(1f));
                 }
                 // apply explosion force
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, 1.5f, ForceMode.Impulse);
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, upwardsExplosionForce, ForceMode.Impulse);
                 
                 Debug.Log("Kabooom " + nearbyObject.name);
                 StartCoroutine(ExplosionEnd(rb.velocity));

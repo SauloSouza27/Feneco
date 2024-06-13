@@ -153,9 +153,9 @@ MonoBehaviour:
   muzzleEffect: {fileID: 0}
   hitEffect: {fileID: 0}
   isExplosive: 1
-  explosionRadius: 30
-  explosionForce: 100
-  upwardsExplosionForce: 8
+  explosionRadius: 15
+  explosionForce: 200
+  upwardsExplosionForce: 2
   explosionDamage: 5
   explosionEffect: {fileID: 0}
   explosionDelay: 3

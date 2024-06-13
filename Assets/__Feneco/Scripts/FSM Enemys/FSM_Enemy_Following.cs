@@ -34,7 +34,10 @@ public class FSM_Enemy_Following : StateMachineBehaviour
 
             animator.SetFloat("distance", distance);
 
-            navMeshAgent.destination = player.transform.position;
+            if (navMeshAgent.enabled)
+            {
+                navMeshAgent.destination = player.transform.position;
+            }
         }
         else
         {

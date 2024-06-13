@@ -85,7 +85,9 @@ public class EnemyController : MonoBehaviour
     {
         isExploded = true;
 
-        navMeshAgent.isStopped = true;
+        navMeshAgent.enabled = false;
+
+        //navMeshAgent.isStopped = true;
         //navMeshAgent.updatePosition = false;
         //navMeshAgent.updateRotation = false;
 
@@ -97,10 +99,12 @@ public class EnemyController : MonoBehaviour
 
         rigidBody.velocity = Vector3.zero;
 
+        navMeshAgent.enabled = true;
+
         // Ensure the agent remains at the saved position
         //navMeshAgent.Warp(savedPosition);
 
-        navMeshAgent.isStopped = false;
+        //navMeshAgent.isStopped = false;
         //navMeshAgent.updatePosition = true;
         //navMeshAgent.updateRotation = true;
 
