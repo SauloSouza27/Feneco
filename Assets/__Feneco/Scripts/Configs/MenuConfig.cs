@@ -33,6 +33,14 @@ public class MenuConfig : MonoBehaviour
     public void StartMenuConfig(bool turnOn)
     {
         gameObject.GetComponent<Canvas>().enabled = turnOn;
+        if(turnOn)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
 
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
