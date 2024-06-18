@@ -8,7 +8,7 @@ public class MenuConfig : MonoBehaviour
 {
     public static MenuConfig instance;
 
-    private GameObject btMainMenu, btBack;
+    private GameObject btMainMenu, btBack, btQuit;
 
     private GameObject player;
 
@@ -24,7 +24,8 @@ public class MenuConfig : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        btBack = transform.GetChild(0).GetChild(transform.GetChild(0).childCount - 2).gameObject;
+        btBack = transform.GetChild(0).GetChild(transform.GetChild(0).childCount - 3).gameObject;
+        btQuit = transform.GetChild(0).GetChild(transform.GetChild(0).childCount - 2).gameObject;
         btMainMenu = transform.GetChild(0).GetChild(transform.GetChild(0).childCount - 1).gameObject;
 
         btMainMenu.GetComponent<Button>().onClick.AddListener(RetrunToMenu);
@@ -57,10 +58,12 @@ public class MenuConfig : MonoBehaviour
         {
 
             btMainMenu.SetActive(false);
+            btQuit.SetActive(false);
         }
         else
         {
             btMainMenu.SetActive(true);
+            btQuit.SetActive(true);
         }
     }
 
@@ -69,5 +72,10 @@ public class MenuConfig : MonoBehaviour
         SceneManager.LoadScene(0);
         gameObject.GetComponent<Canvas>().enabled = false;
 
+    }
+
+    public void SairJogo(){
+        Debug.Log ("Sair do Jogo");
+        Application.Quit();
     }
 }
