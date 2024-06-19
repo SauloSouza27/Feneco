@@ -29,6 +29,6 @@ public class MenuPrincipalManager : MonoBehaviour
     }
 
     public void AbrirCreditos(){
-
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
     }
 }

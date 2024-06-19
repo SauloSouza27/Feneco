@@ -43,7 +43,7 @@ public class MenuConfig : MonoBehaviour
             Time.timeScale = 1;
         }
 
-        if (SceneManager.GetActiveScene().buildIndex != 0)
+        if (SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != SceneManager.sceneCountInBuildSettings - 1)
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
