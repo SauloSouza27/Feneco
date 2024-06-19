@@ -25,17 +25,21 @@ public class Loot : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             bool canAdd = InventoryManager.instance.AddItem(item);
-            if (canAdd)
-            {
-                StartCoroutine(MoveAndCollect(other.transform));
-            }
 
             if (callbackObject != null && method != "")
             {
                 callbackObject.SendMessage(method);
                 GameController.instance.SetQuestHint();
                 callbackObject.GetComponent<NPC>().receivedItem = item as ObjectiveItem;
+                Debug.Log(callbackObject.GetComponent<NPC>().receivedItem);
             }
+
+            if (canAdd)
+            {
+                StartCoroutine(MoveAndCollect(other.transform));
+            }
+
+            
         }
     }
 
