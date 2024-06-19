@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c678453970065894cb5520e813c14b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthPoints: 0
   enemyDamage: 4
   avatar: {fileID: 0}
 --- !u!95 &1585884952499276781
@@ -222,10 +223,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2214671780200814635, guid: 7ca48a403f7622c4fa105018992012b2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7ca48a403f7622c4fa105018992012b2,
         type: 3}
       propertyPath: m_Name
       value: Feneco
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788845593105122680, guid: 7ca48a403f7622c4fa105018992012b2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 7ca48a403f7622c4fa105018992012b2,
         type: 3}
@@ -237,6 +248,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1822f92661a2690408b14c8abcf4364c, type: 2}
+    - target: {fileID: 8030707958198045491, guid: 7ca48a403f7622c4fa105018992012b2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -4706452340541456491, guid: 7ca48a403f7622c4fa105018992012b2, type: 3}

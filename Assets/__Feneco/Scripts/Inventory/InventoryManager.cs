@@ -146,7 +146,7 @@ public class InventoryManager : MonoBehaviour
 
     public void DeliverItemToNPC()
     {
-        InventoryItem[] activeInventoryItens = FindObjectsOfType<InventoryItem>();
+        InventoryItem[] activeInventoryItens = FindObjectsOfType<InventoryItem>(true);
 
         foreach(InventoryItem it in activeInventoryItens)
         {
