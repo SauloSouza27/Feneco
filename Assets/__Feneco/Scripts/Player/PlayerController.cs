@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     public bool isNearNPC { get; private set; } = false;
 
     private const float camRayLength = 100f;
-    private const float distanceToGround = 1.5f;
+    private const float distanceToGround = 1.55f;
 
     private void Awake()
     {
@@ -220,7 +220,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.15f);
+        return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.2f);
     }
 
     private void UpdateMovementDirection()
