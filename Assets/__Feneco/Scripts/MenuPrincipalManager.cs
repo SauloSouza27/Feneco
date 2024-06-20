@@ -31,4 +31,9 @@ public class MenuPrincipalManager : MonoBehaviour
     public void AbrirCreditos(){
         SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
     }
+
+    public void CarregarMenuInicial()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
