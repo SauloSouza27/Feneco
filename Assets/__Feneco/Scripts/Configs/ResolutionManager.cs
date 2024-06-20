@@ -5,7 +5,7 @@ using TMPro;
 
 public class ResolutionManager : MonoBehaviour
 {
-    private bool isFullscreen = false;
+    private bool isFullscreen = true;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
 
     private Resolution[] resolutions;
@@ -44,6 +44,7 @@ public class ResolutionManager : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
+        Screen.fullScreen = true;
     }
 
     public void SetResolution(int resolutionIndex)
