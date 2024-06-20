@@ -15,6 +15,8 @@ public class InventoryManager : MonoBehaviour
     [Header ("List of Itens: ")]
     [SerializeField] private Item[] consumables, equipaments, objectives;
 
+    private Item[] allItens;
+
     int selectedSlot = -1;
 
     private void Awake()
@@ -53,6 +55,15 @@ public class InventoryManager : MonoBehaviour
             }
 
             ChangeSelectSlot(0);
+
+
+            // Set list of all Itens that are Scriptable Objects
+
+            allItens = new Item[consumables.Length + equipaments.Length + objectives.Length];
+
+            consumables.CopyTo(allItens, 0);
+            equipaments.CopyTo(allItens, consumables.Length);
+            objectives.CopyTo(allItens, consumables.Length + equipaments.Length);
         }
     }
 
@@ -158,6 +169,13 @@ public class InventoryManager : MonoBehaviour
                 Destroy(it.gameObject);
             }
         }
+    }
+
+    // Itens Repository
+
+    public void SetItem(string itemName)
+    {
+        
     }
 
     // New Methods for Grenades
