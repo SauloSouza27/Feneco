@@ -525,10 +525,10 @@
     "m_Guid": {
         "m_GuidSerialized": "94deb89e-b25b-4a23-9ae0-432a34951364"
     },
-    "m_Name": "AlphaClip",
+    "m_Name": "AlphaClipSlider",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "AlphaClip",
-    "m_DefaultReferenceName": "_AlphaClip",
+    "m_RefNameGeneratedByDisplayName": "AlphaClipSlider",
+    "m_DefaultReferenceName": "_AlphaClipSlider",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -815,7 +815,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "7370b7fa50b24c108d5e721cad504c3c",
     "m_Id": 0,
-    "m_DisplayName": "AlphaClip",
+    "m_DisplayName": "AlphaClipSlider",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
