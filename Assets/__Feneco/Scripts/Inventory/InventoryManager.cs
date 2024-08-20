@@ -34,8 +34,9 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
+        if (SceneManager.GetActiveScene().name == "Fase1")
         {
+            Debug.Log("yes yes");
             inventory = GameObject.Find("Inventory");
             toolbar = inventory.transform.Find("Toolbar").gameObject;
             mainInventory = inventory.transform.GetChild(0).transform.Find("MainInventory").gameObject;
@@ -69,7 +70,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Update() 
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0) return;
+        if (SceneManager.GetActiveScene().name != "Fase1") return;
 
         if (Input.inputString != null)
         {
