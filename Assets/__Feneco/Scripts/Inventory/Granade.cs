@@ -8,5 +8,9 @@ public class Granade : Item
     public override void UseItem()
     {
         Throwing.instance.usedInventoryItem = true;
+        if(consumable)
+        {
+            InventoryManager.instance.UseSelectedItem(true);
+        }
     }
 }
