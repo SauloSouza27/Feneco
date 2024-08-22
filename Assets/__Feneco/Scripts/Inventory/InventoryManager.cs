@@ -67,7 +67,6 @@ public class InventoryManager : MonoBehaviour
             objectives.CopyTo(allItens, consumables.Length + equipaments.Length);
         }
     }
-
     private void Update() 
     {
         if (SceneManager.GetActiveScene().name != "Fase1") return;
@@ -85,7 +84,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
-
     void ChangeSelectSlot(int newValue)
     {
         if (selectedSlot >= 0)
@@ -96,7 +94,6 @@ public class InventoryManager : MonoBehaviour
         inventorySlots[newValue].Select();
         selectedSlot = newValue;
     }
-
     public bool AddItem(Item item)
     {
         // Check if any slot has the same item with count lower than max
@@ -127,14 +124,12 @@ public class InventoryManager : MonoBehaviour
         }
         return false;
     }
-
     private void SpawnNewItem(Item item, InventorySlot slot)
     {
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
     }
-
     public Item UseSelectedItem(bool use)
     {
         InventorySlot slot = inventorySlots[selectedSlot];
@@ -142,7 +137,7 @@ public class InventoryManager : MonoBehaviour
         if (iteminSlot != null)
         {
             Item item = iteminSlot.item;
-            if (use == true)
+            if (use)
             {
                 iteminSlot.count--;
                 if (iteminSlot.count <= 0)
@@ -158,7 +153,7 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
-
+    
     public void DeliverItemToNPC()
     {
         InventoryItem[] activeInventoryItens = FindObjectsOfType<InventoryItem>(true);
@@ -168,58 +163,6 @@ public class InventoryManager : MonoBehaviour
             if(it.item.GetType() == typeof(ObjectiveItem))
             {
                 Destroy(it.gameObject);
-            }
-        }
-    }
-
-    // Itens Repository
-
-    public void SetItem(string itemName)
-    {
-        
-    }
-
-    // New Methods for Grenades
-
-    public bool HasGrenades()
-    {
-        return GetGrenadeCount() > 0;
-    }
-
-    public int GetGrenadeCount()
-    {
-        int grenadeCount = 0;
-
-        foreach (var slot in inventorySlots)
-        {
-            InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (iteminSlot != null && iteminSlot.item != null && iteminSlot.item.name == "Grenade")
-            {
-                grenadeCount += iteminSlot.count;
-            }
-        }
-
-        return grenadeCount;
-    }
-
-    public void UseGrenade()
-    {
-        for (int i = 0; i < inventorySlots.Length; i++)
-        {
-            InventorySlot slot = inventorySlots[i];
-            InventoryItem iteminSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (iteminSlot != null && iteminSlot.item != null && iteminSlot.item.name == "Grenade")
-            {
-                iteminSlot.count--;
-                if (iteminSlot.count <= 0)
-                {
-                    Destroy(iteminSlot.gameObject);
-                }
-                else
-                {
-                    iteminSlot.RefreshCount();
-                }
-                break; // We only use one grenade at a time
             }
         }
     }

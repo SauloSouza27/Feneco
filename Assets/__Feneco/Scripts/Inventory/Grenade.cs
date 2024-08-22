@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable object/Granade")]
-public class Granade : Item
+[CreateAssetMenu(menuName = "Scriptable object/Grenade")]
+public class Grenade : Item
 {
     public override void UseItem()
     {

@@ -45,9 +45,8 @@ public class Throwing : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (readyToThrow && !reloading && InventoryManager.instance.HasGrenades() && usedInventoryItem)
+        if (readyToThrow && !reloading  && usedInventoryItem)
         {
-            Debug.Log("Usou Granada");
             throwsToExecute = throwsPerTap;
             Throw();
         }
@@ -98,13 +97,13 @@ public class Throwing : MonoBehaviour
         // camera shake
         // camShake.Shake(camShakeDuration, camShakeMagnitude);
 
-        InventoryManager.instance.UseGrenade();
+        //InventoryManager.instance.UseGrenade();
         throwsToExecute--;
 
         // execute multiple throws per tap
-        if (throwsToExecute > 0 && InventoryManager.instance.HasGrenades())
-            Invoke(nameof(Throw), timeBetweenThrows);
-        else if (throwsToExecute <= 0)
+        //if (throwsToExecute > 0 && InventoryManager.instance.HasGrenades())
+        //    Invoke(nameof(Throw), timeBetweenThrows);
+        if (throwsToExecute <= 0)
             Invoke(nameof(ResetThrow), throwCooldown);
     }
     private void ResetThrow()
