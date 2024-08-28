@@ -25,4 +25,13 @@ public class Respawn : MonoBehaviour
         yield return new WaitForSeconds(timeToRespawn);
         other.gameObject.transform.position = respawnPoint.position;
     }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.IsPlaying(this))
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.GetChild(0).position, 0.5f);
+        }
+    }
 }
