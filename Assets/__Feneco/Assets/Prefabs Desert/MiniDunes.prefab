@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6628616608342562697}
   - component: {fileID: 8595629192064226242}
   - component: {fileID: -6047342066975368778}
+  - component: {fileID: 8188462211456226497}
   m_Layer: 10
   m_Name: MiniDunes
   m_TagString: Untagged
@@ -126,3 +127,19 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!208 &8188462211456226497
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6917416507330204231}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 23.67, y: 4.7850003, z: 23.67}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.004, y: 4.2730002, z: 0}
+  m_TimeToStationary: 0.5

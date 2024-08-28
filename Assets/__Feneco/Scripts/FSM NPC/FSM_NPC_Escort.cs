@@ -9,18 +9,19 @@ public class FSM_NPC_Escort : StateMachineBehaviour
 
     private NavMeshAgent navMeshAgent;
 
+    private NPC npcScript;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindWithTag("Player");
         navMeshAgent = animator.transform.GetComponent<NavMeshAgent>();
+        npcScript = animator.transform.GetComponent<NPC>();
     }
 
     //  OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        NPC npcScript = animator.transform.GetComponent<NPC>();
-
         if (player != null)
         {
             float distance = Vector3.Distance(player.transform.position, animator.transform.position);
@@ -52,9 +53,7 @@ public class FSM_NPC_Escort : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        NPC npcScript = animator.transform.GetComponent<NPC>();
-
-        if (!npcScript.isDelivered)
+       if (!npcScript.isDelivered)
         {
             navMeshAgent.destination = animator.transform.position;
         }

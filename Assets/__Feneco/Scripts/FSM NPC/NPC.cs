@@ -87,7 +87,10 @@ public class NPC : MonoBehaviour
             CompleteQuest();
         }
     }
-
+    private void Update()
+    {
+        Debug.Log(isDelivered);
+    }
     public void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
