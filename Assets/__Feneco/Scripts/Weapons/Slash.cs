@@ -6,7 +6,8 @@ public class Slash : MonoBehaviour
 {
     [SerializeField] private int damage = 2;
     [SerializeField] private float knockbackForce = 5.0f;
-//    private float timeToDestroy = 0.5f;
+    [SerializeField] private GameObject impactVFX;
+    //    private float timeToDestroy = 0.5f;
     private GameObject player;
 
     
@@ -32,6 +33,8 @@ public class Slash : MonoBehaviour
 
             enemy.KnockBack(direction, knockbackForce);
             enemy.TakeDamage(damage);
+
+            Instantiate(impactVFX, other.transform.position, player.transform.rotation);
         }
     }
 }
