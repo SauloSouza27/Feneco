@@ -32,6 +32,8 @@ public class WeaponHolder : MonoBehaviour
         weaponHolding = GameObject.FindGameObjectWithTag("DanoArma");
         BoxCollider weaponCollider = weaponHolding.GetComponent<BoxCollider>();
         weaponCollider.enabled = false;
+        Slash slashScript = weaponHolding.GetComponent<Slash>();
+        slashScript.enabled = false;
     }
 
     void Update()
@@ -52,6 +54,8 @@ public class WeaponHolder : MonoBehaviour
                     weaponHolding = GameObject.FindGameObjectWithTag("DanoArma");
                     BoxCollider weaponCollider = weaponHolding.GetComponent<BoxCollider>();
                     weaponCollider.enabled = true;
+                    Slash slashScript = weaponHolding.GetComponent<Slash>();
+                    slashScript.enabled = true;
                 }
                 break;
             case AbilityState.active:
@@ -67,6 +71,8 @@ public class WeaponHolder : MonoBehaviour
                     weaponHolding = GameObject.FindGameObjectWithTag("DanoArma");
                     BoxCollider weaponCollider = weaponHolding.GetComponent<BoxCollider>();
                     weaponCollider.enabled = false;
+                    Slash slashScript = weaponHolding.GetComponent<Slash>();
+                    slashScript.enabled = false;
                 }
                 break;
             case AbilityState.cooldown:
