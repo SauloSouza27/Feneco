@@ -13,6 +13,9 @@ TagManager:
   - Inventory
   - GroundCheck
   - MenuConfig
+  - MainInventory
+  - EquipInventory
+  - Ragdoll
   layers:
   - Default
   - TransparentFX
@@ -25,7 +28,7 @@ TagManager:
   - Climbing
   - Player
   - Dunes
-  - 
+  - Ragdoll
   - 
   - 
   - 
