@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8615423684840328070}
   - component: {fileID: 1648782523118187898}
   - component: {fileID: 7792315507341181586}
-  - component: {fileID: 492950196936172424}
+  - component: {fileID: 4361016417859095071}
   m_Layer: 6
   m_Name: Rock02
   m_TagString: Untagged
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3281980315454162982}
-  m_Mesh: {fileID: -3115697924013626580, guid: 28da04ff2a025d04a84c46cd47c30914, type: 3}
+  m_Mesh: {fileID: 7567130287506460402, guid: 37def125619e8724fbfdc7a6ba878d1f, type: 3}
 --- !u!23 &7792315507341181586
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -423791281796234061, guid: 28da04ff2a025d04a84c46cd47c30914, type: 3}
+  - {fileID: 2100000, guid: 9cbc78c3cd4b2894dbce195f713940c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &492950196936172424
-CapsuleCollider:
+--- !u!135 &4361016417859095071
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,8 +102,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.0445709
-  m_Height: 2.6497462
-  m_Direction: 1
-  m_Center: {x: -0.0321548, y: 0.1945194, z: 0.030197144}
+  serializedVersion: 3
+  m_Radius: 1.0230354
+  m_Center: {x: 0.009624004, y: 0.760818, z: -0.028309256}
