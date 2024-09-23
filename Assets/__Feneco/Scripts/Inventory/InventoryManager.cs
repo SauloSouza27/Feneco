@@ -36,7 +36,6 @@ public class InventoryManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Fase1")
         {
-            Debug.Log("yes yes");
             inventory = GameObject.Find("Inventory");
             toolbar = inventory.transform.Find("Toolbar").gameObject;
             mainInventory = inventory.transform.GetChild(0).transform.Find("MainInventory").gameObject;

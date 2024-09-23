@@ -31,6 +31,11 @@ public class FSM_NPC_Idle : StateMachineBehaviour
                 animator.SetBool("isEscort", true);
             }
         }
+
+        if (npcScript.isDelivered)
+        {
+            navMeshAgent.transform.LookAt(player.transform);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
