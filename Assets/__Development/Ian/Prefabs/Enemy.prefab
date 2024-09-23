@@ -418,11 +418,21 @@ MonoBehaviour:
   <Weapon>k__BackingField: {fileID: 1276174310561482752}
   <Health>k__BackingField: {fileID: 2051926668394848108}
   <Ragdoll>k__BackingField: {fileID: 7527116921537408215}
+  <IdleCooldown>k__BackingField: 2
   <MovementSpeed>k__BackingField: 3
   <PlayerChasingRange>k__BackingField: 10
   <AttackRange>k__BackingField: 1.5
+  <WalkPointRange>k__BackingField: 0
   <AttackDamage>k__BackingField: 20
   <AttackKnockback>k__BackingField: 10
+  <Walkpoint>k__BackingField: {x: 0, y: 0, z: 0}
+  <WalkPointSet>k__BackingField: 0
+  <whatIsGround>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64
+  <whatIsPlayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &2051926668394848108
 MonoBehaviour:
   m_ObjectHideFlags: 0

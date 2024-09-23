@@ -56,6 +56,8 @@ public class EnemyChasingState : EnemyBaseState
         
         stateMachine.Agent.velocity = stateMachine.Controller.velocity;
     }
+    
+    
 
     private bool IsInAttackRange()
     {

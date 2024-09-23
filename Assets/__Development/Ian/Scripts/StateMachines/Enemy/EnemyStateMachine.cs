@@ -13,12 +13,23 @@ public class EnemyStateMachine : StateMachine_1
     [field: SerializeField] public WeaponDamage Weapon { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+    [field: SerializeField] public GameObject EnemyWayPoints { get; private set; }
     //[field: SerializeField] public Target Target { get; private set; }
     [field: SerializeField] public float MovementSpeed { get; private set; }
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
     [field: SerializeField] public float AttackRange { get; private set; }
+    [field: SerializeField] public float WalkPointRange { get; private set; }
     [field: SerializeField] public int AttackDamage { get; private set; }
     [field: SerializeField] public int AttackKnockback { get; private set; }
+    [field: SerializeField] public float IdleCooldown { get; private set; }
+    [field: SerializeField] public Vector3 Walkpoint { get; private set; }
+    [field: SerializeField] public bool WalkPointSet { get; private set; }
+    [field: SerializeField] public LayerMask whatIsGround { get; private set; }
+    [field: SerializeField] public LayerMask whatIsPlayer { get; private set; }
+
+    
+    
+    
 
     public GameObject Player {get; private set;}
 

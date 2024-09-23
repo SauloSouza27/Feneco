@@ -12,17 +12,29 @@ public class EnemyIdleState : EnemyBaseState
 
     private const float CrossFadeDuration = 0.1f;
     private const float AnimatorDampTime = 0.1f;
+
+    private float IdleCooldown;
     
     public EnemyIdleState(EnemyStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(LocomotionHash, CrossFadeDuration);
+        IdleCooldown = stateMachine.IdleCooldown;
     }
 
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);
+
+        // IdleCooldown -= Time.deltaTime;
+        //
+        // if (IdleCooldown <= 0)
+        // {
+        //     stateMachine.SwitchState(new EnemyPatrolState(stateMachine));
+        //     return;
+        // }
+        
         
         if (IsInChaseRange())
         {
