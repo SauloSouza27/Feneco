@@ -89,7 +89,7 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(isDelivered);
+        //Debug.Log(isDelivered);
     }
     public void OnTriggerExit(Collider other)
     {

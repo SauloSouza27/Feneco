@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
 public class EnemyIdleState : EnemyBaseState
@@ -26,14 +27,13 @@ public class EnemyIdleState : EnemyBaseState
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);
-
-        // IdleCooldown -= Time.deltaTime;
-        //
-        // if (IdleCooldown <= 0)
-        // {
-        //     stateMachine.SwitchState(new EnemyPatrolState(stateMachine));
-        //     return;
-        // }
+        IdleCooldown -= Time.deltaTime;
+        
+        if (IdleCooldown <= 0)
+        {
+            stateMachine.SwitchState(new EnemyPatrolState(stateMachine));
+            return;
+        }
         
         
         if (IsInChaseRange())

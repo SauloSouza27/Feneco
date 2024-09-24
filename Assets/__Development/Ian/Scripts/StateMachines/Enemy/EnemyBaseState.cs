@@ -32,6 +32,16 @@ public abstract class EnemyBaseState : State
         stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);  
     }
     
+    protected void FaceWayPoint()
+    {
+        if(stateMachine.Player == null) { return; }
+
+        Vector3 lookPos = stateMachine.Player.transform.position - stateMachine.transform.position;
+        lookPos.y = 0f;
+
+        stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);  
+    }
+    
     
     protected bool IsInChaseRange()
     {
@@ -39,4 +49,5 @@ public abstract class EnemyBaseState : State
         
         return playerDistanceSqr <= stateMachine.PlayerChasingRange * stateMachine.PlayerChasingRange;
     }
+    
 }
