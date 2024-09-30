@@ -42,13 +42,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Distortion: 0.05
+    - _Distortion: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScrollSpeed: 1
-    - _SlashWidth: 0.5
+    - _Side: 1
+    - _SlashWidth: 0.009
     m_Colors:
-    - _EmissionColor: {r: 0.8679245, g: 0.4803123, b: 0.07778566, a: 0}
+    - _EmissionColor: {r: 1.735849, g: 0.9606246, b: 0.15557133, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6685660339017831328
 MonoBehaviour:
