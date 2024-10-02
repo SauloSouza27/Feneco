@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using Cinemachine;
 
 public class NPC : MonoBehaviour
 {
@@ -46,6 +47,10 @@ public class NPC : MonoBehaviour
 
     private PlayerController playerController = null;
 
+    // Camera Control
+
+    private CinemachineVirtualCamera virtualCamera;
+
     public GameObject CallbackObject
     {
         get { return instance.callbackObject; }
@@ -78,6 +83,17 @@ public class NPC : MonoBehaviour
             if (playerController != null)
             {
                 playerController.SetNPCNearON(true, gameObject);
+
+                virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+
+                if (virtualCamera != null)
+                {
+                    //virtualCamera.
+                }
+                else
+                {
+                    Debug.Log("`Virtual Camera not found!");
+                }
             }
         }
 

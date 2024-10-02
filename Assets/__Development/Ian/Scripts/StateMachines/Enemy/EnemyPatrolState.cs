@@ -115,8 +115,6 @@ public class EnemyPatrolState : EnemyBaseState
     private bool IsInStopRange()
     {
         float pointDistanceSqr = (stateMachine.Walkpoint - stateMachine.transform.position).sqrMagnitude;
-        
-        Debug.Log(pointDistanceSqr);
 
         return pointDistanceSqr <= 1f;
     }
