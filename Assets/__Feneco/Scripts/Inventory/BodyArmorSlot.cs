@@ -23,6 +23,7 @@ public class BodyArmorSlot : InventorySlot
 
                 SetStatus(inventoryItem.item);
                 UpdatePlayerStatus(true);
+                
             }
         }        
     }
@@ -49,12 +50,14 @@ public class BodyArmorSlot : InventorySlot
             GameController.instance.armor += armor;
             GameController.instance.maxHealthPoints += bonusHP;
             GameController.instance.UpdateHUD();
+            GameController.instance.UpdateEquipment(true, 1);
         }
         else
         {
             GameController.instance.armor -= armor;
             GameController.instance.maxHealthPoints -= bonusHP;
             GameController.instance.UpdateHUD();
+            GameController.instance.UpdateEquipment(false, 1);
         }
     }
 }

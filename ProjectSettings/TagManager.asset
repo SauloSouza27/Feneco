@@ -16,6 +16,10 @@ TagManager:
   - MainInventory
   - EquipInventory
   - Ragdoll
+  - Sword
+  - Armor
+  - SwordBack
+  - Helmet
   layers:
   - Default
   - TransparentFX

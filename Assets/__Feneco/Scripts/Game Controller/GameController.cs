@@ -34,6 +34,11 @@ public class GameController : MonoBehaviour
 
     private int questIndex = 0;
 
+    private Renderer helmetRenderer;
+    private Renderer armorRenderer;
+    private Renderer swordHandRenderer;
+    private Renderer swordBackRenderer;
+
     private void Awake()
     {
         if (instance != null)
@@ -49,11 +54,16 @@ public class GameController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         maxHealthPoints = healthPoints;
         HUD = GameObject.FindWithTag("HUD");
+
+        helmetRenderer = GameObject.FindWithTag("Helmet").GetComponent<Renderer>();
+        armorRenderer = GameObject.FindWithTag("Armor").GetComponent<Renderer>();
+        swordHandRenderer = GameObject.FindWithTag("Sword").GetComponent<Renderer>();
+        swordBackRenderer = GameObject.FindWithTag("SwordBack").GetComponent<Renderer>();
     }
 
     private void Start()
     {
-        if(quests.Length > 0)
+        if (quests.Length > 0)
         {
             foreach (GameObject g in quests)
             {
@@ -62,16 +72,17 @@ public class GameController : MonoBehaviour
 
             UpdateQuest();
         }
-        
+
         UpdateHUD();
     }
+
     public void UpdateHUD()
     {
         //Update Quest Hint
 
         string printQuestText = "Quest Hint: ";
 
-        if(healthPoints > maxHealthPoints)
+        if (healthPoints > maxHealthPoints)
         {
             healthPoints = maxHealthPoints;
         }
@@ -84,7 +95,7 @@ public class GameController : MonoBehaviour
         {
             printQuestText += questHints[questHintIndex];
         }
-        
+
         questHintText.text = printQuestText;
 
         //Update HP Bar
@@ -92,39 +103,45 @@ public class GameController : MonoBehaviour
         healthBar.SetHealth(healthPoints);
 
     }
+
     public void TakeDamage(int damage)
     {
         damage -= armor;
 
-        if(damage < 0)
+        if (damage < 0)
         {
             damage = 0;
         }
 
         healthPoints -= damage;
 
-        if(healthPoints <= 0)
+        if (healthPoints <= 0)
         {
             GameOver();
         }
+
         UpdateHUD();
     }
+
     public void Heal(int lifeGain)
     {
-        if(healthPoints < maxHealthPoints)
+        if (healthPoints < maxHealthPoints)
         {
             healthPoints += lifeGain;
-            if(healthPoints >= maxHealthPoints)
+            if (healthPoints >= maxHealthPoints)
             {
                 healthPoints = maxHealthPoints;
             }
+
             UpdateHUD();
         }
     }
+
     public void GameOver()
     {
         Time.timeScale = 0;
     }
+
     public void SetQuestHint()
     {
         isQuestActive = true;
@@ -134,6 +151,7 @@ public class GameController : MonoBehaviour
             questHintIndex++;
         }
     }
+
     public void SetNoActiveQuest()
     {
         isQuestActive = false;
@@ -149,9 +167,25 @@ public class GameController : MonoBehaviour
     {
         quests[questIndex].SetActive(true);
 
-        if(questIndex < quests.Length - 1)
+        if (questIndex < quests.Length - 1)
         {
             questIndex++;
+        }
+    }
+    public void UpdateEquipment(bool equipped, int equipmentType)
+    {
+        if (equipmentType == 0)
+        {
+            helmetRenderer.enabled = equipped;
+        } 
+        else if (equipmentType == 1)
+        {
+            armorRenderer.enabled = equipped;
+        }
+        else
+        {
+            swordHandRenderer.enabled = equipped;
+            swordBackRenderer.enabled = !equipped;
         }
     }
 }

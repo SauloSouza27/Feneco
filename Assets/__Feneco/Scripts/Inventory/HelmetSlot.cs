@@ -46,12 +46,14 @@ public class HelmetSlot : InventorySlot
             GameController.instance.armor += armor;
             GameController.instance.maxHealthPoints += bonusHP;
             GameController.instance.UpdateHUD();
+            GameController.instance.UpdateEquipment(true, 0);
         }
         else
         {
             GameController.instance.armor -= armor;
             GameController.instance.maxHealthPoints -= bonusHP;
             GameController.instance.UpdateHUD();
+            GameController.instance.UpdateEquipment(false, 0);
         }
     }
 }

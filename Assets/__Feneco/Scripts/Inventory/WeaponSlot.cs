@@ -34,13 +34,15 @@ public class WeaponSlot : InventorySlot
     {
         if (draw)
         {
-            weapon.transform.SetParent(snapHand.transform);
-            weapon.transform.SetLocalPositionAndRotation(Vector3.zero, new Quaternion(0, 0, 0, 0));
+            //weapon.transform.SetParent(snapHand.transform);
+            //weapon.transform.SetLocalPositionAndRotation(Vector3.zero, new Quaternion(0, 0, 0, 0));
+            GameController.instance.UpdateEquipment(true, 2);
         }
         else
         {
-            weapon.transform.SetParent(snapBack.transform);
-            weapon.transform.SetLocalPositionAndRotation(Vector3.zero, new Quaternion(0, 0, 0, 0));
+            //weapon.transform.SetParent(snapBack.transform);
+            //weapon.transform.SetLocalPositionAndRotation(Vector3.zero, new Quaternion(0, 0, 0, 0));
+            GameController.instance.UpdateEquipment(false, 2);
         }
     }
 }
