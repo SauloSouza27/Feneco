@@ -31,9 +31,6 @@ public class EnemyPatrolState : EnemyBaseState
     public override void Tick(float deltaTime)
     {
         //Move(deltaTime);
-        
-        
-        
         if (IsInChaseRange())
         {
             stateMachine.SwitchState(new EnemyChasingState(stateMachine));
