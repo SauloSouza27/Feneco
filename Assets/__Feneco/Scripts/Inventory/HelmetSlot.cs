@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HelmetSlot : InventorySlot
 {
     private int armor;
-    private int bonusHP;
+    private int vitality;
 
     public override void OnDrop(PointerEventData eventData)
     {
@@ -18,7 +18,7 @@ public class HelmetSlot : InventorySlot
                 InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
                 inventoryItem.parentAfterDrag = transform;
 
-                SetStatus(inventoryItem.item as Helmet);
+                SetStatus(inventoryItem.item);
                 UpdatePlayerStatus(true);
             }
         }
@@ -35,8 +35,9 @@ public class HelmetSlot : InventorySlot
     public override void SetStatus(Item item)
     {
         Helmet helmet = item as Helmet;
+        Debug.Log(helmet.armor);
         armor = helmet.armor;
-        bonusHP = helmet.bonusHP;
+        vitality = helmet.vitality;
     }
 
     public override void UpdatePlayerStatus(bool equip)
@@ -44,14 +45,20 @@ public class HelmetSlot : InventorySlot
         if (equip)
         {
             GameController.instance.armor += armor;
-            GameController.instance.maxHealthPoints += bonusHP;
+            GameController.instance.vitality += vitality;
+            GameController.instance.maxHealthPoints += vitality;
+            GameController.instance.UpdateHudStatus(1);
+            GameController.instance.UpdateHudStatus(2);
             GameController.instance.UpdateHUD();
             GameController.instance.UpdateEquipment(true, 0);
         }
         else
         {
             GameController.instance.armor -= armor;
-            GameController.instance.maxHealthPoints -= bonusHP;
+            GameController.instance.vitality -= vitality;
+            GameController.instance.maxHealthPoints -= vitality;
+            GameController.instance.UpdateHudStatus(1);
+            GameController.instance.UpdateHudStatus(2);
             GameController.instance.UpdateHUD();
             GameController.instance.UpdateEquipment(false, 0);
         }

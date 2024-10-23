@@ -16,4 +16,4 @@ MonoBehaviour:
   consumable: 0
   image: {fileID: 21300000, guid: 44e30e813c016094ab0a48083b8bbc5e, type: 3}
   armor: 2
-  bonusHP: 5
+  vitality: 3

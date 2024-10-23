@@ -4,39 +4,43 @@ using UnityEngine;
 
 public class Slash : MonoBehaviour
 {
-    [SerializeField] private int damage = 2;
+    public static Slash instance;
+
+    public int damage { get; set; }
     [SerializeField] private float knockbackForce = 5.0f;
     [SerializeField] private GameObject impactVFX;
-    //    private float timeToDestroy = 0.5f;
-    private GameObject player;
-    
     [SerializeField] private Collider myCollider;
-    
+
+    private GameObject player;
     private List<Collider> alreadyCollidedWith = new List<Collider>();
+
+    private void Awake()
+    {
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     private void OnEnable()
     {
         alreadyCollidedWith.Clear();
     }
 
-    
-    void Start()
-    {
-//        Destroy(gameObject, timeToDestroy);
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    void Update()
-    {
-//        Transform saida = player.transform.GetChild(2);
-//        transform.position = saida.position;
-//        transform.rotation = saida.rotation;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        
-        
+        // Prevent processing the same collider multiple times
+        if (alreadyCollidedWith.Contains(other)) 
+        {
+            return;
+        }
+
+        alreadyCollidedWith.Add(other);
+
+        // Handle collision with an enemy
         if (other.gameObject.CompareTag("Enemy"))
         {
             EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
@@ -47,22 +51,19 @@ public class Slash : MonoBehaviour
 
             Instantiate(impactVFX, other.transform.position, player.transform.rotation);
         }
-        if (alreadyCollidedWith.Contains(other)) { return; }
 
-        alreadyCollidedWith.Add(other);
-        
+        // Handle collision with any object that has Health
         if (other.TryGetComponent<Health>(out Health health))
         {
             health.DealDamage(damage);
             Instantiate(impactVFX, other.transform.position, player.transform.rotation);
         }
-        
-        if(other.TryGetComponent<ForceReceiver>(out ForceReceiver forceReceiver))
+
+        // Handle collision with any object that has ForceReceiver
+        if (other.TryGetComponent<ForceReceiver>(out ForceReceiver forceReceiver))
         {
             Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;
             forceReceiver.AddForce(direction * knockbackForce);
         }
-        
-        
     }
 }

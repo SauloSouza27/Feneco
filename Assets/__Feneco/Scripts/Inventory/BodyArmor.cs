@@ -10,5 +10,5 @@ using UnityEngine.InputSystem;
 public class BodyArmor : Item
 {
     public int armor = 0;
-    public int bonusHP = 0;
+    public int vitality = 0;
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BodyArmorSlot : InventorySlot
 {
     private int armor;
-    private int bonusHP;
+    private int vitality;
 
     //Definir armadura e retirar armadura quando desequipado utilizando o GameController.instance.UpdateArmor()? Fazer algo parecido com HP e dano?;
     //No momento, só armazenei o BodyArmor e o valor de armadura dele nas variáveis daqui, não fiz isso para os outros equipáveis
@@ -40,7 +40,8 @@ public class BodyArmorSlot : InventorySlot
     {
         BodyArmor bodyArmor = item as BodyArmor;
         armor = bodyArmor.armor;
-        bonusHP = bodyArmor.bonusHP;
+        Debug.Log("vitality = " + vitality);
+        vitality = bodyArmor.vitality;
     }
 
     public override void UpdatePlayerStatus(bool equip)
@@ -48,14 +49,20 @@ public class BodyArmorSlot : InventorySlot
         if (equip)
         {
             GameController.instance.armor += armor;
-            GameController.instance.maxHealthPoints += bonusHP;
+            GameController.instance.vitality += vitality;
+            GameController.instance.maxHealthPoints += vitality;
+            GameController.instance.UpdateHudStatus(1);
+            GameController.instance.UpdateHudStatus(2);
             GameController.instance.UpdateHUD();
             GameController.instance.UpdateEquipment(true, 1);
         }
         else
         {
             GameController.instance.armor -= armor;
-            GameController.instance.maxHealthPoints -= bonusHP;
+            GameController.instance.vitality -= vitality;
+            GameController.instance.maxHealthPoints -= vitality;
+            GameController.instance.UpdateHudStatus(1);
+            GameController.instance.UpdateHudStatus(2);
             GameController.instance.UpdateHUD();
             GameController.instance.UpdateEquipment(false, 1);
         }

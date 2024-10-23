@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     public int maxHealthPoints { get; set; }
 
     public int armor { get; set; }
+    public int vitality { get; set; }
 
     [SerializeField] private int healthPoints;
 
@@ -31,6 +32,10 @@ public class GameController : MonoBehaviour
     private int questHintIndex = 0;
 
     [SerializeField] private GameObject[] quests;
+    
+    [SerializeField] private TextMeshProUGUI damageStatus;
+    [SerializeField] private TextMeshProUGUI armorStatus;
+    [SerializeField] private TextMeshProUGUI vitalityStatus;
 
     private int questIndex = 0;
 
@@ -54,6 +59,7 @@ public class GameController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         maxHealthPoints = healthPoints;
         HUD = GameObject.FindWithTag("HUD");
+        damageStatus.text = $"{Slash.instance.damage}";
 
         helmetRenderer = GameObject.FindWithTag("Helmet").GetComponent<Renderer>();
         armorRenderer = GameObject.FindWithTag("Armor").GetComponent<Renderer>();
@@ -101,19 +107,31 @@ public class GameController : MonoBehaviour
         //Update HP Bar
         healthBar.SetMaxHealth(maxHealthPoints);
         healthBar.SetHealth(healthPoints);
-
     }
 
+    public void UpdateHudStatus(int statusType)
+    {
+        if (statusType == 0)
+        {
+            damageStatus.text = $"{Slash.instance.damage}";
+        }
+        else if (statusType == 1)
+        {
+            vitalityStatus.text = $"{vitality}";
+        }
+        else 
+        {
+            armorStatus.text = $"{armor}";
+            armorStatus.text = $"{armor}";
+        }
+        
+    }
+    
     public void TakeDamage(int damage)
     {
-        damage -= armor;
+        int damageTaken = Mathf.Max(damage - armor, 0);
 
-        if (damage < 0)
-        {
-            damage = 0;
-        }
-
-        healthPoints -= damage;
+        healthPoints -= damageTaken;
 
         if (healthPoints <= 0)
         {

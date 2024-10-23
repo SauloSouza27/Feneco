@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class WeaponSlot : InventorySlot
 {
-    [SerializeField] private GameObject snapHand, snapBack;
-    [SerializeField] private GameObject weapon;
+    private int damage;
     public override void OnDrop(PointerEventData eventData) 
     {
         if(eventData.pointerDrag.GetComponent<InventoryItem>().item.GetType() == typeof(Weapon))
@@ -17,31 +16,39 @@ public class WeaponSlot : InventorySlot
                 InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
                 inventoryItem.parentAfterDrag = transform;
 
-                DrawWeapon(true, weapon);
+                SetStatus(inventoryItem.item);
+                UpdatePlayerStatus(true);
             }
         }        
     }
-
+    
     private void OnTransformChildrenChanged()
     {
         if (transform.childCount == 0)
         {
-            DrawWeapon(false, weapon);
+            UpdatePlayerStatus(false);
         }
     }
-
-    public void DrawWeapon(bool draw, GameObject weapon)
+    
+    public override void SetStatus(Item item)
     {
-        if (draw)
+        Weapon weapon = item as Weapon;
+        damage = weapon.damage;
+    }
+
+    public void UpdatePlayerStatus(bool equipped)
+    {
+        if (equipped)
         {
-            //weapon.transform.SetParent(snapHand.transform);
-            //weapon.transform.SetLocalPositionAndRotation(Vector3.zero, new Quaternion(0, 0, 0, 0));
+            Slash.instance.damage += damage;
+            GameController.instance.UpdateHudStatus(0);
             GameController.instance.UpdateEquipment(true, 2);
+            
         }
         else
         {
-            //weapon.transform.SetParent(snapBack.transform);
-            //weapon.transform.SetLocalPositionAndRotation(Vector3.zero, new Quaternion(0, 0, 0, 0));
+            Slash.instance.damage -= damage;
+            GameController.instance.UpdateHudStatus(0);
             GameController.instance.UpdateEquipment(false, 2);
         }
     }

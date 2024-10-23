@@ -26,6 +26,7 @@ public class WeaponDamage : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            Debug.Log("taking damage");
             GameController.instance.TakeDamage(damage);
         }
 
