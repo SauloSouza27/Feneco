@@ -47,7 +47,7 @@ public class Slash : MonoBehaviour
             Vector3 direction = other.transform.position - player.transform.position;
 
             enemy.KnockBack(direction, knockbackForce);
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(instance.damage);
 
             Instantiate(impactVFX, other.transform.position, player.transform.rotation);
         }
@@ -55,7 +55,7 @@ public class Slash : MonoBehaviour
         // Handle collision with any object that has Health
         if (other.TryGetComponent<Health>(out Health health))
         {
-            health.DealDamage(damage);
+            health.DealDamage(instance.damage);
             Instantiate(impactVFX, other.transform.position, player.transform.rotation);
         }
 
