@@ -39,10 +39,10 @@ public class GameController : MonoBehaviour
 
     private int questIndex = 0;
 
-    private Renderer helmetRenderer;
-    private Renderer armorRenderer;
-    private Renderer swordHandRenderer;
-    private Renderer swordBackRenderer;
+    public Renderer helmetRenderer;
+    public Renderer armorRenderer;
+    public Renderer swordHandRenderer;
+    public Renderer swordBackRenderer;
 
     private void Awake()
     {
@@ -61,10 +61,10 @@ public class GameController : MonoBehaviour
         HUD = GameObject.FindWithTag("HUD");
         damageStatus.text = $"{Slash.instance.damage}";
 
-        helmetRenderer = GameObject.FindWithTag("Helmet").GetComponent<Renderer>();
-        armorRenderer = GameObject.FindWithTag("Armor").GetComponent<Renderer>();
-        swordHandRenderer = GameObject.FindWithTag("Sword").GetComponent<Renderer>();
-        swordBackRenderer = GameObject.FindWithTag("SwordBack").GetComponent<Renderer>();
+//        helmetRenderer = GameObject.FindWithTag("Helmet").GetComponent<Renderer>();
+//        armorRenderer = GameObject.FindWithTag("Armor").GetComponent<Renderer>();
+//        swordHandRenderer = GameObject.FindWithTag("Sword").GetComponent<Renderer>();
+//        swordBackRenderer = GameObject.FindWithTag("SwordBack").GetComponent<Renderer>();
     }
 
     private void Start()
