@@ -135,6 +135,7 @@ public class GameController : MonoBehaviour
 
         if (healthPoints <= 0)
         {
+            
             GameOver();
         }
 

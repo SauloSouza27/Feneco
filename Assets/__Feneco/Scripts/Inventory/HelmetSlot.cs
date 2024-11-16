@@ -44,6 +44,7 @@ public class HelmetSlot : InventorySlot
     {
         if (equip)
         {
+            SFXManager.instance.PlayEquipHelmetSFX();
             GameController.instance.armor += armor;
             GameController.instance.vitality += vitality;
             GameController.instance.maxHealthPoints += vitality;

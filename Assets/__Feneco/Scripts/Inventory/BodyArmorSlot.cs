@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class BodyArmorSlot : InventorySlot
 {
+    
     private int armor;
     private int vitality;
 
@@ -48,6 +49,7 @@ public class BodyArmorSlot : InventorySlot
     {
         if (equip)
         {
+            SFXManager.instance.PlayEquipArmorSFX();
             GameController.instance.armor += armor;
             GameController.instance.vitality += vitality;
             GameController.instance.maxHealthPoints += vitality;

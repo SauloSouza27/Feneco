@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private const float camRayLength = 100f;
     private const float distanceToGround = 1.55f;
+    
 
     private void Awake()
     {
@@ -99,6 +100,7 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
             rigidBody.velocity += Vector3.up * jump;
             animator.SetBool("IsJumping", true);
+            SFXManager.instance.PlayJumpSFX();
         }
     }
 
@@ -110,6 +112,7 @@ public class PlayerController : MonoBehaviour
         {
             isRunning = true;
             StartCoroutine(Dash());
+            SFXManager.instance.PlayDashSFX();
             lastDashTime = Time.time;
         }
         else if (context.canceled && isRunning)
@@ -153,11 +156,12 @@ public class PlayerController : MonoBehaviour
             isInventory = !isActive;
 
             if (isActive)
-            {                
+            {
                 UnfreezeCamera();
             }
             else if (!isActive)
             {
+                SFXManager.instance.PlayOpenInventorySFX();;
                 FreezeCamera();
             }
         }
