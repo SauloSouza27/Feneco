@@ -10,6 +10,7 @@ public class Slash : MonoBehaviour
     [SerializeField] private float knockbackForce = 5.0f;
     [SerializeField] private GameObject impactVFX;
     [SerializeField] private Collider myCollider;
+    
 
     private GameObject player;
     private List<Collider> alreadyCollidedWith = new List<Collider>();
