@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     public bool isNearNPC { get; private set; } = false;
 
     private const float camRayLength = 100f;
-    private const float distanceToGround = 1.55f;
+    private const float distanceToGround = 1.0f;
     
 
     private void Awake()
