@@ -40,7 +40,7 @@ public class WeaponSlot : InventorySlot
     {
         if (equipped)
         {
-            SFXManager.instance.PlayEquipSwordSFX();
+            SFXManager.instance.PlaySFX(SFXManager.SFXType.EquipSword);
             Slash.instance.damage += damage;
             GameController.instance.UpdateHudStatus(0);
             GameController.instance.UpdateEquipment(true, 2);

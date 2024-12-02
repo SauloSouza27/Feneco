@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
             rigidBody.velocity += Vector3.up * jump;
             animator.SetBool("IsJumping", true);
-            SFXManager.instance.PlayJumpSFX();
+            SFXManager.instance.PlaySFX(SFXManager.SFXType.Jump);
         }
     }
 
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         {
             isRunning = true;
             StartCoroutine(Dash());
-            SFXManager.instance.PlayDashSFX();
+            SFXManager.instance.PlaySFX(SFXManager.SFXType.Dash);
             lastDashTime = Time.time;
         }
         else if (context.canceled && isRunning)
@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (!isActive)
             {
-                SFXManager.instance.PlayOpenInventorySFX();;
+                SFXManager.instance.PlaySFX(SFXManager.SFXType.OpenInventory);
                 FreezeCamera();
             }
         }

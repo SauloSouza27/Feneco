@@ -41,7 +41,6 @@ public class BodyArmorSlot : InventorySlot
     {
         BodyArmor bodyArmor = item as BodyArmor;
         armor = bodyArmor.armor;
-        Debug.Log("vitality = " + vitality);
         vitality = bodyArmor.vitality;
     }
 
@@ -49,7 +48,7 @@ public class BodyArmorSlot : InventorySlot
     {
         if (equip)
         {
-            SFXManager.instance.PlayEquipArmorSFX();
+            SFXManager.instance.PlaySFX(SFXManager.SFXType.EquipArmor);
             GameController.instance.armor += armor;
             GameController.instance.vitality += vitality;
             GameController.instance.maxHealthPoints += vitality;

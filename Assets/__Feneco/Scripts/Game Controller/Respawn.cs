@@ -17,6 +17,7 @@ public class Respawn : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        SFXManager.instance.PlaySFX(SFXManager.SFXType.FallOnWater);
         StartCoroutine(RespawnCheckpoint(other));
     }
 

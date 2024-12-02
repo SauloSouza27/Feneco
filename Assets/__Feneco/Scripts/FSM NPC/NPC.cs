@@ -287,7 +287,7 @@ public class NPC : MonoBehaviour
 
         instance.isTalkEnd = true;
         instance.acceptedMission = true;
-        SFXManager.instance.PlayAcceptQuestSFX();
+        SFXManager.instance.PlaySFX(SFXManager.SFXType.AcceptQuest);
        
         GameController.instance.SetQuestHint();
 

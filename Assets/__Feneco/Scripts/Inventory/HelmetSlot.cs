@@ -35,7 +35,6 @@ public class HelmetSlot : InventorySlot
     public override void SetStatus(Item item)
     {
         Helmet helmet = item as Helmet;
-        Debug.Log(helmet.armor);
         armor = helmet.armor;
         vitality = helmet.vitality;
     }
@@ -44,7 +43,7 @@ public class HelmetSlot : InventorySlot
     {
         if (equip)
         {
-            SFXManager.instance.PlayEquipHelmetSFX();
+            SFXManager.instance.PlaySFX(SFXManager.SFXType.EquipHelmet);
             GameController.instance.armor += armor;
             GameController.instance.vitality += vitality;
             GameController.instance.maxHealthPoints += vitality;

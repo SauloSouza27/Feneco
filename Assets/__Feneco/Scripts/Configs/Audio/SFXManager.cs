@@ -1,20 +1,35 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
     public static SFXManager instance;
-    
-    [SerializeField] private AudioSource jumpSFX;
-    [SerializeField] private AudioSource dashSFX;
-    [SerializeField] private AudioSource openInventorySFX;
-    [SerializeField] private AudioSource equipSwordSFX;
-    [SerializeField] private AudioSource equipHelmetSFX;
-    [SerializeField] private AudioSource equipArmorSFX;
-    [SerializeField] private AudioSource enemyDeathSFX;
-    [SerializeField] private AudioSource acceptQuestSFX;
-    [SerializeField] private AudioSource finishQuestSFX;
 
+    public enum SFXType
+    {
+        Jump,
+        Dash,
+        OpenInventory,
+        EquipSword,
+        EquipHelmet,
+        EquipArmor,
+        EnemyDeath,
+        AcceptQuest,
+        FinishQuest,
+        FallOnWater
+    }
+
+    [Serializable]
+    public struct SFXClip
+    {
+        public SFXType type;
+        public AudioSource audioSource;
+    }
+
+    [SerializeField] private List<SFXClip> sfxClips = new List<SFXClip>();
+
+    private Dictionary<SFXType, AudioSource> sfxDictionary;
 
     private void Awake()
     {
@@ -26,114 +41,32 @@ public class SFXManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // Initialize the dictionary
+            sfxDictionary = new Dictionary<SFXType, AudioSource>();
+            foreach (var sfxClip in sfxClips)
+            {
+                if (!sfxDictionary.ContainsKey(sfxClip.type))
+                {
+                    sfxDictionary.Add(sfxClip.type, sfxClip.audioSource);
+                }
+                else
+                {
+                    Debug.LogWarning($"Duplicate SFXType found: {sfxClip.type}");
+                }
+            }
         }
     }
 
-    public void PlayJumpSFX()
+    public void PlaySFX(SFXType sfxType)
     {
-        if (jumpSFX != null)
+        if (sfxDictionary.TryGetValue(sfxType, out var audioSource) && audioSource != null)
         {
-            jumpSFX.Play();
+            audioSource.Play();
         }
         else
         {
-            Debug.LogWarning("Jump SFX not assigned!");
+            Debug.LogWarning($"SFX not assigned or missing for type: {sfxType}");
         }
     }
-
-    public void PlayDashSFX()
-    {
-        if (dashSFX != null)
-        {
-            dashSFX.Play();
-        }
-        else
-        {
-            Debug.LogWarning("Hit SFX not assigned!");
-        }
-    }
-    public void PlayOpenInventorySFX()
-    {
-        if (openInventorySFX != null)
-        {
-            openInventorySFX.Play();
-        }
-        else
-        {
-            Debug.LogWarning("Hit SFX not assigned!");
-        }
-    }
-    
-    public void PlayEquipSwordSFX()
-    {
-        if (equipSwordSFX != null)
-        {
-            equipSwordSFX.Play();
-        }
-        else
-        {
-            Debug.LogWarning("Hit SFX not assigned!");
-        }
-    }
-    
-    public void PlayEquipHelmetSFX()
-    {
-        if (equipHelmetSFX != null)
-        {
-            equipHelmetSFX.Play();
-        }
-        else
-        {
-            Debug.LogWarning("Hit SFX not assigned!");
-        }
-    }
-    
-    public void PlayEquipArmorSFX()
-    {
-        if (equipArmorSFX != null)
-        {
-            equipArmorSFX.Play();
-        }
-        else
-        {
-            Debug.LogWarning("Hit SFX not assigned!");
-        }
-    }
-    
-    public void PlayEnemyDeathSFX()
-    {
-        if (enemyDeathSFX != null)
-        {
-            enemyDeathSFX.Play();
-        }
-        else
-        {
-            Debug.LogWarning("Hit SFX not assigned!");
-        }
-    }
-    
-    public void PlayAcceptQuestSFX()
-    {
-        if (acceptQuestSFX != null)
-        {
-            acceptQuestSFX.Play();
-        }
-        else
-        {
-            Debug.LogWarning("Hit SFX not assigned!");
-        }
-    }
-    
-    public void PlayFinishQuestSFX()
-    {
-        if (finishQuestSFX != null)
-        {
-            finishQuestSFX.Play();
-        }
-        else
-        {
-            Debug.LogWarning("Hit SFX not assigned!");
-        }
-    }
-    
 }
