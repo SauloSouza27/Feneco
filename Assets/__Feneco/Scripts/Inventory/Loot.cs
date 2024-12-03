@@ -47,10 +47,10 @@ public class Loot : MonoBehaviour
     {
         Destroy(collider);
 
-        while (Vector3.Distance(transform.position, target.position) > 0.01f) 
+        while (transform.position != target.position)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-            yield return null; 
+            yield return 0;
         }
         Destroy(gameObject);
     }

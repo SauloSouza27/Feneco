@@ -20,17 +20,6 @@ public class SFXManager : MonoBehaviour
         FallOnWater
     }
 
-    public enum MusicType
-    {
-        Default,
-        Camp,
-        Market,
-        Oasis,
-        Quests234,
-        AlongTheWay,
-        FinalQuest
-    }
-
     [Serializable]
     public struct SFXClip
     {
@@ -38,22 +27,9 @@ public class SFXManager : MonoBehaviour
         public AudioSource audioSource;
     }
 
-    [Serializable]
-    public struct MusicClip
-    {
-        public MusicType type;
-        public AudioClip clip;
-    }
-
-    [Header("SFX Settings")]
     [SerializeField] private List<SFXClip> sfxClips = new List<SFXClip>();
 
-    [Header("Music Settings")]
-    [SerializeField] private List<MusicClip> musicClips = new List<MusicClip>();
-    [SerializeField] private AudioSource musicSource;
-
     private Dictionary<SFXType, AudioSource> sfxDictionary;
-    private Dictionary<MusicType, AudioClip> musicDictionary;
 
     private void Awake()
     {
@@ -66,7 +42,7 @@ public class SFXManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // Initialize dictionaries
+            // Initialize the dictionary
             sfxDictionary = new Dictionary<SFXType, AudioSource>();
             foreach (var sfxClip in sfxClips)
             {
@@ -77,19 +53,6 @@ public class SFXManager : MonoBehaviour
                 else
                 {
                     Debug.LogWarning($"Duplicate SFXType found: {sfxClip.type}");
-                }
-            }
-
-            musicDictionary = new Dictionary<MusicType, AudioClip>();
-            foreach (var musicClip in musicClips)
-            {
-                if (!musicDictionary.ContainsKey(musicClip.type))
-                {
-                    musicDictionary.Add(musicClip.type, musicClip.clip);
-                }
-                else
-                {
-                    Debug.LogWarning($"Duplicate MusicType found: {musicClip.type}");
                 }
             }
         }
@@ -104,59 +67,6 @@ public class SFXManager : MonoBehaviour
         else
         {
             Debug.LogWarning($"SFX not assigned or missing for type: {sfxType}");
-        }
-    }
-
-    public void ChangeMusic(MusicType musicType)
-    {
-        if (musicDictionary.TryGetValue(musicType, out var newMusicClip) && newMusicClip != null)
-        {
-            if (musicSource.clip != newMusicClip)
-            {
-                musicSource.clip = newMusicClip;
-                musicSource.Play();
-            }
-        }
-        else
-        {
-            Debug.LogWarning($"Music not assigned or missing for type: {musicType}");
-        }
-    }
-
-    public void CrossfadeMusic(MusicType musicType, float fadeDuration = 1f)
-    {
-        if (musicDictionary.TryGetValue(musicType, out var newMusicClip) && newMusicClip != null)
-        {
-            if (musicSource.clip != newMusicClip)
-            {
-                StartCoroutine(FadeMusic(newMusicClip, fadeDuration));
-            }
-        }
-        else
-        {
-            Debug.LogWarning($"Music not assigned or missing for type: {musicType}");
-        }
-    }
-
-    private System.Collections.IEnumerator FadeMusic(AudioClip newMusicClip, float fadeDuration)
-    {
-        float startVolume = musicSource.volume;
-
-        // Fade out
-        while (musicSource.volume > 0)
-        {
-            musicSource.volume -= startVolume * Time.deltaTime / fadeDuration;
-            yield return null;
-        }
-
-        // Switch music and fade in
-        musicSource.clip = newMusicClip;
-        musicSource.Play();
-
-        while (musicSource.volume < startVolume)
-        {
-            musicSource.volume += startVolume * Time.deltaTime / fadeDuration;
-            yield return null;
         }
     }
 }
