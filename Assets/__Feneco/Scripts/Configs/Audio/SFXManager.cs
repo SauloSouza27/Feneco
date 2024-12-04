@@ -17,7 +17,8 @@ public class SFXManager : MonoBehaviour
         EnemyDeath,
         AcceptQuest,
         FinishQuest,
-        FallOnWater
+        FallOnWater,
+        EnemyGotHit
     }
 
     public enum MusicType

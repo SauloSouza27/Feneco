@@ -56,6 +56,7 @@ public class Slash : MonoBehaviour
         // Handle collision with any object that has Health
         if (other.TryGetComponent<Health>(out Health health))
         {
+            SFXManager.instance.PlaySFX(SFXManager.SFXType.EnemyGotHit);
             health.DealDamage(instance.damage);
             Instantiate(impactVFX, other.transform.position, player.transform.rotation);
         }
