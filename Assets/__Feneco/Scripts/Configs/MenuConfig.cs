@@ -78,4 +78,8 @@ public class MenuConfig : MonoBehaviour
         Debug.Log ("Sair do Jogo");
         Application.Quit();
     }
+
+    public void Retry(){
+        SceneManager.LoadScene(1);
+    }
 }
