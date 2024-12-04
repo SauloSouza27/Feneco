@@ -107,22 +107,6 @@ public class SFXManager : MonoBehaviour
         }
     }
 
-    public void ChangeMusic(MusicType musicType)
-    {
-        if (musicDictionary.TryGetValue(musicType, out var newMusicClip) && newMusicClip != null)
-        {
-            if (musicSource.clip != newMusicClip)
-            {
-                musicSource.clip = newMusicClip;
-                musicSource.Play();
-            }
-        }
-        else
-        {
-            Debug.LogWarning($"Music not assigned or missing for type: {musicType}");
-        }
-    }
-
     public void CrossfadeMusic(MusicType musicType, float fadeDuration = 1f)
     {
         if (musicDictionary.TryGetValue(musicType, out var newMusicClip) && newMusicClip != null)
