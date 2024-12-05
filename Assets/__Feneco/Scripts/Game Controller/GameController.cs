@@ -44,6 +44,8 @@ public class GameController : MonoBehaviour
     public Renderer swordHandRenderer;
     public Renderer swordBackRenderer;
 
+    public GameOverScreen gameOverScreen;
+
     private void Awake()
     {
         if (instance != null)
@@ -159,6 +161,8 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
+        player.GetComponent<PlayerController>().FreezeCamera();
+        gameOverScreen.ShowGameOverScreen();
     }
 
     public void SetQuestHint()
