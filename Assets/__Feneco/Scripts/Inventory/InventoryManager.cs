@@ -8,7 +8,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
 
     public int maxStackedItems = 10;
-    private GameObject inventory, mainInventory, toolbar, equipInventory;
+    [SerializeField] private GameObject inventory, mainInventory, toolbar, equipInventory;
     private InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
@@ -23,7 +23,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         else
         {
