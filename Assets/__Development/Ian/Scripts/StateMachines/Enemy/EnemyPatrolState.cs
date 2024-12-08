@@ -113,7 +113,7 @@ public class EnemyPatrolState : EnemyBaseState
     {
         float pointDistanceSqr = (stateMachine.Walkpoint - stateMachine.transform.position).sqrMagnitude;
 
-        return pointDistanceSqr <= 1f;
+        return pointDistanceSqr <= 2.5f;
     }
     
    
