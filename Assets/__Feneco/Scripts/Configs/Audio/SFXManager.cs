@@ -17,7 +17,8 @@ public class SFXManager : MonoBehaviour
         EnemyDeath,
         AcceptQuest,
         FinishQuest,
-        FallOnWater
+        FallOnWater,
+        EnemyGotHit
     }
 
     public enum MusicType
@@ -104,22 +105,6 @@ public class SFXManager : MonoBehaviour
         else
         {
             Debug.LogWarning($"SFX not assigned or missing for type: {sfxType}");
-        }
-    }
-
-    public void ChangeMusic(MusicType musicType)
-    {
-        if (musicDictionary.TryGetValue(musicType, out var newMusicClip) && newMusicClip != null)
-        {
-            if (musicSource.clip != newMusicClip)
-            {
-                musicSource.clip = newMusicClip;
-                musicSource.Play();
-            }
-        }
-        else
-        {
-            Debug.LogWarning($"Music not assigned or missing for type: {musicType}");
         }
     }
 

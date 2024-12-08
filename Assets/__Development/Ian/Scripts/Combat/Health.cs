@@ -39,8 +39,6 @@ public class Health : MonoBehaviour
         {
             OnDie?.Invoke();
         }
-
-        Debug.Log(health);
     }
 
   
