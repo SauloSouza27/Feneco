@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
     private const float camRayLength = 100f;
     private const float distanceToGround = 1.0f;
     
+    public RectTransform inventoryUIRect; // Drag the inventory UI's RectTransform here in the Inspector
+    public Vector2 hiddenPosition = new Vector2(10000, 10000); // Position to move the inventory off-screen
+    public Vector2 visiblePosition = Vector2.zero; // Position to display the inventory
+
+    
 
     private void Awake()
     {
@@ -149,18 +154,21 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && !isPaused && talkingNPC == null)
         {
-            bool isActive = inventoryUI.activeSelf;
+            // Check if the inventory is currently visible
+            bool isInventoryVisible = inventoryUIRect.anchoredPosition == visiblePosition;
 
-            inventoryUI.SetActive(!isActive);
-
-            isInventory = !isActive;
-
-            if (isActive)
+            if (isInventoryVisible)
             {
+                // Hide the inventory
+                inventoryUIRect.anchoredPosition = hiddenPosition;
+                isInventory = false;
                 UnfreezeCamera();
             }
-            else if (!isActive)
+            else
             {
+                // Show the inventory
+                inventoryUIRect.anchoredPosition = visiblePosition;
+                isInventory = true;
                 SFXManager.instance.PlaySFX(SFXManager.SFXType.OpenInventory);
                 FreezeCamera();
             }
