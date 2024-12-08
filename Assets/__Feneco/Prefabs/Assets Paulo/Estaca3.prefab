@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3125289482706007347}
   - component: {fileID: 2089694243712861911}
   - component: {fileID: 2031365124334594121}
+  - component: {fileID: 7802271698135926013}
   m_Layer: 0
   m_Name: Estaca3
   m_TagString: Untagged
@@ -83,3 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7802271698135926013
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8414604769053968223}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.33781624, y: 1.8794534, z: 0.3378161}
+  m_Center: {x: 0, y: 0.14042735, z: 0}
